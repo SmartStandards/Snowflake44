@@ -1,0 +1,34 @@
+{
+  "name": "uid64",
+  "version": "0.0.1",
+  "description": "a 44-Bit Timestamp with some random salt",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly_": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SmartStandards/UID64.git"
+  },
+  "author": "SmartStandards",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/SmartStandards/UID64",
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.7.2"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}
