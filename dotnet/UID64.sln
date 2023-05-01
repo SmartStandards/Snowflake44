@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4130D21C-FE8F-4925-93E7-217B4AF1B7D9}"
 	ProjectSection(SolutionItems) = preProject
-		UID64.nuspec = UID64.nuspec
 		..\readme.md = ..\readme.md
+		UID64.nuspec = UID64.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EFB5135D-039A-4D92-8FDD-9EA5D070F991}"
@@ -27,11 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{431B90E9-4591-
 		..\js\src\uid64.ts = ..\js\src\uid64.ts
 	EndProjectSection
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Uid64Vb", "src\Uid64DotNet\Uid64Vb.vbproj", "{78B38C39-E5C8-4492-A395-8AF80B1FA0C4}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Uid64VbTests", "test\Uid64DotNetTests\Uid64VbTests.vbproj", "{42FF4FAE-DD3E-4F28-9A26-6924D364E36D}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\UID64.projitems*{80a3546e-c58e-4664-8c5b-1196f3a2c4f9}*SharedItemsImports = 5
-		src\UID64.projitems*{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -45,6 +45,14 @@ Global
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B38C39-E5C8-4492-A395-8AF80B1FA0C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B38C39-E5C8-4492-A395-8AF80B1FA0C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B38C39-E5C8-4492-A395-8AF80B1FA0C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B38C39-E5C8-4492-A395-8AF80B1FA0C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42FF4FAE-DD3E-4F28-9A26-6924D364E36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42FF4FAE-DD3E-4F28-9A26-6924D364E36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42FF4FAE-DD3E-4F28-9A26-6924D364E36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42FF4FAE-DD3E-4F28-9A26-6924D364E36D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,8 +63,14 @@ Global
 		{80A3546E-C58E-4664-8C5B-1196F3A2C4F9} = {24674244-E4CB-4D13-A513-2F24C3FB13AD}
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2} = {24674244-E4CB-4D13-A513-2F24C3FB13AD}
 		{431B90E9-4591-4FBD-A87F-52866A67B36D} = {4130D21C-FE8F-4925-93E7-217B4AF1B7D9}
+		{78B38C39-E5C8-4492-A395-8AF80B1FA0C4} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
+		{42FF4FAE-DD3E-4F28-9A26-6924D364E36D} = {C5272353-539E-4138-93FD-9DF437F6DA47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2F37C1D-32F0-4BF2-AAEB-46B9D8C07D23}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\UID64.projitems*{80a3546e-c58e-4664-8c5b-1196f3a2c4f9}*SharedItemsImports = 5
+		src\UID64.projitems*{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
