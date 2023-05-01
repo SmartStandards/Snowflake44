@@ -51,16 +51,16 @@ Namespace IdHandling
 
         elapsedMilliseconds = elapsedMilliseconds << 19
 
-        Dim rv As Integer
+        Dim randomValue As Integer
         Dim collisionDetected As Boolean
 
         Do
-          rv = Uid64Generator.RandomGenerator.Next(524287)
-          collisionDetected = Not _RandomsOfCurrentTimeFrame.Add(rv)
+          randomValue = Uid64Generator.RandomGenerator.Next(524287)
+          collisionDetected = Not _RandomsOfCurrentTimeFrame.Add(randomValue)
 
         Loop While collisionDetected
 
-        Dim randomPart As Long = rv
+        Dim randomPart As Long = randomValue
         Dim uid As Long = (elapsedMilliseconds Or randomPart)
 
         Return uid

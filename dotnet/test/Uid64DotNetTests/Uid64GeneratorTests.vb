@@ -9,14 +9,14 @@ Namespace IdHandling
     <TestMethod()>
     Public Sub GenerateUid_CalledQuicklyAndOften_DoesNotCreateDuplicateIds()
       Dim uid As Long
-      Dim previousSaltedTimestamp As Long
+      Dim previousUid As Long
 
       For i = 1 To 1000000
 
-        previousSaltedTimestamp = uid
+        previousUid = uid
 
         uid = Uid64Generator.GenerateUid()
-        Assert.AreNotEqual(previousSaltedTimestamp, uid)
+        Assert.AreNotEqual(previousUid, uid)
 
       Next
 
@@ -39,7 +39,6 @@ Namespace IdHandling
       Assert.AreEqual(actualDate1.AddMilliseconds(1), actualDate2)
 
     End Sub
-
 
   End Class
 
