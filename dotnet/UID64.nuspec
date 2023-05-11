@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UID64</id>
-    <version>0.0.1-localbuild</version>
+    <version>1.0.0-localbuild</version>
     <title>UID64</title>
     <authors>SmartStandards</authors>
     <owners>(public domain)</owners>
@@ -19,6 +19,8 @@
       </group>
       <group targetFramework="net5.0">    
       </group>
+      <group targetFramework="net6.0">
+      </group>
     </dependencies>
   </metadata>
   <files>
@@ -32,5 +34,9 @@
     <file src="dist\bin-net5.0\UID64.dll" target="lib/net5.0" />
     <file src="dist\bin-net5.0\UID64.xml" target="lib/net5.0" />
     <file src="dist\bin-net5.0\UID64.pdb" target="lib/net5.0" />
+    <!-- .NET 6.0 -->
+    <file src="dist\bin-net6.0\UID64.dll" target="lib/net6.0" />
+    <file src="dist\bin-net6.0\UID64.xml" target="lib/net6.0" />
+    <file src="dist\bin-net6.0\UID64.pdb" target="lib/net6.0" />
   </files>
 </package>

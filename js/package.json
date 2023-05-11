@@ -1,6 +1,6 @@
 {
   "name": "uid64",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "a 44-Bit Timestamp with some random salt",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

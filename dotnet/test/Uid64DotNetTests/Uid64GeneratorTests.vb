@@ -1,7 +1,6 @@
-Imports IdHandling.IdHandling
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Namespace IdHandling
+Namespace Uid64Tests
 
   <TestClass>
   Public Class Uid64GeneratorTests
@@ -15,7 +14,7 @@ Namespace IdHandling
 
         previousUid = uid
 
-        uid = Uid64Generator.GenerateUid()
+        uid = Uid64.Generate()
         Assert.AreNotEqual(previousUid, uid)
 
       Next
@@ -26,13 +25,13 @@ Namespace IdHandling
     Public Sub DecodeDateTimeTest()
 
       Dim expectedDate1 As New Date(1973, 12, 9, 15, 33, 22)
-      Dim saltedTimestamp1 As Long = Uid64Generator.EncodeDateTime(expectedDate1)
+      Dim saltedTimestamp1 As Long = Uid64.EncodeDateTime(expectedDate1)
 
       Dim expectedDate2 As Date = expectedDate1.AddMilliseconds(1)
-      Dim saltedTimestamp2 As Long = Uid64Generator.EncodeDateTime(expectedDate2)
+      Dim saltedTimestamp2 As Long = Uid64.EncodeDateTime(expectedDate2)
 
-      Dim actualDate1 As Date = Uid64Generator.DecodeDateTime(saltedTimestamp1)
-      Dim actualDate2 As Date = Uid64Generator.DecodeDateTime(saltedTimestamp2)
+      Dim actualDate1 As Date = Uid64.DecodeDateTime(saltedTimestamp1)
+      Dim actualDate2 As Date = Uid64.DecodeDateTime(saltedTimestamp2)
 
       Assert.AreEqual(expectedDate1, actualDate1)
       Assert.AreEqual(expectedDate2, actualDate2)
@@ -43,4 +42,3 @@ Namespace IdHandling
   End Class
 
 End Namespace
-

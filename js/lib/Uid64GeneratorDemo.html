@@ -1,5 +1,5 @@
 <html>
-	<script src="Uid64Generator.js"></script>
+	<script src="uid64.js"></script>
 
 	<style type="text/css">
 		table {border-collapse: collapse;}
@@ -33,23 +33,23 @@
 <p>Collision check: <span id="collisionResult">running...</span></p>
 
 	<script type="text/javascript">
-		
-		id = encodeDateTime(Date.UTC(1950, 0, 1));
+
+		id = Uid64.encodeDateTime(Date.UTC(1950, 0, 1));
 		document.getElementById("id1950").innerText = id;
 		
 		decoded = decodeDateTime(id);
 		document.getElementById("decoded1950").innerText = decoded.toUTCString();
 		
-		id = encodeDateTime(Date.UTC(2000, 0, 1));
+		id = Uid64.encodeDateTime(Date.UTC(2000, 0, 1));
 		document.getElementById("id2000").innerText = id;
 
-		decoded = decodeDateTime(id);
+		decoded = Uid64.decodeDateTime(id);
 		document.getElementById("decoded2000").innerText = decoded.toUTCString();
 
-		id = generateUid();
+		id = Uid64.generateUid();
 		document.getElementById("idNow").innerText = id;
 
-		decoded = decodeDateTime(id);
+		decoded = Uid64.decodeDateTime(id);
 		document.getElementById("decodedNow").innerText = decoded.toUTCString();
 
 		var previousUid = BigInt(0);
