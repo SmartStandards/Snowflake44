@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UID64</name>
+    </assembly>
+    <members>
+        <member name="M:System.Uid64.Generate">
+            <summary>
+              Generates an id based on the current UTC time and a random part.
+            </summary>
+            <returns> An integer 64 id containing the encoded current UTC time. </returns>
+        </member>
+        <member name="M:System.Uid64.EncodeDateTime(System.DateTime)">
+            <summary>
+              Encodes a DateTime value to an integer 64 value.
+            </summary>
+            <param name="incomingDate"> A date value between 1900-01-01 and 2457-01-01 </param>
+        </member>
+        <member name="M:System.Uid64.DecodeDateTime(System.Int64)">
+            <summary>
+              Decodes a DateTime value from an encoded integer 64 value.
+            </summary>
+        </member>
+    </members>
+</doc>

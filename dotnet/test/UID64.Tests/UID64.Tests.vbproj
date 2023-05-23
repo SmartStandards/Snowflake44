@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\lib-net6.0\UID64-net6.0.csproj" />
+    <ProjectReference Include="..\..\src\UID64.net6.0\UID64.net6.0.csproj" />
   </ItemGroup>
 
 </Project>
