@@ -6,7 +6,7 @@ This files contains a version history including all changes relevant for semanti
 ## Upcoming Changes
 
  - re-arranged solution structure
-
+ - fixed output path for .net 461
 
 ## v 0.1.3
 released **2023-05-22**, including:
