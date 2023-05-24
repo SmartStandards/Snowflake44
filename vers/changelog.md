@@ -5,5 +5,13 @@ This files contains a version history including all changes relevant for semanti
 
 ## Upcoming Changes
 
-  moved from private repo (**MVP** state already reached)
+*(none)*
+
+
+
+## v 1.0.0
+released **2023-05-24**, including:
+ - moved from private repo (**MVP** state already reached)
+
+
 
