@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace System {
 
-  public partial class Uid64 {
+  public partial class Snowflake44 {
 
     private static long _PreviousTimeFrame;
 

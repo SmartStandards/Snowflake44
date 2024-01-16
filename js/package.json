@@ -1,5 +1,5 @@
 {
-  "name": "uid64",
+  "name": "snowflake44",
   "version": "1.0.0",
   "description": "a 44-Bit Timestamp with some random salt",
   "main": "lib/index.js",
@@ -17,11 +17,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SmartStandards/UID64.git"
+    "url": "https://github.com/SmartStandards/Snowflake44.git"
   },
   "author": "SmartStandards",
   "license": "GPL-3.0-only",
-  "homepage": "https://github.com/SmartStandards/UID64",
+  "homepage": "https://github.com/SmartStandards/Snowflake44",
   "devDependencies": {
     "prettier": "^2.6.2",
     "tslint": "^6.1.3",

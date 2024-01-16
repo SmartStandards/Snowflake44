@@ -7,29 +7,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\vers\changelog.md = ..\vers\changelog.md
 		..\readme.md = ..\readme.md
-		UID64.nuspec = UID64.nuspec
+		Snowflake44.nuspec = Snowflake44.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EFB5135D-039A-4D92-8FDD-9EA5D070F991}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C5272353-539E-4138-93FD-9DF437F6DA47}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UID64", "src\UID64\UID64.shproj", "{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Snowflake44", "src\Snowflake44\Snowflake44.shproj", "{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{431B90E9-4591-4FBD-A87F-52866A67B36D}"
 	ProjectSection(SolutionItems) = preProject
 		..\js\package.json = ..\js\package.json
-		..\js\src\uid64.ts = ..\js\src\uid64.ts
-		..\js\lib\Uid64GeneratorDemo.html = ..\js\lib\Uid64GeneratorDemo.html
+		..\js\src\snowflake44.ts = ..\js\src\snowflake44.ts
+		..\js\lib\Snowflake44GeneratorDemo.html = ..\js\lib\Snowflake44GeneratorDemo.html
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UID64.net5.0", "src\UID64.net5.0\UID64.net5.0.csproj", "{88F15535-FAD8-4372-80DC-FD0D8C81AB4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.net5.0", "src\Snowflake44.net5.0\Snowflake44.net5.0.csproj", "{88F15535-FAD8-4372-80DC-FD0D8C81AB4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UID64.net6.0", "src\UID64.net6.0\UID64.net6.0.csproj", "{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.net6.0", "src\Snowflake44.net6.0\Snowflake44.net6.0.csproj", "{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "UID64.Tests", "test\UID64.Tests\UID64.Tests.vbproj", "{F0D82342-189B-49EE-96BC-73140BD53C2D}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Snowflake44.Tests", "test\Snowflake44.Tests\Snowflake44.Tests.vbproj", "{F0D82342-189B-49EE-96BC-73140BD53C2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UID64.net461", "src\UID64.net461\UID64.net461.csproj", "{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowflake44.net461", "src\Snowflake44.net461\Snowflake44.net461.csproj", "{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,9 +69,9 @@ Global
 		SolutionGuid = {D2F37C1D-32F0-4BF2-AAEB-46B9D8C07D23}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\UID64\UID64.projitems*{7b5baea8-7e79-4a30-b6c1-4da4831af970}*SharedItemsImports = 5
-		src\UID64\UID64.projitems*{88f15535-fad8-4372-80dc-fd0d8c81ab4c}*SharedItemsImports = 5
-		src\UID64\UID64.projitems*{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}*SharedItemsImports = 4
-		src\UID64\UID64.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc85ae}*SharedItemsImports = 13
+		src\Snowflake44\Snowflake44.projitems*{7b5baea8-7e79-4a30-b6c1-4da4831af970}*SharedItemsImports = 5
+		src\Snowflake44\Snowflake44.projitems*{88f15535-fad8-4372-80dc-fd0d8c81ab4c}*SharedItemsImports = 5
+		src\Snowflake44\Snowflake44.projitems*{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}*SharedItemsImports = 4
+		src\Snowflake44\Snowflake44.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc85ae}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

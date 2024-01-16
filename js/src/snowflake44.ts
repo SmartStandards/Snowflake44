@@ -1,15 +1,15 @@
 
-export function uid64(){
-	return Uid64.generate();
+export function snowflake44(){
+	return Snowflake44.generate();
 }
 
-export class Uid64 {
+export class Snowflake44 {
   
   private static _PreviousTimeFrame: number = 0;
   private static _RandomsOfCurrentTimeFrame = new Set();
   
   public static generate(): bigint {
-    return Uid64.encodeDateTime(new Date());
+    return Snowflake44.encodeDateTime(new Date());
   }
   
   private static encodeDateTime(incomingDate: any): bigint{
@@ -18,11 +18,11 @@ export class Uid64 {
       return BigInt(-1);
     }
   
-    if (elapsedMilliseconds != Uid64._PreviousTimeFrame){
-      Uid64._RandomsOfCurrentTimeFrame.clear();
+    if (elapsedMilliseconds != Snowflake44._PreviousTimeFrame){
+      Snowflake44._RandomsOfCurrentTimeFrame.clear();
     }
   
-    Uid64._PreviousTimeFrame = elapsedMilliseconds;
+    Snowflake44._PreviousTimeFrame = elapsedMilliseconds;
   
     var id = BigInt(elapsedMilliseconds) << 19n;
   
@@ -30,8 +30,8 @@ export class Uid64 {
   
     do {
       randomValue = BigInt(Math.floor(Math.random() * 524287));
-      if (! Uid64._RandomsOfCurrentTimeFrame.has(randomValue)){
-        Uid64._RandomsOfCurrentTimeFrame.add(randomValue);
+      if (!Snowflake44._RandomsOfCurrentTimeFrame.has(randomValue)){
+        Snowflake44._RandomsOfCurrentTimeFrame.add(randomValue);
         break;
       }
     } while (true);
@@ -41,11 +41,11 @@ export class Uid64 {
     return id;
   }
   
-  public static decodeDateTime(uid64: bigint): Date {
+  public static decodeDateTime(snowflake44id: bigint): Date {
 
-    var uid64 = uid64 >> 19n;
+    var snowflake44id = snowflake44id >> 19n;
   
-    var elapsedMilliseconds = Number(uid64) - 2208988800000;
+    var elapsedMilliseconds = Number(snowflake44id) - 2208988800000;
      
     var decodedDate: Date = new Date();
     decodedDate.setTime(elapsedMilliseconds);

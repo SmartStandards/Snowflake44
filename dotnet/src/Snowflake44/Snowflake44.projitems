@@ -11,6 +11,6 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Uid64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Snowflake44.cs" />
   </ItemGroup>
 </Project>
