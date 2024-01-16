@@ -1,4 +1,4 @@
-# UID64
+# Snowflake44 (UID64)
 
 A 44-Bit Timestamp with some random salt that is sortable (SQL index 
 compat.), decentralized generatable and fitting into a BigInt
