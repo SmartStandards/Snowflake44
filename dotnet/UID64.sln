@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UID64.net6.0", "src\UID64.n
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "UID64.Tests", "test\UID64.Tests\UID64.Tests.vbproj", "{F0D82342-189B-49EE-96BC-73140BD53C2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UID64-net461", "src\UID64.net461\UID64-net461.csproj", "{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UID64.net461", "src\UID64.net461\UID64.net461.csproj", "{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +72,6 @@ Global
 		src\UID64\UID64.projitems*{7b5baea8-7e79-4a30-b6c1-4da4831af970}*SharedItemsImports = 5
 		src\UID64\UID64.projitems*{88f15535-fad8-4372-80dc-fd0d8c81ab4c}*SharedItemsImports = 5
 		src\UID64\UID64.projitems*{b0ba06fe-6437-4b9e-8c76-3adfc8d191d2}*SharedItemsImports = 4
+		src\UID64\UID64.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc85ae}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
