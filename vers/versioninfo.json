@@ -1,13 +1,13 @@
 {
-  "currentVersion": "1.0.1",
-  "currentVersionWithSuffix": "1.0.1",
+  "currentVersion": "2.0.0",
+  "currentVersionWithSuffix": "2.0.0",
   "releaseType": "official",
-  "previousVersion": "1.0.0",
-  "changeGrade": "patch",
-  "currentMajor": 1,
+  "previousVersion": "1.0.1",
+  "changeGrade": "major",
+  "currentMajor": 2,
   "currentMinor": 0,
-  "currentPatch": 1,
-  "versionDateInfo": "2023-05-24",
-  "versionTimeInfo": "13:22:23",
-  "versionNotes": "- updated readme\n"
+  "currentPatch": 0,
+  "versionDateInfo": "2024-01-16",
+  "versionTimeInfo": "08:21:11",
+  "versionNotes": "- Renamed form 'UID64' to 'Snowflake44' (breaking Change)\n"
 }

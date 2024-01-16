@@ -8,7 +8,13 @@ This files contains a version history including all changes relevant for semanti
 
 ## Upcoming Changes
 
-* Renamed form 'UID64' to 'Snowflake44' (**breaking Change**)
+*(none)*
+
+
+
+## v 2.0.0
+released **2024-01-16**, including:
+ - Renamed form 'UID64' to 'Snowflake44' (**breaking Change**)
 
 
 
