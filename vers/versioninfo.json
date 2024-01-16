@@ -1,13 +1,13 @@
 {
-  "currentVersion": "1.0.0",
-  "currentVersionWithSuffix": "1.0.0",
+  "currentVersion": "1.0.1",
+  "currentVersionWithSuffix": "1.0.1",
   "releaseType": "official",
-  "previousVersion": "0.0.0",
+  "previousVersion": "1.0.0",
   "changeGrade": "patch",
   "currentMajor": 1,
   "currentMinor": 0,
-  "currentPatch": 0,
+  "currentPatch": 1,
   "versionDateInfo": "2023-05-24",
-  "versionTimeInfo": "13:04:54",
-  "versionNotes": "- moved from private repo (**MVP** state already reached)\n"
+  "versionTimeInfo": "13:22:23",
+  "versionNotes": "- updated readme\n"
 }
