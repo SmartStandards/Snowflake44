@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace System {
 
@@ -14,7 +13,7 @@ namespace System {
     internal static DateTime CenturyBegin { get; set; } = new DateTime(1900, 1, 1);
 
     /// <summary>
-    ///   Generates an id based on the current UTC time and a random part.
+    ///   Generates an id based on the current UTC time (44 bit) and a random part (19 bit).
     /// </summary>
     /// <returns> An integer 64 id containing the encoded current UTC time. </returns>
     public static long Generate() {
@@ -38,14 +37,11 @@ namespace System {
         // ^ One tick is 100 nano seconds (There are 10,000 ticks in a millisecond)
 
         // 44 bit gives us 557 years date range resolved in a resolution of microseconds
-        if (elapsedMilliseconds >= 17592186044416L) // We don't want to use the 45th bit
-        {
+        if (elapsedMilliseconds >= 17592186044416L){ // We don't want to use the 45th bit
           throw new Exception("Time stamp exceeds 44 bit!");
         }
 
-        if (elapsedMilliseconds != _PreviousTimeFrame) {
-          _RandomsOfCurrentTimeFrame.Clear();
-        }
+        if (elapsedMilliseconds != _PreviousTimeFrame) _RandomsOfCurrentTimeFrame.Clear();
 
         _PreviousTimeFrame = elapsedMilliseconds;
 
@@ -57,9 +53,7 @@ namespace System {
         do {
           randomValue = RandomGenerator.Next(524287);
           collisionDetected = !_RandomsOfCurrentTimeFrame.Add(randomValue);
-        }
-
-        while (collisionDetected);
+        } while (collisionDetected);
 
         long randomPart = randomValue;
         long uid = elapsedMilliseconds | randomPart;
@@ -74,12 +68,10 @@ namespace System {
     /// </summary>
     public static DateTime DecodeDateTime(long uid64) {
 
-      if (uid64 < 0L)
-        uid64 = -uid64;
+      if (uid64 < 0L) uid64 = -uid64;
 
       long decodedMilliseconds = uid64 >> 19;
       long decodedTicks = decodedMilliseconds * 10000L;
-      var ts = new TimeSpan(decodedTicks);
       var decodedDate = new DateTime(CenturyBegin.Ticks + decodedTicks);
 
       return decodedDate;
