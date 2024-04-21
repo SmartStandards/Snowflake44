@@ -44,7 +44,7 @@ See [Change Log](./vers/changelog.md) for current version information.
 
 ## EncodedToken Conventions
 
-- Allowed characters: Letters, german umlauts (äöüß), no digits, no spaces, nothing else
+- Allowed characters: Letters, german umlauts (äöüß), dot. No digits, no spaces, nothing else.
 - True PascalCase (first letter uppercase)
 - Max. 12 characters (each uppercase character occupies 2 places).
 
@@ -52,17 +52,7 @@ See [Change Log](./vers/changelog.md) for current version information.
 
 To convert a string into Int64, an "inverted" Base32 algorithm is used: Not the Payload (bytes) are encoded to a string,
 but the other way round - the string is encoded into 8 Bytes which then represent the int64 value. 
-To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 32 possible chars (5 bits per char):
-
-| Value | Symbol | 
-|-------|--------|
-|     0 |      _ |
-| 1..26 |   A..Z |
-|    27 |      Ä | 
-|    28 |      Ö | 
-|    29 |      Ü | 
-|    30 |      ß | 
-|    31 |      . |
+To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 32 possible chars (5 bits per char).
 
 ### Example
 
@@ -75,8 +65,39 @@ To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 
 
 | #      | Count |       Semantic |
 |--------|-------|----------------|
-| 63..60 |     4 |       CodePage |
+|     63 |     1 |         unused |
+| 62..60 |     3 |       CodePage |
 | 59..55 |     5 |  Last Char (B) |
 |     …  |       |                |
 |   4..0 |     5 | First Char (0) |
+
+### Alphabet (CodePage 0 of 8 possible)
+
+| Value | Symbol | 
+|-------|--------|
+|     0 |      _ |
+| 1..26 |   A..Z |
+|    27 |      Ä | 
+|    28 |      Ö | 
+|    29 |      Ü | 
+|    30 |      ß | 
+|    31 |      . |
+
+### String End Convention 
+
+Da der Wert 0 als Underscore codiert wird, ist die codierte String-Länge immer fix 12 Zeichen - es entsteht implizit ein Underscore-Padding-rechts. 
+
+Underscores werden von rechts abgeschnitten ("trim"). 
+
+#### Illustration
+
+|     Original |        Encoded |      Decoded | Bemerkungen                                                         |
+|--------------|----------------|--------------|---------------------------------------------------------------------|
+|      "HALLO" | "HALLO_______" |      "HALLO" |                                                                     |
+|     "HALLO_" | "HALLO_______" |      "HALLO" | Der am Ende stehende Underscore geht durch das Decodieren verloren. |
+|     "_HALLO" | "_HALLO______" |     "_HALLO" | Als Prefix funktionieren Underscores.                               |
+| "HALLO_WELT" | "HALLO_WELT__" | "HALLO_WELT" |                                                                     |
+| (Leerstring) | "____________" |           "" |                                                                     | 
+|          "_" | "____________" |           "" | Alleinstehende Underscores gehen verloren.                          |
+|         "__" | "____________" |           "" | Alleinstehende Underscores gehen verloren.                          |
 
