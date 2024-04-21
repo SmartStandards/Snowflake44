@@ -97,12 +97,12 @@ we need to trim from the right, therefore it's not possible to have trailing und
 
 |     Original |        Encoded |      Decoded | Remarks                                                             |
 |--------------|----------------|--------------|---------------------------------------------------------------------|
-|      "HALLO" | "HALLO_______" |      "HALLO" |                                                                     |
-|     "HALLO_" | "HALLO_______" |      "HALLO" | Trailing underscores get lost after decoding.                       |
-|     "_HALLO" | "__HALLO______" |     "_HALLO" | Leading underscores are preserved.                                 |
-| "HALLO_WELT" | "HALLO_WELT__" | "HALLO_WELT" | Inner underscores are preserved.                                    |
-| (Leerstring) | "____________" |           "" | An empty string and 12 underscores are equally encoded...           | 
-|         "__" | "____________" |           "" | ...therefore an underscore-only string will be decoded as empty.    | 
+|`      "HALLO" `|` "HALLO_______" `|`      "HALLO" `|                                                                     |
+|`     "HALLO_" `|` "HALLO_______" `|`      "HALLO" `| Trailing underscores get lost after decoding.                       |
+|`     "_HALLO" `|` "_HALLO______" `|`     "_HALLO" `| Leading underscores are preserved.                                  |
+|` "HALLO_WELT" `|` "HALLO_WELT__" `|` "HALLO_WELT" `| Inner underscores are preserved.                                    |
+|` (Leerstring) `|` "____________" `|`           "" `| An empty string and 12 underscores are equally encoded...           | 
+|`         "__" `|` "____________" `|`           "" `| ...therefore an underscore-only string will be decoded as empty.    | 
 
 ### PascalCase Convention 
   
@@ -126,12 +126,12 @@ Therefore another convention is put on top of the "raw encoded token" standard:
 
 |     Original |   Decoded Raw |   Pascalized | Remarks                                                            |
 |--------------|---------------|--------------|--------------------------------------------------------------------|
-|      "Hello" |       "HELLO" |      "Hello" |                                                                    |
-|      "hello" |       "HELLO" |      "Hello" | Original not PascalCase, 1st char became uppercase afted decoding. |
-| "HelloWorld" | "HELLO_WORLD" | "HelloWorld" |                                                                    |
-| "helloWorld" | "HELLO_WORLD" | "HelloWorld" | Original not PascalCase, 1st char became uppercase afted decoding. |
-|         "Id" |          "ID" |         "Id" |                                                                    |
-|         "ID" |         "I_D" |         "ID" |                                                                    |
-|       "Gmbh" |        "GMBH" |       "Gmbh" |                                                                    |
-|       "GmbH" |         GMB_H |       "GmbH" |                                                                    |
-|       "GMBH" |     "G_M_B_H" |       "GMBH" | Original completely uppercase, halving the maximum length          |
+|`      "Hello" `|`       "HELLO" `|`      "Hello" `|                                                                    |
+|`      "hello" `|`       "HELLO" `|`      "Hello" `| Original not PascalCase, 1st char became uppercase afted decoding. |
+|` "HelloWorld" `|` "HELLO_WORLD" `|` "HelloWorld" `|                                                                    |
+|` "helloWorld" `|` "HELLO_WORLD" `|` "HelloWorld" `| Original not PascalCase, 1st char became uppercase afted decoding. |
+|`         "Id" `|`          "ID" `|`         "Id" `|                                                                    |
+|`         "ID" `|`         "I_D" `|`         "ID" `|                                                                    |
+|`       "Gmbh" `|`        "GMBH" `|`       "Gmbh" `|                                                                    |
+|`       "GmbH" `|`         GMB_H `|`       "GmbH" `|                                                                    |
+|`       "GMBH" `|`     "G_M_B_H" `|`       "GMBH" `| Original completely uppercase, halving the maximum length          |
