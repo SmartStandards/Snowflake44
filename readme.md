@@ -1,4 +1,4 @@
-# Snowflake44 ID (UID64) & EncodedToken ID
+ï»¿# Snowflake44 ID (UID64) & EncodedToken ID
 
 **Snowflake44** is an algorithm to create a 64 bit integer ("Long", "BigInt") unique ID that can be used as SQL primary key, 
 but is more compact than a GUID. It's actually a 44 bit UTC time stamp combined with 19 bit of random.
@@ -9,9 +9,10 @@ The topmost bit is not used in order to avoid negative values.
 - Risk of collisions (when using parallel ID generators): 1:500.000 (within the same millisecond)
 
 **EncodedToken** can create a 64 bit integer ID from a (maximum 12 chars) string ("Token"). 
-The intended use is to make human readable (technical) names (such as enum element names) directly usable as SQL primary keys.
-The integer ID can easily be decoded back to string representation (also in SQL statements), so you actually get human readable
-IDs without using string types.
+The intended use is to make human readable (technical, stable) names (such as enum element names) directly usable as SQL primary keys.
+The integer ID can easily be decoded back to string representation (also in SQL statements), so...
+â€ƒðŸ˜Š no need to use string type (ID) columns
+â€ƒðŸ˜Š no need to maintain a lookup table to translate IDs to text representation
 A "Token" string must follow **specific conventions** (see below)!
 
 ## Usage
@@ -44,15 +45,17 @@ See [Change Log](./vers/changelog.md) for current version information.
 
 ## EncodedToken Conventions
 
-- Allowed characters: Letters, german umlauts (äöüß), dot. No digits, no spaces, nothing else.
+- Allowed characters: Letters, german umlauts (Ã¤Ã¶Ã¼ÃŸ), dot. No digits, no spaces, no underscores, nothing else.
 - True PascalCase (first letter uppercase)
 - Max. 12 characters (each uppercase character occupies 2 places).
+- If used as (primary) key: It's value must be stable forever (never to be renamed).
 
 ## EncodedToken Internals
 
 To convert a string into Int64, an "inverted" Base32 algorithm is used: Not the Payload (bytes) are encoded to a string,
 but the other way round - the string is encoded into 8 Bytes which then represent the int64 value. 
 To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 32 possible chars (5 bits per char).
+This representation is called "raw encoded token", because it doesn't support PascalCase.
 
 ### Example
 
@@ -68,7 +71,7 @@ To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 
 |     63 |     1 |         unused |
 | 62..60 |     3 |       CodePage |
 | 59..55 |     5 |  Last Char (B) |
-|     …  |       |                |
+|     â€¦  |       |                |
 |   4..0 |     5 | First Char (0) |
 
 ### Alphabet (CodePage 0 of 8 possible)
@@ -77,27 +80,58 @@ To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 
 |-------|--------|
 |     0 |      _ |
 | 1..26 |   A..Z |
-|    27 |      Ä | 
-|    28 |      Ö | 
-|    29 |      Ü | 
-|    30 |      ß | 
+|    27 |      Ã„ | 
+|    28 |      Ã– | 
+|    29 |      Ãœ | 
+|    30 |      ÃŸ | 
 |    31 |      . |
 
 ### String End Convention 
 
-Da der Wert 0 als Underscore codiert wird, ist die codierte String-Länge immer fix 12 Zeichen - es entsteht implizit ein Underscore-Padding-rechts. 
-
-Underscores werden von rechts abgeschnitten ("trim"). 
+In order not to loose one (valuable) character of the alphabet, the value 0 is mapped to "__" (underscore) instead of being ignored.
+This causes some implications for the decoding behaviour of the underscore char (what you decode is not 1:1 what you encoded).
+The decoded string will always have a length of 12 chars, padded to the right with underscores. To regain the original string,
+we need to trim from the right, therefore it's not possible to have trailing underscores in the original string.
 
 #### Illustration
 
-|     Original |        Encoded |      Decoded | Bemerkungen                                                         |
+|     Original |        Encoded |      Decoded | Remarks                                                             |
 |--------------|----------------|--------------|---------------------------------------------------------------------|
 |      "HALLO" | "HALLO_______" |      "HALLO" |                                                                     |
-|     "HALLO_" | "HALLO_______" |      "HALLO" | Der am Ende stehende Underscore geht durch das Decodieren verloren. |
-|     "_HALLO" | "_HALLO______" |     "_HALLO" | Als Prefix funktionieren Underscores.                               |
-| "HALLO_WELT" | "HALLO_WELT__" | "HALLO_WELT" |                                                                     |
-| (Leerstring) | "____________" |           "" |                                                                     | 
-|          "_" | "____________" |           "" | Alleinstehende Underscores gehen verloren.                          |
-|         "__" | "____________" |           "" | Alleinstehende Underscores gehen verloren.                          |
+|     "HALLO_" | "HALLO_______" |      "HALLO" | Trailing underscores get lost after decoding.                       |
+|     "_HALLO" | "__HALLO______" |     "_HALLO" | Leading underscores are preserved.                                 |
+| "HALLO_WELT" | "HALLO_WELT__" | "HALLO_WELT" | Inner underscores are preserved.                                    |
+| (Leerstring) | "____________" |           "" | An empty string and 12 underscores are equally encoded...           | 
+|         "__" | "____________" |           "" | ...therefore an underscore-only string will be decoded as empty.    | 
 
+### PascalCase Convention 
+  
+To represent seperate words in a raw encoded token, you would have to use underscores as delimiter ("HELLO_WORLD") and you loose casing.
+Therefore another convention is put on top of the "raw encoded token" standard:
+
+- Original Token:
+  - Must be PascalCase (first char uppercase)
+  - Must not contain underscores or spaces
+
+- Before encoding (pre processor): 
+    - Insert an underscore before each uppercase char except the first one
+        - Consequence: Uppercase chars (except the first one) occupy two places and reduce the possible length of a token
+
+- After decoding (post processor): 
+    - The first decoded char is always uppercase
+    - Everything is lowercase by default, unless it's prefixed with an underscore
+    - Underscores are removed
+
+#### Illustration
+
+|     Original |   Decoded Raw |   Pascalized | Remarks                                                            |
+|--------------|---------------|--------------|--------------------------------------------------------------------|
+|      "Hello" |       "HELLO" |      "Hello" |                                                                    |
+|      "hello" |       "HELLO" |      "Hello" | Original not PascalCase, 1st char became uppercase afted decoding. |
+| "HelloWorld" | "HELLO_WORLD" | "HelloWorld" |                                                                    |
+| "helloWorld" | "HELLO_WORLD" | "HelloWorld" | Original not PascalCase, 1st char became uppercase afted decoding. |
+|         "Id" |          "ID" |         "Id" |                                                                    |
+|         "ID" |         "I_D" |         "ID" |                                                                    |
+|       "Gmbh" |        "GMBH" |       "Gmbh" |                                                                    |
+|       "GmbH" |         GMB_H |       "GmbH" |                                                                    |
+|       "GMBH" |     "G_M_B_H" |       "GMBH" | Original completely uppercase, halving the maximum length          |
