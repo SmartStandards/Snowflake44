@@ -3,7 +3,7 @@
   public class TextToIntegerCodec {
 
     // CREDITS: http://vodi.de for https://github.com/SmartStandards/Snowflake44
-    
+
     /// <summary> Decodes an Integer to a string (of maximum 6 characters). </summary>
     /// <remarks> The String will be pascal case or CAPITALS. </remarks>
     public static string FromInt64(long int64Value) {
@@ -13,7 +13,7 @@
       byte unmappedCode;
       char[] decoded = new char[12];
 
-      if ((int64Value < 0)) int64Value = int64Value * -1;
+      if ((int64Value < 0)) int64Value *= -1;
 
       for (var i = 0; i <= 11; i++) {
 
@@ -55,7 +55,7 @@
           }
         }
         decoded[i] = Convert.ToChar(unmappedCode);
-        bitmask = bitmask << 5;
+        bitmask <<= 5;
         offset += 5;
       }
 
@@ -64,12 +64,10 @@
 
     public static string FromInt32(int int32Value) {
       if ((int32Value < 0))
-        int32Value = int32Value * -1;
+        int32Value *= -1;
       long int64Value = int32Value;
       return FromInt64(int64Value);
     }
-
-    
 
     /// <summary> Encodes an uppercase String (of maximum 12 characters) into a Long. </summary>
     /// <remarks> 
@@ -78,18 +76,19 @@
     ///   All forms of casing will be lost except CAPITALS.
     ///   The decoder will create Pascal Casing or CAPITALS.
     /// </remarks>
-    public static long ToInt64(string extendee) {
+    public static long ToInt64(string stringValue) {
 
-      if (extendee.Length > 12) {
-        throw new ArgumentException(string.Format("Maximum length of 12 characters was exceeded by \"{0}\"!", extendee), "stringValue");
+      if (stringValue.Length > 12) {
+        throw new ArgumentException(string.Format("Maximum length of 12 characters was exceeded by \"{0}\"!", stringValue), nameof(stringValue));
       }
 
-      if (extendee.EndsWith("_")) {
-        throw new ArgumentException(string.Format("String must not end with underscore: \"{0}\"!", extendee), "stringValue");
+      if (stringValue.EndsWith("_")) {
+        throw new ArgumentException(string.Format("String must not end with underscore: \"{0}\"!", stringValue), nameof(stringValue));
       }
-      string toEncode = extendee.ToUpperInvariant();
 
-      if ((toEncode.Length < 12)) toEncode = toEncode.PadRight(12, '_');
+      string toEncode = stringValue.ToUpperInvariant();
+
+      if (toEncode.Length < 12) toEncode = toEncode.PadRight(12, '_');
 
       ulong encodedValue = 0;
       int offset = 0;
@@ -97,51 +96,38 @@
       ulong mappedCode;
 
       for (var i = 0; i <= 11; i++) {
+
         unmappedCode = Convert.ToByte(toEncode[i]);
-        switch (unmappedCode) {
-          case 95: { // _
-            mappedCode = 0;
-            break;
-          }
-          case object when 65 <= unmappedCode && unmappedCode <= 90: { // A-Z
-            mappedCode = (ulong)(unmappedCode ^ Convert.ToByte(64));
-            break;
-          }
-          case 46: { // .
-            mappedCode = 31;
-            break;
-          }
-          case 196: { // Ä,ä
-            mappedCode = 27;
-            break;
-          }
-          case 214: { // Ö,ö
-            mappedCode = 28;
-            break;
-          }
-          case 220: { // Ü,ü
-            mappedCode = 29;
-            break;
-          }
-          case 223: { // ß
-            mappedCode = 30;
-            break;
-          }
-          default: {
-            throw new ArgumentException(string.Format("Unsupported Character in \"{0}\"!", extendee), "stringValue");
-            break;
-          }
+
+        if (unmappedCode == 95) {
+          mappedCode = 0;
+        } else if (65 <= unmappedCode && unmappedCode <= 90) { // A-Z
+          mappedCode = (ulong)(unmappedCode ^ Convert.ToByte(64));
+        } else if (unmappedCode == 46) { // .
+          mappedCode = 31;
+        } else if (unmappedCode == 196) { // Ä,ä
+          mappedCode = 27;
+        } else if (unmappedCode == 214) { // Ö,ö
+          mappedCode = 28;
+        } else if (unmappedCode == 220) { // Ü,ü
+          mappedCode = 29;
+        } else if (unmappedCode == 223) { // ß
+          mappedCode = 30;
+        } else {
+          throw new ArgumentException(string.Format("Unsupported Character in \"{0}\"!", stringValue), nameof(stringValue));
         }
-        encodedValue = encodedValue | (mappedCode << offset);
+        encodedValue |= (mappedCode << offset);
         offset += 5;
+
       }
       return Convert.ToInt64(encodedValue);
     }
 
-    public static int ToInt32(string extendee) {
-      if ((extendee.Length > 6))
-        throw new ArgumentException(string.Format("Maximum length of 6 characters was exceeded by \"{0}\"!", extendee), "stringValue");
-      return Convert.ToInt32(TextToIntegerCodec.ToInt64(extendee));
+    public static int ToInt32(string stringValue) {
+      if ((stringValue.Length > 6)) { 
+        throw new ArgumentException(string.Format("Maximum length of 6 characters was exceeded by \"{0}\"!", stringValue), nameof(stringValue));
+      }
+      return Convert.ToInt32(TextToIntegerCodec.ToInt64(stringValue));
     }
 
   }

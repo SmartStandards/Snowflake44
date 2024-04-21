@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace System {
+namespace System.SmartStandards {
 
   [TestClass]
   public class Snowflake44GeneratorTests {

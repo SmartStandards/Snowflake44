@@ -14,7 +14,7 @@ The integer ID can easily be decoded back to string representation (also in SQL 
 IDs without using string types.
 A "Token" string must follow **specific conventions** (see below)!
 
-## Ussage
+## Usage
 
 For dotnet, Install the **Snowflake44 by SmartStandards Nuget Package**.
 Then you can write:

@@ -9,12 +9,9 @@
     <Import_RootNamespace>System</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)\System\Text\SmartStandards\TokenEncoder.cs" />
+    <Compile Include="..\Snowflake44\System\Text\SmartStandards\TokenEncoder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Text\SmartStandards\PascalCasingUtil.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)System\SmartStandards\Snowflake44.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Snowflake44.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Text\SmartStandards\TextToIntegerCodec.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)System\SmartStandards\" />
   </ItemGroup>
 </Project>

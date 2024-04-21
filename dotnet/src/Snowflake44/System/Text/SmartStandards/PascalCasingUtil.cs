@@ -2,27 +2,41 @@
 
   public class PascalCasingUtil {
 
-    public static string ToPascalCase(string extendee, string[] keepCasingFor = null, bool replaceUmlauts = false) {
+    /// <summary>
+    ///   Transforms a string containing separate words into a PascalCase formatted string.
+    /// </summary>
+    /// <param name="originalString"> The string to be pascalized. </param>
+    /// <param name="keepCasingFor"> 
+    ///   Array of exceptional words, the casing of which should be preserved (e.g. company or product names).
+    ///   Example: Normally "Hello ExampleCompany" would be transformed to "HelloExamplecompany". By passing "ExampleCompany" as exception,
+    ///   the result would be "HelloExampleCompany".
+    /// </param>
+    /// <param name="replaceUmlauts"> 
+    ///   If true, german umlauts will be replaced by regular (ASCII) characters:
+    ///   ä to ae, ö to oe, ü to ue ß to ss.
+    /// </param>
+    /// <returns> A pascal case formatted string. </returns>
+    public static string ToPascalCase(string originalString, string[] keepCasingFor = null, bool replaceUmlauts = false) {
 
-      if (extendee == null) return null;
+      if (originalString == null) return null;
 
-      if (extendee == "") return "";
+      if (originalString == "") return "";
 
-      StringBuilder sb = new(extendee.Length * 2);
+      StringBuilder sb = new StringBuilder(originalString.Length * 2);
 
       if (keepCasingFor != null) {
-        sb.Append(extendee);
+        sb.Append(originalString);
         foreach (string caseToKeep in keepCasingFor)
           sb.Replace(caseToKeep, SplitFromPascalCase(caseToKeep));
-        extendee = sb.ToString();
+        originalString = sb.ToString();
         sb.Clear();
       }
 
       bool nextOneUp = true; // Der Erste immer Groß
-      char umlautSurrogate = default(Char);
+      char umlautSurrogate = default;
 
-      for (int i = 0; i <= (extendee.Length - 1); i++) {
-        char c = extendee[i];
+      for (int i = 0; i <= (originalString.Length - 1); i++) {
+        char c = originalString[i];
         if (!char.IsLetterOrDigit(c)) {
           nextOneUp = true;
           continue;
@@ -69,17 +83,20 @@
           }
         }
         nextOneUp = false;
-        umlautSurrogate = default(Char);
+        umlautSurrogate = default;
       }
       return sb.ToString();
     }
 
     /// <summary>
-    ///   Wandelt einen PascalCase-String in UPPERCASE_MIT_UNDERSCORES.
+    ///   Transforms a PascalCase string into a string with separated words.
     ///  </summary>
     /// <param name="camelOrPascalCaseString">
-    ///   Darf keine Leerzeichen oder Underscores enthalten. Nothing gibt Nothing zurück. Leerstring gibt Leerstring zurück.
+    ///   Must not contain any spaces or underscores. Null will return null, empty string will return empty string.
     /// </param>
+    /// <param name="separator"> Will be used to separate words. Default: Space.</param>
+    /// <param name="toUppercase"> If true, output will be uppercase. </param>
+    /// <param name="keepPascalCaseFor"></param>
     /// <returns> Aus "HalloDuWelt" wird "HALLO_DU_WELT". </returns>
     /// <remarks>
     ///   Jedem Großbuchstaben im Eingangsstring wird ein Separator vorangestellt (außer an Index 0).
@@ -95,6 +112,7 @@
       if ((separator == default(Char))) separator = ' ';
 
       StringBuilder sb = new StringBuilder(camelOrPascalCaseString.Length * 2);
+
       if (toUppercase)
         sb.Append(char.ToUpper(camelOrPascalCaseString[0]));
       else
