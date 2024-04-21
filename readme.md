@@ -10,9 +10,9 @@ The topmost bit is not used in order to avoid negative values.
 
 **EncodedToken** can create a 64 bit integer ID from a (maximum 12 chars) string ("Token"). 
 The intended use is to make human readable (technical, stable) names (such as enum element names) directly usable as SQL primary keys.
-The integer ID can easily be decoded back to string representation (also in SQL statements), so...
- 😊 no need to use string type (ID) columns
- 😊 no need to maintain a lookup table to translate IDs to text representation
+The integer ID can easily be decoded back to string representation (also in SQL statements), so...\
+ 😊 no need to use string type (ID) columns\
+ 😊 no need to maintain a lookup table to translate IDs to text representation\
 A "Token" string must follow **specific conventions** (see below)!
 
 ## Usage
