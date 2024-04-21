@@ -7,9 +7,9 @@
     /// </summary>
     /// <param name="token">
     ///   A string following these conventions:
-    ///   Only letters (no digits).
-    ///   True PascalCase (first letter uppercase, no spaces, underscores, hyphens, etc.)
-    ///   Max. 12 characters (each uppercase character occupies 2 places).    ///   
+    ///   Allowed characters:  Letters, german umlauts (äöüß), no digits, no spaces, nothing else
+    ///   True PascalCase (first letter uppercase)
+    ///   Max. 12 characters (each uppercase character occupies 2 places). 
     /// </param>
     /// <returns> An int64 ID. </returns>
     public static long Encode(string token) {

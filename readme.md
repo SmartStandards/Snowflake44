@@ -16,13 +16,26 @@ A "Token" string must follow **specific conventions** (see below)!
 
 ## Usage
 
-For dotnet, Install the **Snowflake44 by SmartStandards Nuget Package**.
+For dotnet, install the **Snowflake44 by SmartStandards Nuget Package**.
 Then you can write:
+
+    // C# for using Snowflake44:
 
     long uid = Snowflake44.Generate();
 
     DateTime transactionTime = Snowflake44.DecodeDateTime(uid);
     
+    // C# for using encoded token:
+
+    long id = TokenEncoder.Encode("ExampleTenant");
+
+    string token = TokenEncoder.Decode(id);
+    
+For SQL, install the **fn_DecodeToken** from the sources here.
+Then you can write:
+
+    SELECT id, fn_DecodeToken(id) AS 'DecodedId'
+
 ## Version History & Build
 
 See [Change Log](./vers/changelog.md) for current version information.
@@ -31,4 +44,39 @@ See [Change Log](./vers/changelog.md) for current version information.
 
 ## EncodedToken Conventions
 
-- Allowed characters: Letters, german umlauts (äöüß), 
+- Allowed characters: Letters, german umlauts (äöüß), no digits, no spaces, nothing else
+- True PascalCase (first letter uppercase)
+- Max. 12 characters (each uppercase character occupies 2 places).
+
+## EncodedToken Internals
+
+To convert a string into Int64, an "inverted" Base32 algorithm is used: Not the Payload (bytes) are encoded to a string,
+but the other way round - the string is encoded into 8 Bytes which then represent the int64 value. 
+To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 32 possible chars (5 bits per char):
+
+| Value | Symbol | 
+|-------|--------|
+|     0 |      _ |
+| 1..26 |   A..Z |
+|    27 |      Ä | 
+|    28 |      Ö | 
+|    29 |      Ü | 
+|    30 |      ß | 
+|    31 |      . |
+
+### Example
+
+    Bits    [ 4][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ] 
+    Index   0000BBBBBAAAAA99999888887777766666555554444433333222221111100000 
+    Example               [ 20][ 12][ 5 ][ 23][ 0 ][ 15][ 12][ 12][ 1 ][ 8 ]
+                          [ T ][ L ][ E ][ W ][ _ ][ O ][ L ][ L ][ A ][ H ]
+
+### Bit Sematics
+
+| #      | Count |       Semantic |
+|--------|-------|----------------|
+| 63..60 |     4 |       CodePage |
+| 59..55 |     5 |  Last Char (B) |
+|     …  |       |                |
+|   4..0 |     5 | First Char (0) |
+

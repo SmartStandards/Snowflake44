@@ -1,26 +1,21 @@
-# Change log
-This files contains a version history including all changes relevant for semantic versioning...
+# Change Log
 
-*(it is automatically maintained using the ['KornSW-VersioningUtil'](https://github.com/KornSW/VersioningUtil))*
+(automatically maintained using the ['KornSW-VersioningUtil'](https://github.com/KornSW/VersioningUtil))
 
 ## Upcoming Changes
 
-- Minor code reformatting. 
+- Breaking Change: Namespace "System.SmartStandards" instead of "System" 
 
-## v 2.0.0
+- New Feature: TokenEncoder
 
-released **2024-01-16**, including:
- - Renamed form 'UID64' to 'Snowflake44' (**breaking Change**)
+## V 2.0.0 (released 2024-01-16)
 
- ## v 1.0.1
+ - Breaking Change: Renamed from 'UID64' to 'Snowflake44'
 
-released **2023-05-24**, including:
+## V 1.0.1 (released 2023-05-24)
+
  - updated readme
 
-## v 1.0.0
+## V 1.0.0 (released 2023-05-24)
 
-released **2023-05-24**, including:
- - moved from private repo (**MVP** state already reached)
-
-
-
+ - moved from private repo (MVP state already reached)

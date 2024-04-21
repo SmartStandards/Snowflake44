@@ -6,21 +6,21 @@ namespace System.Text.SmartStandards {
   public class TokenEncoderTests {
   
     [TestMethod()]
-    public void ToInt_PascalCaseInput_ReturnsPascalCaseOutput() {
+    public void EncodeAndDecode_TestPatterns_ReturnExpextedOutput() {
       AssertEncodingAndDecodingOf("KnödelWürst", 742634033826132427L);
     }
 
-    private static void AssertEncodingAndDecodingOf(string s, long l) {
+    private static void AssertEncodingAndDecodingOf(string originalToken, long l) {
 
       long id;
 
-      string token;
+      string decodedToken;
 
-      id = TokenEncoder.Encode(s);
-      Assert.AreEqual(l, id, s);
+      id = TokenEncoder.Encode(originalToken);
+      Assert.AreEqual(l, id, originalToken);
 
-      token = TokenEncoder.Decode(id);
-      Assert.AreEqual(s, token);
+      decodedToken = TokenEncoder.Decode(id);
+      Assert.AreEqual(originalToken, decodedToken);
     }
   }
 }
