@@ -5,8 +5,7 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4130D21C-FE8F-4925-93E7-217B4AF1B7D9}"
 	ProjectSection(SolutionItems) = preProject
-		..\vers\changelog.md = ..\vers\changelog.md
-		..\readme.md = ..\readme.md
+		.editorconfig = .editorconfig
 		Snowflake44.nuspec = Snowflake44.nuspec
 	EndProjectSection
 EndProject
@@ -16,20 +15,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C5272353-5
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Snowflake44", "src\Snowflake44\Snowflake44.shproj", "{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{431B90E9-4591-4FBD-A87F-52866A67B36D}"
-	ProjectSection(SolutionItems) = preProject
-		..\js\package.json = ..\js\package.json
-		..\js\src\snowflake44.ts = ..\js\src\snowflake44.ts
-		..\js\lib\Snowflake44GeneratorDemo.html = ..\js\lib\Snowflake44GeneratorDemo.html
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.net5.0", "src\Snowflake44.net5.0\Snowflake44.net5.0.csproj", "{88F15535-FAD8-4372-80DC-FD0D8C81AB4C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.net6.0", "src\Snowflake44.net6.0\Snowflake44.net6.0.csproj", "{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Snowflake44.Tests", "test\Snowflake44.Tests\Snowflake44.Tests.vbproj", "{F0D82342-189B-49EE-96BC-73140BD53C2D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowflake44.net461", "src\Snowflake44.net461\Snowflake44.net461.csproj", "{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.Tests", "test\Snowflake44.TestsC\Snowflake44.Tests.csproj", "{732D4247-867F-4161-B0CF-C12950A4B996}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{F9D7B4B4-86BA-481D-8F88-EEB7D1C79BE0}"
+	ProjectSection(SolutionItems) = preProject
+		..\vers\changelog.md = ..\vers\changelog.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,25 +42,24 @@ Global
 		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F0D82342-189B-49EE-96BC-73140BD53C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0D82342-189B-49EE-96BC-73140BD53C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0D82342-189B-49EE-96BC-73140BD53C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0D82342-189B-49EE-96BC-73140BD53C2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{732D4247-867F-4161-B0CF-C12950A4B996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{732D4247-867F-4161-B0CF-C12950A4B996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{732D4247-867F-4161-B0CF-C12950A4B996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{732D4247-867F-4161-B0CF-C12950A4B996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
-		{431B90E9-4591-4FBD-A87F-52866A67B36D} = {4130D21C-FE8F-4925-93E7-217B4AF1B7D9}
 		{88F15535-FAD8-4372-80DC-FD0D8C81AB4C} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
-		{F0D82342-189B-49EE-96BC-73140BD53C2D} = {C5272353-539E-4138-93FD-9DF437F6DA47}
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
+		{732D4247-867F-4161-B0CF-C12950A4B996} = {C5272353-539E-4138-93FD-9DF437F6DA47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2F37C1D-32F0-4BF2-AAEB-46B9D8C07D23}

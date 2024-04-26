@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace System {
+namespace System.SmartStandards {
 
   public partial class Snowflake44 {
 
@@ -45,7 +45,7 @@ namespace System {
 
         _PreviousTimeFrame = elapsedMilliseconds;
 
-        elapsedMilliseconds = elapsedMilliseconds << 19;
+        elapsedMilliseconds <<= 19;
 
         int randomValue;
         bool collisionDetected;
