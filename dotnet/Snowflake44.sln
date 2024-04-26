@@ -23,14 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowflake44.net461", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.Tests", "test\Snowflake44.TestsC\Snowflake44.Tests.csproj", "{732D4247-867F-4161-B0CF-C12950A4B996}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo Items", "Repo Items", "{F333481A-43E1-47D1-876C-6878FD242D98}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{F9D7B4B4-86BA-481D-8F88-EEB7D1C79BE0}"
 	ProjectSection(SolutionItems) = preProject
-		..\readme.md = ..\readme.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ver", "ver", "{9EF5B4D9-FC8B-49C2-A421-3CBEF7665F62}"
-	ProjectSection(SolutionItems) = preProject
-		ver\changelog.md = ver\changelog.md
+		..\vers\changelog.md = ..\vers\changelog.md
 	EndProjectSection
 EndProject
 Global
