@@ -36,6 +36,12 @@
     <DefineConstants>TRACE;NET5</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Snowflake44.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
   <Import Project="..\Snowflake44\Snowflake44.projitems" Label="Shared" />
 
 </Project>
