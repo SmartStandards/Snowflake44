@@ -1,13 +1,13 @@
 {
-  "currentVersion": "2.0.0",
-  "currentVersionWithSuffix": "2.0.0",
+  "currentVersion": "3.0.0",
+  "currentVersionWithSuffix": "3.0.0",
   "releaseType": "official",
-  "previousVersion": "1.0.1",
+  "previousVersion": "2.0.0",
   "changeGrade": "major",
-  "currentMajor": 2,
+  "currentMajor": 3,
   "currentMinor": 0,
   "currentPatch": 0,
-  "versionDateInfo": "2024-01-16",
-  "versionTimeInfo": "08:21:11",
-  "versionNotes": "- Renamed form 'UID64' to 'Snowflake44' (breaking Change)\n"
+  "versionDateInfo": "2024-04-26",
+  "versionTimeInfo": "12:50:29",
+  "versionNotes": "- Breaking Change: Namespace \"System.SmartStandards\" instead of \"System\"\n- New Feature: TokenEncoder\n"
 }

@@ -4,9 +4,16 @@
 
 ## Upcoming Changes
 
-- Breaking Change: Namespace "System.SmartStandards" instead of "System" 
+*(none)*
 
-- New Feature: TokenEncoder
+
+
+## v 3.0.0
+released **2024-04-26**, including:
+ - Breaking Change: Namespace "System.SmartStandards" instead of "System"
+ - New Feature: TokenEncoder
+
+
 
 ## v 2.0.0
 (released 2024-01-16)
