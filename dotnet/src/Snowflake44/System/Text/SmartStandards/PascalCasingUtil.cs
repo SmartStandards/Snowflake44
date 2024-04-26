@@ -1,6 +1,6 @@
 ﻿namespace System.Text.SmartStandards {
 
-  public class PascalCasingUtil {
+  internal class PascalCasingUtil {
 
     /// <summary>
     ///   Transforms a string containing separate words into a PascalCase formatted string.

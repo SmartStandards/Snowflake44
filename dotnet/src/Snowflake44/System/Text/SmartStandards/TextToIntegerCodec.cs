@@ -1,6 +1,6 @@
 ﻿namespace System.Text.SmartStandards {
 
-  public class TextToIntegerCodec {
+  internal class TextToIntegerCodec {
 
     // CREDITS: http://vodi.de for https://github.com/SmartStandards/Snowflake44
 
