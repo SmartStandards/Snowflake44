@@ -26,6 +26,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{F9D7B4B4-86BA-481D-8F88-EEB7D1C79BE0}"
 	ProjectSection(SolutionItems) = preProject
 		..\vers\changelog.md = ..\vers\changelog.md
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global

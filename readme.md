@@ -1,5 +1,9 @@
 ﻿# Snowflake44 ID (UID64) & EncodedToken ID
 
+[![Build status](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_apis/build/status/Snowflake44)](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_build/latest?definitionId=3) | **[NPM-Package](https://www.npmjs.com/package/snowflake44?activeTab=versions)** | **[NuGet-Package](https://www.nuget.org/packages/snowflake44)** • [Change Log](./vers/changelog.md)
+
+This package contains two algorithms for creating IDs.
+
 **Snowflake44** is an algorithm to create a 64 bit integer ("Long", "BigInt") unique ID that can be used as SQL primary key, 
 but is more compact than a GUID. It's actually a 44 bit UTC time stamp combined with 19 bit of random.
 The topmost bit is not used in order to avoid negative values.
@@ -15,7 +19,7 @@ The integer ID can easily be decoded back to string representation (also in SQL 
  😊 no need to maintain a lookup table to translate IDs to text representation\
 A "Token" string must follow **specific conventions** (see below)!
 
-## Usage
+# Get Started
 
 For dotnet, install the **Snowflake44 by SmartStandards Nuget Package**.
 Then you can write:
@@ -37,34 +41,28 @@ Then you can write:
 
     SELECT id, fn_DecodeToken(id) AS 'DecodedId'
 
-## Version History & Build
-
-See [Change Log](./vers/changelog.md) for current version information.
-
-[![Build status](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_apis/build/status/Snowflake44)](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_build/latest?definitionId=3) | **[NPM-Package](https://www.npmjs.com/package/snowflake44?activeTab=versions)** | **[NuGet-Package](https://www.nuget.org/packages/snowflake44)**
-
-## EncodedToken Conventions
+# EncodedToken Conventions
 
 - Allowed characters: Letters, german umlauts (äöüß), dot. No digits, no spaces, no underscores, nothing else.
 - True PascalCase (first letter uppercase)
 - Max. 12 characters (each uppercase character occupies 2 places).
 - If used as (primary) key: It's value must be stable forever (never to be renamed).
 
-## EncodedToken Internals
+# EncodedToken Internals
 
 To convert a string into Int64, an "inverted" Base32 algorithm is used: Not the Payload (bytes) are encoded to a string,
 but the other way round - the string is encoded into 8 Bytes which then represent the int64 value. 
 To get 12 chars into 8 bytes, bit packing is used. This reduces the alphabet to 32 possible chars (5 bits per char).
 This representation is called "raw encoded token", because it doesn't support PascalCase.
 
-### Example
+## Example
 
     Bits    [ 4][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ][ 5 ] 
     Index   0000BBBBBAAAAA99999888887777766666555554444433333222221111100000 
     Example               [ 20][ 12][ 5 ][ 23][ 0 ][ 15][ 12][ 12][ 1 ][ 8 ]
                           [ T ][ L ][ E ][ W ][ _ ][ O ][ L ][ L ][ A ][ H ]
 
-### Bit Sematics
+## Bit Sematics
 
 | #      | Count |       Semantic |
 |--------|-------|----------------|
@@ -74,7 +72,7 @@ This representation is called "raw encoded token", because it doesn't support Pa
 |     …  |       |                |
 |   4..0 |     5 | First Char (0) |
 
-### Alphabet (CodePage 0 of 8 possible)
+## Alphabet (CodePage 0 of 8 possible)
 
 | Value | Symbol | 
 |-------|--------|
@@ -86,14 +84,14 @@ This representation is called "raw encoded token", because it doesn't support Pa
 |    30 |      ß | 
 |    31 |      . |
 
-### String End Convention 
+## String End Convention 
 
 In order not to loose one (valuable) character of the alphabet, the value 0 is mapped to "__" (underscore) instead of being ignored.
 This causes some implications for the decoding behaviour of the underscore char (what you decode is not 1:1 what you encoded).
 The decoded string will always have a length of 12 chars, padded to the right with underscores. To regain the original string,
 we need to trim from the right, therefore it's not possible to have trailing underscores in the original string.
 
-#### Illustration
+### Illustration
 
 |     Original |        Encoded |      Decoded | Remarks                                                             |
 |--------------|----------------|--------------|---------------------------------------------------------------------|
@@ -104,7 +102,7 @@ we need to trim from the right, therefore it's not possible to have trailing und
 |` (Leerstring) `|` "____________" `|`           "" `| An empty string and 12 underscores are equally encoded...           | 
 |`         "__" `|` "____________" `|`           "" `| ...therefore an underscore-only string will be decoded as empty.    | 
 
-### PascalCase Convention 
+## PascalCase Convention 
   
 To represent seperate words in a raw encoded token, you would have to use underscores as delimiter ("HELLO_WORLD") and you loose casing.
 Therefore another convention is put on top of the "raw encoded token" standard:
@@ -122,7 +120,7 @@ Therefore another convention is put on top of the "raw encoded token" standard:
     - Everything is lowercase by default, unless it's prefixed with an underscore
     - Underscores are removed
 
-#### Illustration
+### Illustration
 
 |     Original |   Decoded Raw |   Pascalized | Remarks                                                            |
 |--------------|---------------|--------------|--------------------------------------------------------------------|
