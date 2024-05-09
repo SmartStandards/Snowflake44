@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.0.0",
-  "currentVersionWithSuffix": "3.0.0",
+  "currentVersion": "3.0.1",
+  "currentVersionWithSuffix": "3.0.1",
   "releaseType": "official",
-  "previousVersion": "2.0.0",
-  "changeGrade": "major",
+  "previousVersion": "3.0.0",
+  "changeGrade": "patch",
   "currentMajor": 3,
   "currentMinor": 0,
-  "currentPatch": 0,
-  "versionDateInfo": "2024-04-26",
-  "versionTimeInfo": "12:50:29",
-  "versionNotes": "- Breaking Change: Namespace \"System.SmartStandards\" instead of \"System\"\n- New Feature: TokenEncoder\n"
+  "currentPatch": 1,
+  "versionDateInfo": "2024-05-09",
+  "versionTimeInfo": "09:34:51",
+  "versionNotes": "- new revision without significant changes\n"
 }

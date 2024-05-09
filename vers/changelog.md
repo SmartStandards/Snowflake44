@@ -8,6 +8,12 @@
 
 
 
+## v 3.0.1
+released **2024-05-09**, including:
+ - new revision without significant changes
+
+
+
 ## v 3.0.0
 released **2024-04-26**, including:
  - Breaking Change: Namespace "System.SmartStandards" instead of "System"
