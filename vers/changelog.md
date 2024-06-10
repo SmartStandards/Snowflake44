@@ -8,6 +8,12 @@
 
 
 
+## v 3.0.2
+released **2024-06-10**, including:
+ - new revision without significant changes
+
+
+
 ## v 3.0.1
 released **2024-05-09**, including:
  - new revision without significant changes
