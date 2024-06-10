@@ -4,7 +4,9 @@
 
 This package contains two algorithms for creating IDs.
 
-**Snowflake44** is an algorithm to create a 64 bit integer ("Long", "BigInt") unique ID that can be used as SQL primary key, 
+## Snowflake44 - The better GUID
+
+This is an algorithm to create a 64 bit integer ("Long", "BigInt") unique ID that can be used as SQL primary key, 
 but is more compact than a GUID. It's actually a 44 bit UTC time stamp combined with 19 bit of random.
 The topmost bit is not used in order to avoid negative values.
 
@@ -12,11 +14,14 @@ The topmost bit is not used in order to avoid negative values.
 - Precision is 1 millisecond
 - Risk of collisions (when using parallel ID generators): 1:500.000 (within the same millisecond)
 
-**EncodedToken** can create a 64 bit integer ID from a (maximum 12 chars) string ("Token"). 
+## EncodedToken - The Human Readable Integer ID ("HelloWorld" <=> 4946143410008232)
+
+Converts a string ("Token") into a 64 bit integer ID and back. 
 The intended use is to make human readable (technical, stable) names (such as enum element names) directly usable as SQL primary keys.
-The integer ID can easily be decoded back to string representation (also in SQL statements), so...\
+
  😊 no need to use string type (ID) columns\
- 😊 no need to maintain a lookup table to translate IDs to text representation\
+ 😊 no need to maintain a lookup table to resolve IDs to text representation\
+
 A "Token" string must follow **specific conventions** (see below)!
 
 # Get Started
@@ -28,7 +33,7 @@ Then you can write:
 
     long uid = Snowflake44.Generate();
 
-    DateTime transactionTime = Snowflake44.DecodeDateTime(uid);
+    DateTime transactionTime = Snowflake44.DecodeDateTime(uid); // extract the (UTC) time stamp from the ID
     
     // C# for using encoded token:
 
@@ -47,6 +52,12 @@ Then you can write:
 - True PascalCase (first letter uppercase)
 - Max. 12 characters (each uppercase character occupies 2 places).
 - If used as (primary) key: It's value must be stable forever (never to be renamed).
+
+## Recommended Practices
+
+- Never persist a token, never pass it as argument. Use the integer representation.
+- In a human readable context, a token should be put into square brackets (e.g. [HelloWorld]), just to look different from regular (friendly) names. 
+- When using tokens as technical names (file names, database, etc.), do not put them into square brackets.
 
 # EncodedToken Internals
 
