@@ -2,9 +2,11 @@
 
 (automatically maintained using the ['KornSW-VersioningUtil'](https://github.com/KornSW/VersioningUtil))
 
+
+
 ## Upcoming Changes
 
-*(none)*
+* **new Feature**: added convenience for filtering by day or time range (generating Linq-Expressions)
 
 
 
