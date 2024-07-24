@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.0.2",
-  "currentVersionWithSuffix": "3.0.2",
+  "currentVersion": "3.1.0",
+  "currentVersionWithSuffix": "3.1.0",
   "releaseType": "official",
-  "previousVersion": "3.0.1",
-  "changeGrade": "patch",
+  "previousVersion": "3.0.2",
+  "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 0,
-  "currentPatch": 2,
-  "versionDateInfo": "2024-06-10",
-  "versionTimeInfo": "09:14:37",
-  "versionNotes": "- new revision without significant changes\n"
+  "currentMinor": 1,
+  "currentPatch": 0,
+  "versionDateInfo": "2024-07-24",
+  "versionTimeInfo": "13:03:12",
+  "versionNotes": "- new Feature: added convenience for filtering by day or time range (generating Linq-Expressions)\n"
 }

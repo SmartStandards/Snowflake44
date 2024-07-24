@@ -6,7 +6,13 @@
 
 ## Upcoming Changes
 
-* **new Feature**: added convenience for filtering by day or time range (generating Linq-Expressions)
+*(none)*
+
+
+
+## v 3.1.0
+released **2024-07-24**, including:
+ - **new Feature**: added convenience for filtering by day or time range (generating Linq-Expressions)
 
 
 
