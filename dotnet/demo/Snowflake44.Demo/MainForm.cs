@@ -9,8 +9,23 @@ namespace SmartStandards {
       InitializeComponent();
     }
 
-    private void CreateUidButton_Click(object sender, EventArgs e) {
+    protected override void OnLoad(EventArgs e) {
+      base.OnLoad(e);
+      EncodingErrorLabel.Text = "";
+      this.CreateActionRequested();
+    }
+
+    protected override void OnShown(EventArgs e) {
+      base.OnShown(e);
+      TokenTextBox.Focus();
+    }
+
+    public void CreateActionRequested() {
       UidTextBox.Text = Snowflake44.Generate().ToString();
+    }
+
+    private void CreateUidButton_Click(object sender, EventArgs e) {
+      this.CreateActionRequested();
     }
 
     private void UidTextBox_TextChanged(object sender, EventArgs e) {

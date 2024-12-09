@@ -50,7 +50,7 @@
       UidTextBox.Location = new Point(93, 35);
       UidTextBox.Name = "UidTextBox";
       UidTextBox.Size = new Size(130, 23);
-      UidTextBox.TabIndex = 1;
+      UidTextBox.TabIndex = 2;
       UidTextBox.TextChanged += this.UidTextBox_TextChanged;
       // 
       // CreateUidButton
@@ -58,7 +58,7 @@
       CreateUidButton.Location = new Point(12, 35);
       CreateUidButton.Name = "CreateUidButton";
       CreateUidButton.Size = new Size(75, 23);
-      CreateUidButton.TabIndex = 2;
+      CreateUidButton.TabIndex = 1;
       CreateUidButton.Text = "Create";
       CreateUidButton.UseVisualStyleBackColor = true;
       CreateUidButton.Click += this.CreateUidButton_Click;
@@ -69,7 +69,7 @@
       DecodedDateTimeTextBox.Name = "DecodedDateTimeTextBox";
       DecodedDateTimeTextBox.ReadOnly = true;
       DecodedDateTimeTextBox.Size = new Size(130, 23);
-      DecodedDateTimeTextBox.TabIndex = 1;
+      DecodedDateTimeTextBox.TabIndex = 3;
       // 
       // label2
       // 
@@ -78,7 +78,7 @@
       label2.Location = new Point(12, 73);
       label2.Name = "label2";
       label2.Size = new Size(109, 21);
-      label2.TabIndex = 0;
+      label2.TabIndex = 4;
       label2.Text = "EncodedToken";
       // 
       // TokenTextBox
@@ -86,7 +86,7 @@
       TokenTextBox.Location = new Point(93, 101);
       TokenTextBox.Name = "TokenTextBox";
       TokenTextBox.Size = new Size(130, 23);
-      TokenTextBox.TabIndex = 1;
+      TokenTextBox.TabIndex = 6;
       TokenTextBox.TextChanged += this.TokenTextBox_TextChanged;
       // 
       // label3
@@ -95,7 +95,7 @@
       label3.Location = new Point(12, 104);
       label3.Name = "label3";
       label3.Size = new Size(38, 15);
-      label3.TabIndex = 0;
+      label3.TabIndex = 5;
       label3.Text = "Token";
       // 
       // EncodedTokenTextBox
@@ -103,7 +103,7 @@
       EncodedTokenTextBox.Location = new Point(229, 101);
       EncodedTokenTextBox.Name = "EncodedTokenTextBox";
       EncodedTokenTextBox.Size = new Size(130, 23);
-      EncodedTokenTextBox.TabIndex = 1;
+      EncodedTokenTextBox.TabIndex = 7;
       EncodedTokenTextBox.TextChanged += this.EncodedTokenTextBox_TextChanged;
       // 
       // TokenRawTextBox
@@ -112,7 +112,7 @@
       TokenRawTextBox.Name = "TokenRawTextBox";
       TokenRawTextBox.ReadOnly = true;
       TokenRawTextBox.Size = new Size(130, 23);
-      TokenRawTextBox.TabIndex = 1;
+      TokenRawTextBox.TabIndex = 8;
       // 
       // EncodingErrorLabel
       // 
@@ -121,7 +121,7 @@
       EncodingErrorLabel.Location = new Point(12, 134);
       EncodingErrorLabel.Name = "EncodingErrorLabel";
       EncodingErrorLabel.Size = new Size(118, 15);
-      EncodingErrorLabel.TabIndex = 0;
+      EncodingErrorLabel.TabIndex = 9;
       EncodingErrorLabel.Text = "{EncodingErrorLabel}";
       // 
       // MainForm
@@ -129,18 +129,18 @@
       this.AutoScaleDimensions = new SizeF(7F, 15F);
       this.AutoScaleMode = AutoScaleMode.Font;
       this.ClientSize = new Size(800, 450);
-      this.Controls.Add(EncodingErrorLabel);
-      this.Controls.Add(label3);
-      this.Controls.Add(label2);
       this.Controls.Add(label1);
       this.Controls.Add(CreateUidButton);
-      this.Controls.Add(EncodedTokenTextBox);
-      this.Controls.Add(TokenTextBox);
       this.Controls.Add(UidTextBox);
-      this.Controls.Add(TokenRawTextBox);
       this.Controls.Add(DecodedDateTimeTextBox);
+      this.Controls.Add(label2);
+      this.Controls.Add(label3);
+      this.Controls.Add(TokenTextBox);
+      this.Controls.Add(EncodedTokenTextBox);
+      this.Controls.Add(TokenRawTextBox);
+      this.Controls.Add(EncodingErrorLabel);
       this.Name = "MainForm";
-      this.Text = "Form1";
+      this.Text = "Snowflake44.Demo";
       this.ResumeLayout(false);
       this.PerformLayout();
     }
