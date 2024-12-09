@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{F9D7B4B4-86B
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{D3E93E5D-EBF6-42A6-B753-120374454B58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowflake44.Demo", "demo\Snowflake44.Demo\Snowflake44.Demo.csproj", "{2A470ADD-1484-40C8-B8BA-4DE044D4348D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{732D4247-867F-4161-B0CF-C12950A4B996}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{732D4247-867F-4161-B0CF-C12950A4B996}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{732D4247-867F-4161-B0CF-C12950A4B996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A470ADD-1484-40C8-B8BA-4DE044D4348D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A470ADD-1484-40C8-B8BA-4DE044D4348D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A470ADD-1484-40C8-B8BA-4DE044D4348D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A470ADD-1484-40C8-B8BA-4DE044D4348D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,7 @@ Global
 		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
 		{732D4247-867F-4161-B0CF-C12950A4B996} = {C5272353-539E-4138-93FD-9DF437F6DA47}
+		{2A470ADD-1484-40C8-B8BA-4DE044D4348D} = {D3E93E5D-EBF6-42A6-B753-120374454B58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2F37C1D-32F0-4BF2-AAEB-46B9D8C07D23}

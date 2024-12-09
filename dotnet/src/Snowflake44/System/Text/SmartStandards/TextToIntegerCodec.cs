@@ -1,6 +1,6 @@
 ﻿namespace System.Text.SmartStandards {
 
-  internal class TextToIntegerCodec {
+  public class TextToIntegerCodec {
 
     // CREDITS: http://vodi.de for https://github.com/SmartStandards/Snowflake44
 
@@ -124,7 +124,7 @@
     }
 
     public static int ToInt32(string stringValue) {
-      if ((stringValue.Length > 6)) { 
+      if ((stringValue.Length > 6)) {
         throw new ArgumentException(string.Format("Maximum length of 6 characters was exceeded by \"{0}\"!", stringValue), nameof(stringValue));
       }
       return Convert.ToInt32(TextToIntegerCodec.ToInt64(stringValue));

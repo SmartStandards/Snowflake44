@@ -6,7 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
+- added TechDemo to solution. No changes to the actual algorithms.
 
 
 
