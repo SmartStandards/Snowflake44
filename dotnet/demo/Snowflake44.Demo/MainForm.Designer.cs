@@ -33,15 +33,19 @@
       EncodedTokenTextBox = new TextBox();
       TokenRawTextBox = new TextBox();
       EncodingErrorLabel = new Label();
+      label4 = new Label();
+      NowButton = new Button();
+      Int10SecondsTextBox = new TextBox();
+      FromIntDateTimeTextBox = new TextBox();
       this.SuspendLayout();
       // 
       // label1
       // 
       label1.AutoSize = true;
-      label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-      label1.Location = new Point(12, 9);
+      label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      label1.Location = new Point(12, 8);
       label1.Name = "label1";
-      label1.Size = new Size(103, 21);
+      label1.Size = new Size(110, 21);
       label1.TabIndex = 0;
       label1.Text = "SnowFlake44";
       // 
@@ -74,16 +78,16 @@
       // label2
       // 
       label2.AutoSize = true;
-      label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-      label2.Location = new Point(12, 73);
+      label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      label2.Location = new Point(12, 79);
       label2.Name = "label2";
-      label2.Size = new Size(109, 21);
+      label2.Size = new Size(122, 21);
       label2.TabIndex = 4;
       label2.Text = "EncodedToken";
       // 
       // TokenTextBox
       // 
-      TokenTextBox.Location = new Point(93, 101);
+      TokenTextBox.Location = new Point(93, 107);
       TokenTextBox.Name = "TokenTextBox";
       TokenTextBox.Size = new Size(130, 23);
       TokenTextBox.TabIndex = 6;
@@ -92,7 +96,7 @@
       // label3
       // 
       label3.AutoSize = true;
-      label3.Location = new Point(12, 104);
+      label3.Location = new Point(12, 110);
       label3.Name = "label3";
       label3.Size = new Size(38, 15);
       label3.TabIndex = 5;
@@ -100,7 +104,7 @@
       // 
       // EncodedTokenTextBox
       // 
-      EncodedTokenTextBox.Location = new Point(229, 101);
+      EncodedTokenTextBox.Location = new Point(229, 107);
       EncodedTokenTextBox.Name = "EncodedTokenTextBox";
       EncodedTokenTextBox.Size = new Size(130, 23);
       EncodedTokenTextBox.TabIndex = 7;
@@ -108,7 +112,7 @@
       // 
       // TokenRawTextBox
       // 
-      TokenRawTextBox.Location = new Point(365, 101);
+      TokenRawTextBox.Location = new Point(365, 107);
       TokenRawTextBox.Name = "TokenRawTextBox";
       TokenRawTextBox.ReadOnly = true;
       TokenRawTextBox.Size = new Size(130, 23);
@@ -118,17 +122,52 @@
       // 
       EncodingErrorLabel.AutoSize = true;
       EncodingErrorLabel.ForeColor = Color.Red;
-      EncodingErrorLabel.Location = new Point(12, 134);
+      EncodingErrorLabel.Location = new Point(12, 140);
       EncodingErrorLabel.Name = "EncodingErrorLabel";
       EncodingErrorLabel.Size = new Size(118, 15);
       EncodingErrorLabel.TabIndex = 9;
       EncodingErrorLabel.Text = "{EncodingErrorLabel}";
       // 
+      // label4
+      // 
+      label4.AutoSize = true;
+      label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      label4.Location = new Point(12, 171);
+      label4.Name = "label4";
+      label4.Size = new Size(343, 21);
+      label4.TabIndex = 10;
+      label4.Text = "DateTime <=> Integer10SecondsResolution";
+      // 
+      // NowButton
+      // 
+      NowButton.Location = new Point(12, 205);
+      NowButton.Name = "NowButton";
+      NowButton.Size = new Size(75, 23);
+      NowButton.TabIndex = 11;
+      NowButton.Text = "Now";
+      NowButton.UseVisualStyleBackColor = true;
+      NowButton.Click += this.NowButton_Click;
+      // 
+      // Int10SecondsTextBox
+      // 
+      Int10SecondsTextBox.Location = new Point(93, 205);
+      Int10SecondsTextBox.Name = "Int10SecondsTextBox";
+      Int10SecondsTextBox.Size = new Size(130, 23);
+      Int10SecondsTextBox.TabIndex = 12;
+      Int10SecondsTextBox.TextChanged += this.Int10SecondsTextBox_TextChanged;
+      // 
+      // FromIntDateTimeTextBox
+      // 
+      FromIntDateTimeTextBox.Location = new Point(229, 205);
+      FromIntDateTimeTextBox.Name = "FromIntDateTimeTextBox";
+      FromIntDateTimeTextBox.Size = new Size(130, 23);
+      FromIntDateTimeTextBox.TabIndex = 13;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new SizeF(7F, 15F);
       this.AutoScaleMode = AutoScaleMode.Font;
-      this.ClientSize = new Size(800, 450);
+      this.ClientSize = new Size(516, 245);
       this.Controls.Add(label1);
       this.Controls.Add(CreateUidButton);
       this.Controls.Add(UidTextBox);
@@ -139,6 +178,10 @@
       this.Controls.Add(EncodedTokenTextBox);
       this.Controls.Add(TokenRawTextBox);
       this.Controls.Add(EncodingErrorLabel);
+      this.Controls.Add(label4);
+      this.Controls.Add(NowButton);
+      this.Controls.Add(Int10SecondsTextBox);
+      this.Controls.Add(FromIntDateTimeTextBox);
       this.Name = "MainForm";
       this.Text = "Snowflake44.Demo";
       this.ResumeLayout(false);
@@ -157,5 +200,9 @@
     private TextBox EncodedTokenTextBox;
     private TextBox TokenRawTextBox;
     private Label EncodingErrorLabel;
+    private Label label4;
+    private Button NowButton;
+    private TextBox Int10SecondsTextBox;
+    private TextBox FromIntDateTimeTextBox;
   }
 }

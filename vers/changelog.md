@@ -6,9 +6,8 @@
 
 ## Upcoming Changes
 
+ - **new Feature**: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution
 - added TechDemo to solution. No changes to the actual algorithms.
-
-
 
 ## v 3.1.0
 released **2024-07-24**, including:

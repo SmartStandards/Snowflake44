@@ -13,6 +13,7 @@ namespace SmartStandards {
       base.OnLoad(e);
       EncodingErrorLabel.Text = "";
       this.CreateActionRequested();
+      this.NowActionRequested();
     }
 
     protected override void OnShown(EventArgs e) {
@@ -84,6 +85,27 @@ namespace SmartStandards {
 
       TokenRawTextBox.Text = rawToken;
 
+    }
+
+    private void NowButton_Click(object sender, EventArgs e) {
+      this.NowActionRequested();
+    }
+
+    public void NowActionRequested() {
+      Int10SecondsTextBox.Text = DateTimeUtility.ToInteger10SecondsResolution(DateTime.UtcNow).ToString();
+    }
+
+    private void Int10SecondsTextBox_TextChanged(object sender, EventArgs e) {
+
+      int inputInt;
+
+      if (int.TryParse(Int10SecondsTextBox.Text, out inputInt)) {
+
+        DateTime fromIntDateTime = DateTimeUtility.FromInteger10SecondsResolution(inputInt);
+
+        FromIntDateTimeTextBox.Text = fromIntDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+      }
     }
   }
 

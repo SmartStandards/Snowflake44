@@ -9,6 +9,7 @@
     <Import_RootNamespace>System</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)System\SmartStandards\DateTimeUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\SmartStandards\Snowflake44FilteringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\SmartStandards\Snowflake44.Filtering.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\System\Text\SmartStandards\TokenEncoder.cs" />
