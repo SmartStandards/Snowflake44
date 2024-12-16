@@ -1,6 +1,6 @@
 ﻿namespace System.Text.SmartStandards {
 
-  internal class PascalCasingUtil {
+  public class PascalCasingUtil {
 
     /// <summary>
     ///   Transforms a string containing separate words into a PascalCase formatted string.
@@ -113,20 +113,25 @@
 
       StringBuilder sb = new StringBuilder(camelOrPascalCaseString.Length * 2);
 
-      if (toUppercase)
+      if (toUppercase) {
         sb.Append(char.ToUpper(camelOrPascalCaseString[0]));
-      else
+      } else {
         sb.Append(camelOrPascalCaseString[0]);
+      }
 
       for (int i = 1; i <= (camelOrPascalCaseString.Length - 1); i++) {
         char c = camelOrPascalCaseString[i];
-        if ((char.IsUpper(c) && camelOrPascalCaseString[i - 1] != separator))
-          sb.Append(separator);
-        if (toUppercase)
+
+        if ((char.IsUpper(c) && camelOrPascalCaseString[i - 1] != separator)) sb.Append(separator);
+
+        if (toUppercase) {
           sb.Append(char.ToUpper(c));
-        else
+        } else {
           sb.Append(c);
+        }
       }
+
+      // Post-processing: "Repair" unwanted split results by replacing the split varinat by the original variant
 
       if (keepPascalCaseFor != null) {
         foreach (string caseToForce in keepPascalCaseFor) {

@@ -7,10 +7,8 @@ namespace System.Text.SmartStandards {
   public class PascalCasingUtilTests {
 
     [TestMethod()]
-    public void ToPascalCaseTests() {
+    public void ToPascalCase_BorderCases_BehaveCorrectly() {
       string actual;
-
-      // Default-Verhalten absichern
 
       actual = PascalCasingUtil.ToPascalCase(null);
       Assert.IsNull(actual);
@@ -21,29 +19,47 @@ namespace System.Text.SmartStandards {
       actual = PascalCasingUtil.ToPascalCase("_");
       Assert.AreEqual("", actual);
 
-      actual = PascalCasingUtil.ToPascalCase("a");
-      Assert.AreEqual("A", actual);
-
       actual = PascalCasingUtil.ToPascalCase("A");
       Assert.AreEqual("A", actual);
 
-      actual = PascalCasingUtil.ToPascalCase("ä");
-      Assert.AreEqual("Ä", actual);
+      actual = PascalCasingUtil.ToPascalCase("a");
+      Assert.AreEqual("A", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("_A");
+      Assert.AreEqual("A", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("A_");
+      Assert.AreEqual("A", actual);
+
+      actual = PascalCasingUtil.ToPascalCase(" A");
+      Assert.AreEqual("A", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("A ");
+      Assert.AreEqual("A", actual);
 
       actual = PascalCasingUtil.ToPascalCase("aA");
       Assert.AreEqual("Aa", actual);
+      
+      actual = PascalCasingUtil.ToPascalCase("A A");
+      Assert.AreEqual("AA", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("a A");
+      Assert.AreEqual("AA", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("A a");
+      Assert.AreEqual("AA", actual);
 
       actual = PascalCasingUtil.ToPascalCase("A_A");
       Assert.AreEqual("AA", actual);
 
       actual = PascalCasingUtil.ToPascalCase("A_A_");
       Assert.AreEqual("AA", actual);
+      
+      actual = PascalCasingUtil.ToPascalCase("hello42world_DuPont GmbH  Zwei__Trenner"); // Ja, aus "DuPont" wird "Dupont"!
+      Assert.AreEqual("Hello42worldDupontGmbhZweiTrenner", actual);
 
-      actual = PascalCasingUtil.ToPascalCase("hallo_DuPont GmbH  Zwei__Trenner"); // Ja, aus "DuPont" wird "Dupont"!
-      Assert.AreEqual("HalloDupontGmbhZweiTrenner", actual);
-
-      actual = PascalCasingUtil.ToPascalCase("Alles.außer-Buchstaben+und#Ziffern@fliegt,raus!");
-      Assert.AreEqual("AllesAußerBuchstabenUndZiffernFliegtRaus", actual);
+      actual = PascalCasingUtil.ToPascalCase("Alles.außer-Buchstaben+und#Ziffern123456789@fliegt,raus!");
+      Assert.AreEqual("AllesAußerBuchstabenUndZiffern123456789FliegtRaus", actual);
 
       // Parameter-Variationen
 
@@ -51,12 +67,49 @@ namespace System.Text.SmartStandards {
       Assert.AreEqual("HaelloDuPontGmbhAetzendTrennerssDeVolo", actual);
     }
 
+    [TestMethod()]
+    public void ToPascalCase_GermanUmlauts_BehaveCorrectly() {
+      string actual;
+
+      actual = PascalCasingUtil.ToPascalCase("Ä");
+      Assert.AreEqual("Ä", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("Ää");
+      Assert.AreEqual("Ää", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("äÄ");
+      Assert.AreEqual("Ää", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("Ö");
+      Assert.AreEqual("Ö", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("Ü");
+      Assert.AreEqual("Ü", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("ä");
+      Assert.AreEqual("Ä", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("ö");
+      Assert.AreEqual("Ö", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("ü");
+      Assert.AreEqual("Ü", actual);
+
+      actual = PascalCasingUtil.ToPascalCase("ß");
+      Assert.AreEqual("ß", actual);
+
+    }
 
     [TestMethod()]
     public void SplitFromPascalCaseTests() {
       string actual;
 
       // Default-Verhalten
+
+
+      actual = PascalCasingUtil.SplitFromPascalCase("HelloGmbhTheAnswerIsValue42");
+
+      
 
       actual = PascalCasingUtil.SplitFromPascalCase(null);
       Assert.IsNull(actual);
@@ -117,4 +170,3 @@ namespace System.Text.SmartStandards {
   }
 
 }
-

@@ -2,7 +2,11 @@
 
 [![Build status](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_apis/build/status/Snowflake44)](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_build/latest?definitionId=3) | **[NPM-Package](https://www.npmjs.com/package/snowflake44?activeTab=versions)** | **[NuGet-Package](https://www.nuget.org/packages/snowflake44)** • [Change Log](./vers/changelog.md)
 
-This package contains two algorithms for creating IDs.
+This package contains:
+
+- The **SnowFlake44** algorithm for creating UIDs (see below)
+- The **EncodedToken** algorithm for creating numeric IDs from Strings (see below)
+- The **PascalCasingUtil** for transforming separated tokens into PascalCase string (see [PascalCasingUtil Documentation](./doc/PascalCasingUtil.md))
 
 ## Snowflake44 - The better GUID
 

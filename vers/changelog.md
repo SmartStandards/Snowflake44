@@ -6,8 +6,11 @@
 
 ## Upcoming Changes
 
- - **new Feature**: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution
-- added TechDemo to solution. No changes to the actual algorithms.
+- **new Feature**: PascalCasingUtil now public
+ 
+- **new Feature**: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution
+
+- Internal: Added TechDemo to solution. Added some more unit tests and documentation.
 
 ## v 3.1.0
 released **2024-07-24**, including:
