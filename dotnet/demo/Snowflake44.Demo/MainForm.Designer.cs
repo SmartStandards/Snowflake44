@@ -1,4 +1,7 @@
-﻿namespace SmartStandards {
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace SmartStandards {
   partial class MainForm {
     /// <summary>
     ///  Required designer variable.
@@ -45,9 +48,9 @@
       label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
       label1.Location = new Point(12, 8);
       label1.Name = "label1";
-      label1.Size = new Size(110, 21);
+      label1.Size = new Size(169, 21);
       label1.TabIndex = 0;
-      label1.Text = "SnowFlake44";
+      label1.Text = "SnowFlake44 (64 Bit)";
       // 
       // UidTextBox
       // 
@@ -81,9 +84,9 @@
       label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
       label2.Location = new Point(12, 79);
       label2.Name = "label2";
-      label2.Size = new Size(122, 21);
+      label2.Size = new Size(181, 21);
       label2.TabIndex = 4;
-      label2.Text = "EncodedToken";
+      label2.Text = "EncodedToken (64 Bit)";
       // 
       // TokenTextBox
       // 
@@ -134,9 +137,9 @@
       label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
       label4.Location = new Point(12, 171);
       label4.Name = "label4";
-      label4.Size = new Size(343, 21);
+      label4.Size = new Size(402, 21);
       label4.TabIndex = 10;
-      label4.Text = "DateTime <=> Integer10SecondsResolution";
+      label4.Text = "DateTime <=> Integer10SecondsResolution (32 Bit)";
       // 
       // NowButton
       // 

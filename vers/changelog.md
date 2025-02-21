@@ -12,6 +12,8 @@
 
 - Internal: Added TechDemo to solution. Added some more unit tests and documentation.
 
+- Internal: Removed implicite usings
+
 ## v 3.1.0
 released **2024-07-24**, including:
  - **new Feature**: added convenience for filtering by day or time range (generating Linq-Expressions)

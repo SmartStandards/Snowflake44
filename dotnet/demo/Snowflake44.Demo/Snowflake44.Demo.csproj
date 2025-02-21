@@ -5,8 +5,12 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>SmartStandards</RootNamespace>
+    <!-- <PublishTrimmed>true</PublishTrimmed> -->
+    <!-- <PublishReadyToRun>true</PublishReadyToRun> -->
+    <!-- <PublishSingleFile>true</PublishSingleFile> -->
+		<!-- <SelfContained>true</SelfContained> -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>

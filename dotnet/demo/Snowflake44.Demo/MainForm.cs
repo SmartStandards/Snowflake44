@@ -1,5 +1,7 @@
+using System;
 using System.SmartStandards;
 using System.Text.SmartStandards;
+using System.Windows.Forms;
 
 namespace SmartStandards {
 
