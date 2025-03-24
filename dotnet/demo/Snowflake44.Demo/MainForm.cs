@@ -24,7 +24,12 @@ namespace SmartStandards {
     }
 
     public void CreateActionRequested() {
+
       UidTextBox.Text = Snowflake44.Generate().ToString();
+
+      if (CopyToClipboard.Checked) {
+        Clipboard.SetText(UidTextBox.Text);
+      }
     }
 
     private void CreateUidButton_Click(object sender, EventArgs e) {
@@ -94,6 +99,7 @@ namespace SmartStandards {
     }
 
     public void NowActionRequested() {
+
       Int10SecondsTextBox.Text = DateTimeUtility.ToInteger10SecondsResolution(DateTime.UtcNow).ToString();
     }
 

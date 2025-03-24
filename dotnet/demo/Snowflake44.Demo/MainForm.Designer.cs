@@ -40,6 +40,7 @@ namespace SmartStandards {
       NowButton = new Button();
       Int10SecondsTextBox = new TextBox();
       FromIntDateTimeTextBox = new TextBox();
+      CopyToClipboard = new CheckBox();
       this.SuspendLayout();
       // 
       // label1
@@ -166,6 +167,18 @@ namespace SmartStandards {
       FromIntDateTimeTextBox.Size = new Size(130, 23);
       FromIntDateTimeTextBox.TabIndex = 13;
       // 
+      // CopyToClipboard
+      // 
+      CopyToClipboard.AutoSize = true;
+      CopyToClipboard.Checked = true;
+      CopyToClipboard.CheckState = CheckState.Checked;
+      CopyToClipboard.Location = new Point(365, 37);
+      CopyToClipboard.Name = "CopyToClipboard";
+      CopyToClipboard.Size = new Size(123, 19);
+      CopyToClipboard.TabIndex = 14;
+      CopyToClipboard.Text = "Copy to Clipboard";
+      CopyToClipboard.UseVisualStyleBackColor = true;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -175,6 +188,7 @@ namespace SmartStandards {
       this.Controls.Add(CreateUidButton);
       this.Controls.Add(UidTextBox);
       this.Controls.Add(DecodedDateTimeTextBox);
+      this.Controls.Add(CopyToClipboard);
       this.Controls.Add(label2);
       this.Controls.Add(label3);
       this.Controls.Add(TokenTextBox);
@@ -207,5 +221,6 @@ namespace SmartStandards {
     private Button NowButton;
     private TextBox Int10SecondsTextBox;
     private TextBox FromIntDateTimeTextBox;
+    private CheckBox CopyToClipboard;
   }
 }
