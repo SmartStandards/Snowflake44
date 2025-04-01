@@ -2,9 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <AssemblyName>Snowflake44</AssemblyName>
     <RootNamespace></RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <DocumentationFile>..\..\dist\bin-net6.0\Snowflake44.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -20,19 +25,11 @@
     <PackageTags>UID64 Salted Timestamp UUID BigInt Long</PackageTags>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>..\..\dist\bin-net6.0\Snowflake44.xml</DocumentationFile>
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <NoWarn>1701;1702;1591</NoWarn>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">    
     <DefineConstants>TRACE;DEBUG;NET6</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\dist\bin-net6.0\</OutputPath>
-    <DocumentationFile>..\..\dist\bin-net6.0\Snowflake44.xml</DocumentationFile>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <NoWarn>1701;1702;1591</NoWarn>
     <DefineConstants>TRACE;NET6</DefineConstants>
   </PropertyGroup>
 

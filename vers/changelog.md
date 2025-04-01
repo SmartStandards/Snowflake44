@@ -16,6 +16,8 @@
 
 - Prepared .net8.0 target
 
+- Updated TestFramework to 3.0.4
+
 ## v 3.1.0
 released **2024-07-24**, including:
  - **new Feature**: added convenience for filtering by day or time range (generating Linq-Expressions)
