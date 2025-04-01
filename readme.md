@@ -1,6 +1,6 @@
 ﻿# Snowflake44 ID (UID64) & EncodedToken ID
 
-[![Build status](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_apis/build/status/Snowflake44)](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_build/latest?definitionId=3) | **[NPM-Package](https://www.npmjs.com/package/snowflake44?activeTab=versions)** | **[NuGet-Package](https://www.nuget.org/packages/snowflake44)** • [Change Log](./vers/changelog.md)
+[![Build status](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_apis/build/status/Snowflake44)](https://dev.azure.com/SmartOpenSource/Smart%20Standards%20(Allgemein)/_build/latest?definitionId=3) • **[NPM-Package](https://www.npmjs.com/package/snowflake44?activeTab=versions)** • **[NuGet-Package](https://www.nuget.org/packages/snowflake44)** • [Change Log](./vers/changelog.md)
 
 This package contains:
 
