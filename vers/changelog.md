@@ -6,17 +6,20 @@
 
 ## Upcoming Changes
 
-- **new Feature**: PascalCasingUtil now public
- 
-- **new Feature**: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution
+*(none)*
 
-- Internal: Added TechDemo to solution. Added some more unit tests and documentation.
 
-- Internal: Removed implicite usings
 
-- Prepared .net8.0 target
+## v 3.2.0
+released **2025-04-01**, including:
+ - **new Feature**: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution
+ - **new Feature**: PascalCasingUtil now public
+ - Internal: Added TechDemo to solution. Added some more unit tests and documentation.
+ - Internal: Removed implicite usings
+ - Prepared .net8.0 target
+ - Updated TestFramework to 3.0.4
 
-- Updated TestFramework to 3.0.4
+
 
 ## v 3.1.0
 released **2024-07-24**, including:

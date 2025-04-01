@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.1.0",
-  "currentVersionWithSuffix": "3.1.0",
+  "currentVersion": "3.2.0",
+  "currentVersionWithSuffix": "3.2.0",
   "releaseType": "official",
-  "previousVersion": "3.0.2",
+  "previousVersion": "3.1.0",
   "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 1,
+  "currentMinor": 2,
   "currentPatch": 0,
-  "versionDateInfo": "2024-07-24",
-  "versionTimeInfo": "13:03:12",
-  "versionNotes": "- new Feature: added convenience for filtering by day or time range (generating Linq-Expressions)\n"
+  "versionDateInfo": "2025-04-01",
+  "versionTimeInfo": "13:12:57",
+  "versionNotes": "- new Feature: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution\n- new Feature: PascalCasingUtil now public\n- Internal: Added TechDemo to solution. Added some more unit tests and documentation.\n- Internal: Removed implicite usings\n- Prepared .net8.0 target\n- Updated TestFramework to 3.0.4\n"
 }
