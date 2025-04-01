@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <AssemblyName>Snowflake44</AssemblyName>
     <RootNamespace></RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

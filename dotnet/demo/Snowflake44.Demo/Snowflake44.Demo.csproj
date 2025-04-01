@@ -3,14 +3,14 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>SmartStandards</RootNamespace>
     <!-- <PublishTrimmed>true</PublishTrimmed> -->
     <!-- <PublishReadyToRun>true</PublishReadyToRun> -->
     <!-- <PublishSingleFile>true</PublishSingleFile> -->
 		<!-- <SelfContained>true</SelfContained> -->
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
