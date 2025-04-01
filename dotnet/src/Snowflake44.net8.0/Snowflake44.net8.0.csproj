@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace></RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <DocumentationFile>..\..\dist\bin-net8.0\Snowflake44.xml</DocumentationFile>
+    <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
+    <DefineConstants>TRACE;NET8</DefineConstants>
+  </PropertyGroup>
+
+  <Import Project="..\Snowflake44\Snowflake44.projitems" Label="Shared" />
+
+</Project>

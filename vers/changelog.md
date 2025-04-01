@@ -14,6 +14,8 @@
 
 - Internal: Removed implicite usings
 
+- Prepared .net8.0 target
+
 ## v 3.1.0
 released **2024-07-24**, including:
  - **new Feature**: added convenience for filtering by day or time range (generating Linq-Expressions)
