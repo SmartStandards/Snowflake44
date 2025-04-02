@@ -6,7 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
+- Removed Target for .NET 5
 
 
 

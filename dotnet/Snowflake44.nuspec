@@ -19,8 +19,6 @@
       </group>
       <group targetFramework=".NETFramework4.8">
       </group>
-      <group targetFramework="net5.0">    
-      </group>
       <group targetFramework="net6.0">
       </group>
       <!--<group targetFramework="net8.0">
@@ -38,10 +36,6 @@
     <file src="dist\bin-net48\Snowflake44.dll" target="lib/net48" />
     <file src="dist\bin-net48\Snowflake44.xml" target="lib/net48" />
     <file src="dist\bin-net48\Snowflake44.pdb" target="lib/net48" />
-    <!-- .NET 5.0 -->
-    <file src="dist\bin-net5.0\Snowflake44.dll" target="lib/net5.0" />
-    <file src="dist\bin-net5.0\Snowflake44.xml" target="lib/net5.0" />
-    <file src="dist\bin-net5.0\Snowflake44.pdb" target="lib/net5.0" />
     <!-- .NET 6.0 -->
     <file src="dist\bin-net6.0\Snowflake44.dll" target="lib/net6.0" />
     <file src="dist\bin-net6.0\Snowflake44.xml" target="lib/net6.0" />
