@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.3.0",
-  "currentVersionWithSuffix": "3.3.0",
+  "currentVersion": "3.3.1",
+  "currentVersionWithSuffix": "3.3.1",
   "releaseType": "official",
-  "previousVersion": "3.2.0",
-  "changeGrade": "minor",
+  "previousVersion": "3.3.0",
+  "changeGrade": "patch",
   "currentMajor": 3,
   "currentMinor": 3,
-  "currentPatch": 0,
+  "currentPatch": 1,
   "versionDateInfo": "2025-04-02",
-  "versionTimeInfo": "11:05:20",
-  "versionNotes": "- **New Feature**: Target for .NET Framework 4.8\n"
+  "versionTimeInfo": "11:23:44",
+  "versionNotes": "- Removed Target for .NET 5\n"
 }

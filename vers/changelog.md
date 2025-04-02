@@ -6,7 +6,13 @@
 
 ## Upcoming Changes
 
-- Removed Target for .NET 5
+*(none)*
+
+
+
+## v 3.3.1
+released **2025-04-02**, including:
+ - Removed Target for .NET 5
 
 
 
