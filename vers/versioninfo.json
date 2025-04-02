@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.2.0",
-  "currentVersionWithSuffix": "3.2.0",
+  "currentVersion": "3.3.0",
+  "currentVersionWithSuffix": "3.3.0",
   "releaseType": "official",
-  "previousVersion": "3.1.0",
+  "previousVersion": "3.2.0",
   "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 2,
+  "currentMinor": 3,
   "currentPatch": 0,
-  "versionDateInfo": "2025-04-01",
-  "versionTimeInfo": "13:12:57",
-  "versionNotes": "- new Feature: added DateTimeUtility ToInteger10SecondsResolution and FromInteger10SecondsResolution\n- new Feature: PascalCasingUtil now public\n- Internal: Added TechDemo to solution. Added some more unit tests and documentation.\n- Internal: Removed implicite usings\n- Prepared .net8.0 target\n- Updated TestFramework to 3.0.4\n"
+  "versionDateInfo": "2025-04-02",
+  "versionTimeInfo": "11:05:20",
+  "versionNotes": "- **New Feature**: Target for .NET Framework 4.8\n"
 }

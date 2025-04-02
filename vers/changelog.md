@@ -6,7 +6,13 @@
 
 ## Upcoming Changes
 
-- **New Feature**: Target for .NET Framework 4.8
+*(none)*
+
+
+
+## v 3.3.0
+released **2025-04-02**, including:
+ - **New Feature**: Target for .NET Framework 4.8
 
 
 
