@@ -6,7 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
+- **New Feature**: Target for .NET Framework 4.8
 
 
 

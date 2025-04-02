@@ -1,39 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B0BA06FE-6437-4B9E-8C76-3ADFC8D191D2}</ProjectGuid>
+    <ProjectGuid>{C732C483-AEA1-45A5-9202-C6E91EBFE53A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>Snowflake44</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>false</Deterministic>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\dist\bin-net46\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET46</DefineConstants>
+    <OutputPath>..\..\dist\bin-net48\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET48</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\dist\bin-net46\Snowflake44.xml</DocumentationFile>
+    <DocumentationFile>..\..\dist\bin-net48\Snowflake44.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\dist\bin-net46\</OutputPath>
-    <DefineConstants>TRACE;NET46</DefineConstants>
+    <OutputPath>..\..\dist\bin-net48\</OutputPath>
+    <DefineConstants>TRACE;NET48</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\dist\bin-net46\Snowflake44.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <DocumentationFile>..\..\dist\bin-net48\Snowflake44.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,9 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\Snowflake44\Snowflake44.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
