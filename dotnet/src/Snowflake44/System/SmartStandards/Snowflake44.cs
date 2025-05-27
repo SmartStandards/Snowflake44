@@ -23,7 +23,10 @@ namespace System.SmartStandards {
     /// <summary>
     ///   Encodes a DateTime value to an integer 64 value.
     /// </summary>
-    /// <param name="incomingDate"> A date value between 1900-01-01 and 2457-01-01 </param>
+    /// <param name="incomingDate"> 
+    ///   A date value between 1900-01-01 and 2457-01-01.
+    ///   Important: the DateTime must have the DateTimeKind.Utc, otherwise an ArgumentException will be thrown!
+    /// </param>
     public static long EncodeDateTime(DateTime incomingDate) {
       return EncodeDateTime(incomingDate, false);
     }
@@ -31,12 +34,19 @@ namespace System.SmartStandards {
     /// <summary>
     ///   Encodes a DateTime value to an integer 64 value.
     /// </summary>
-    /// <param name="incomingDate"> A date value between 1900-01-01 and 2457-01-01 </param>
+    /// <param name="incomingDate"> 
+    ///   A date value between 1900-01-01 and 2457-01-01.
+    ///   Important: the DateTime must have the DateTimeKind.Utc, otherwise an ArgumentException will be thrown!
+    /// </param>
     /// <param name="skipRandomSaltAndHistory">
     ///   opt-out the addition of the random-salt portion, 
     ///   which will result in the lowest possible long value for the given timestamp (for filtering purpose)
     /// </param>
     internal static long EncodeDateTime(DateTime incomingDate, bool skipRandomSaltAndHistory) {
+
+      if (incomingDate.Kind != DateTimeKind.Utc) {
+        throw new ArgumentException("The DateTime must have the DateTimeKind.Utc!", nameof(incomingDate));
+      }
 
       // 11
       // 98                 0
@@ -87,7 +97,7 @@ namespace System.SmartStandards {
     }
 
     /// <summary>
-    ///   Decodes a DateTime value from an encoded integer 64 value.
+    ///   Decodes a DateTime (UTC) value from an encoded integer 64 value.
     /// </summary>
     public static DateTime DecodeDateTime(long uid64) {
 
@@ -95,13 +105,19 @@ namespace System.SmartStandards {
 
       long decodedMilliseconds = uid64 >> 19;
       long decodedTicks = decodedMilliseconds * 10000L;
-      var decodedDate = new DateTime(CenturyBegin.Ticks + decodedTicks);
+      var decodedDate = new DateTime(CenturyBegin.Ticks + decodedTicks, DateTimeKind.Utc);
 
       return decodedDate;
     }
 
-    /// <param name="from"></param>
-    /// <param name="before"></param>
+    /// <param name="from">
+    ///   A date value between 1900-01-01 and 2457-01-01.
+    ///   Important: the DateTime must have the DateTimeKind.Utc, otherwise an ArgumentException will be thrown!
+    /// </param>
+    /// <param name="before">
+    ///   A date value between 1900-01-01 and 2457-01-01.
+    ///   Important: the DateTime must have the DateTimeKind.Utc, otherwise an ArgumentException will be thrown!
+    /// </param>
     /// <param name="fromUid"></param>
     /// <param name="beforeUid">
     ///  WARNING: this is time sensitive - consider to pass the date-portion only for correct mapping
@@ -118,10 +134,15 @@ namespace System.SmartStandards {
     }
 
     /// <param name="extendee"></param>
-    /// <param name="from"></param>
+    /// <param name="from">
+    ///   A date value between 1900-01-01 and 2457-01-01.
+    ///   Important: the DateTime must have the DateTimeKind.Utc, otherwise an ArgumentException will be thrown!
+    /// </param>
     /// <param name="before">
-    ///  WARNING: this is time sensitive - consider to pass the date-portion only for correct mapping
-    ///  and this is representing the first value AFTER the selected range and will NOT be a match!
+    ///   A date value between 1900-01-01 and 2457-01-01.
+    ///   Important: the DateTime must have the DateTimeKind.Utc, otherwise an ArgumentException will be thrown!
+    ///   WARNING: this is time sensitive - consider to pass the date-portion only for correct mapping
+    ///   and this is representing the first value AFTER the selected range and will NOT be a match!
     /// </param>
     public static bool IsInTimeRange(long extendee, DateTime from, DateTime before) {
 

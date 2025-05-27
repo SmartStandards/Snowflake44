@@ -6,7 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
+* Fix: DecodeDateTime will now return a DateTimeKind.Utc and added some argument-guards
 
 
 
