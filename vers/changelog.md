@@ -6,7 +6,13 @@
 
 ## Upcoming Changes
 
-* Fix: DecodeDateTime will now return a DateTimeKind.Utc and added some argument-guards
+*(none)*
+
+
+
+## v 3.3.2
+released **2025-05-27**, including:
+ - Fix: DecodeDateTime will now return a DateTimeKind.Utc and added some argument-guards
 
 
 
