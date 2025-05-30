@@ -2,13 +2,41 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>Snowflake44</AssemblyName>
     <RootNamespace></RootNamespace>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DocumentationFile>..\..\dist\bin-net8.0\Snowflake44.xml</DocumentationFile>
     <OutputPath>..\..\dist\bin-net8.0\</OutputPath>
-    <DefineConstants>TRACE;NET8</DefineConstants>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageId>Snowflake44</PackageId>
+    <Description>a 44-Bit Timestamp with some random salt</Description>
+    <Product>UID64</Product>
+    <Company>(public domain)</Company>
+    <Copyright>SmartStandards</Copyright>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Authors>SmartStandards</Authors>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>UID64 Salted Timestamp UUID BigInt Long</PackageTags>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">    
+    <DefineConstants>TRACE;DEBUG;NET6</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;NET6</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Snowflake44.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
 
   <Import Project="..\Snowflake44\Snowflake44.projitems" Label="Shared" />
 
