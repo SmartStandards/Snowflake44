@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.3.2",
-  "currentVersionWithSuffix": "3.3.2",
+  "currentVersion": "3.3.3",
+  "currentVersionWithSuffix": "3.3.3",
   "releaseType": "official",
-  "previousVersion": "3.3.1",
+  "previousVersion": "3.3.2",
   "changeGrade": "patch",
   "currentMajor": 3,
   "currentMinor": 3,
-  "currentPatch": 2,
-  "versionDateInfo": "2025-05-27",
-  "versionTimeInfo": "13:16:16",
-  "versionNotes": "- Fix: DecodeDateTime will now return a DateTimeKind.Utc and added some argument-guards\n"
+  "currentPatch": 3,
+  "versionDateInfo": "2025-05-30",
+  "versionTimeInfo": "07:53:46",
+  "versionNotes": "- Removed .NET 4.6-Targets and enabled .NET 8.0-Targets (while switching build-runner from Win-2019 to WIN-2022)\n"
 }
