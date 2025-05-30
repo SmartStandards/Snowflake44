@@ -6,9 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
-
-
+* Removed .NET 4.6-Targets and enabled .NET 8.0-Targets (while switching build-runner from Win-2019 to WIN-2022)
 
 ## v 3.3.2
 released **2025-05-27**, including:
