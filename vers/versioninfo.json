@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.3.3",
-  "currentVersionWithSuffix": "3.3.3",
+  "currentVersion": "3.4.0",
+  "currentVersionWithSuffix": "3.4.0",
   "releaseType": "official",
-  "previousVersion": "3.3.2",
-  "changeGrade": "patch",
+  "previousVersion": "3.3.3",
+  "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 3,
-  "currentPatch": 3,
-  "versionDateInfo": "2025-05-30",
-  "versionTimeInfo": "07:53:46",
-  "versionNotes": "- Removed .NET 4.6-Targets and enabled .NET 8.0-Targets (while switching build-runner from Win-2019 to WIN-2022)\n"
+  "currentMinor": 4,
+  "currentPatch": 0,
+  "versionDateInfo": "2025-09-03",
+  "versionTimeInfo": "06:43:04",
+  "versionNotes": "- new Feature: Added convenience Helper '*ConvertFromGuid*' and '*ConvertToGuid*' (endian aware) and extended Demo.\n- Converted UnitTest-/Demo-Project to .NET 8\n- Fixed not working MS-Test references\n- Fixed UnitTests which were red after DateTimeKind.Utc was explicitely required (*non transparent br.-change in 3.3.2*)\n"
 }

@@ -6,10 +6,16 @@
 
 ## Upcoming Changes
 
-* **new Feature**: Added convenience Helper '*ConvertFromGuid*' and '*ConvertToGuid*' (endian aware) and extended Demo.
-* Fixed not working MS-Test references
-* Fixed UnitTests which were red after DateTimeKind.Utc was explicitely required (*non transparent br.-change in 3.3.2*)
-* Converted UnitTest-/Demo-Project to .NET 8
+*(none)*
+
+
+
+## v 3.4.0
+released **2025-09-03**, including:
+ - **new Feature**: Added convenience Helper '*ConvertFromGuid*' and '*ConvertToGuid*' (endian aware) and extended Demo.
+ - Converted UnitTest-/Demo-Project to .NET 8
+ - Fixed not working MS-Test references
+ - Fixed UnitTests which were red after DateTimeKind.Utc was explicitely required (*non transparent br.-change in 3.3.2*)
 
 
 
