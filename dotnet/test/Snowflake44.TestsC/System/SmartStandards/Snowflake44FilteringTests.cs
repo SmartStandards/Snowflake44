@@ -14,9 +14,9 @@ namespace System.SmartStandards {
 
       var entities = new List<MyEntity>();
 
-      long uid1 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 01));
-      long uid2 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 02));
-      long uid3 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 03));
+      long uid1 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 01, 0, 0, 0, DateTimeKind.Utc));
+      long uid2 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 02, 0, 0, 0, DateTimeKind.Utc));
+      long uid3 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 03, 0, 0, 0, DateTimeKind.Utc));
 
       entities.Add(new MyEntity { Uid = uid1 });
       entities.Add(new MyEntity { Uid = uid2 });
@@ -24,7 +24,7 @@ namespace System.SmartStandards {
 
       //TEST
 
-      DateTime dayToFilter = new DateTime(2024, 01, 02);
+      DateTime dayToFilter = new DateTime(2024, 01, 02, 0, 0, 0, DateTimeKind.Utc);
 
       var filterExpression = Snowflake44.BuildTimeRangeExpression<MyEntity>(
         (e) => e.Uid, dayToFilter
@@ -44,9 +44,9 @@ namespace System.SmartStandards {
 
       var uids = new List<long>();
 
-      long uid1 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 01));
-      long uid2 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 02));
-      long uid3 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 03));
+      long uid1 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 01, 0, 0, 0, DateTimeKind.Utc));
+      long uid2 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 02, 0, 0, 0, DateTimeKind.Utc));
+      long uid3 = Snowflake44.EncodeDateTime(new DateTime(2024, 01, 03, 0, 0, 0, DateTimeKind.Utc));
 
       uids.Add(uid1);
       uids.Add(uid2);
@@ -54,7 +54,7 @@ namespace System.SmartStandards {
 
       //TEST
 
-      DateTime dayToFilter = new DateTime(2024, 01, 02);
+      DateTime dayToFilter = new DateTime(2024, 01, 02, 0, 0, 0, DateTimeKind.Utc);
 
       long[] outcome1 = uids.FilterByDay(dayToFilter).ToArray();
       

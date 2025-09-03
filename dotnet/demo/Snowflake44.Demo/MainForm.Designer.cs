@@ -41,6 +41,10 @@ namespace SmartStandards {
       Int10SecondsTextBox = new TextBox();
       FromIntDateTimeTextBox = new TextBox();
       CopyToClipboard = new CheckBox();
+      UidString = new TextBox();
+      label5 = new Label();
+      label6 = new Label();
+      UidGuid = new TextBox();
       this.SuspendLayout();
       // 
       // label1
@@ -83,7 +87,7 @@ namespace SmartStandards {
       // 
       label2.AutoSize = true;
       label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-      label2.Location = new Point(12, 79);
+      label2.Location = new Point(12, 134);
       label2.Name = "label2";
       label2.Size = new Size(181, 21);
       label2.TabIndex = 4;
@@ -91,7 +95,7 @@ namespace SmartStandards {
       // 
       // TokenTextBox
       // 
-      TokenTextBox.Location = new Point(93, 107);
+      TokenTextBox.Location = new Point(93, 162);
       TokenTextBox.Name = "TokenTextBox";
       TokenTextBox.Size = new Size(130, 23);
       TokenTextBox.TabIndex = 6;
@@ -100,7 +104,7 @@ namespace SmartStandards {
       // label3
       // 
       label3.AutoSize = true;
-      label3.Location = new Point(12, 110);
+      label3.Location = new Point(12, 165);
       label3.Name = "label3";
       label3.Size = new Size(38, 15);
       label3.TabIndex = 5;
@@ -108,7 +112,7 @@ namespace SmartStandards {
       // 
       // EncodedTokenTextBox
       // 
-      EncodedTokenTextBox.Location = new Point(229, 107);
+      EncodedTokenTextBox.Location = new Point(229, 162);
       EncodedTokenTextBox.Name = "EncodedTokenTextBox";
       EncodedTokenTextBox.Size = new Size(130, 23);
       EncodedTokenTextBox.TabIndex = 7;
@@ -116,7 +120,7 @@ namespace SmartStandards {
       // 
       // TokenRawTextBox
       // 
-      TokenRawTextBox.Location = new Point(365, 107);
+      TokenRawTextBox.Location = new Point(365, 162);
       TokenRawTextBox.Name = "TokenRawTextBox";
       TokenRawTextBox.ReadOnly = true;
       TokenRawTextBox.Size = new Size(130, 23);
@@ -126,7 +130,7 @@ namespace SmartStandards {
       // 
       EncodingErrorLabel.AutoSize = true;
       EncodingErrorLabel.ForeColor = Color.Red;
-      EncodingErrorLabel.Location = new Point(12, 140);
+      EncodingErrorLabel.Location = new Point(12, 195);
       EncodingErrorLabel.Name = "EncodingErrorLabel";
       EncodingErrorLabel.Size = new Size(118, 15);
       EncodingErrorLabel.TabIndex = 9;
@@ -136,7 +140,7 @@ namespace SmartStandards {
       // 
       label4.AutoSize = true;
       label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-      label4.Location = new Point(12, 171);
+      label4.Location = new Point(12, 226);
       label4.Name = "label4";
       label4.Size = new Size(402, 21);
       label4.TabIndex = 10;
@@ -144,7 +148,7 @@ namespace SmartStandards {
       // 
       // NowButton
       // 
-      NowButton.Location = new Point(12, 205);
+      NowButton.Location = new Point(12, 260);
       NowButton.Name = "NowButton";
       NowButton.Size = new Size(75, 23);
       NowButton.TabIndex = 11;
@@ -154,7 +158,7 @@ namespace SmartStandards {
       // 
       // Int10SecondsTextBox
       // 
-      Int10SecondsTextBox.Location = new Point(93, 205);
+      Int10SecondsTextBox.Location = new Point(93, 260);
       Int10SecondsTextBox.Name = "Int10SecondsTextBox";
       Int10SecondsTextBox.Size = new Size(130, 23);
       Int10SecondsTextBox.TabIndex = 12;
@@ -162,7 +166,7 @@ namespace SmartStandards {
       // 
       // FromIntDateTimeTextBox
       // 
-      FromIntDateTimeTextBox.Location = new Point(229, 205);
+      FromIntDateTimeTextBox.Location = new Point(229, 260);
       FromIntDateTimeTextBox.Name = "FromIntDateTimeTextBox";
       FromIntDateTimeTextBox.Size = new Size(130, 23);
       FromIntDateTimeTextBox.TabIndex = 13;
@@ -179,14 +183,52 @@ namespace SmartStandards {
       CopyToClipboard.Text = "Copy to Clipboard";
       CopyToClipboard.UseVisualStyleBackColor = true;
       // 
+      // UidString
+      // 
+      UidString.Location = new Point(135, 64);
+      UidString.Name = "UidString";
+      UidString.ReadOnly = true;
+      UidString.Size = new Size(224, 23);
+      UidString.TabIndex = 3;
+      // 
+      // label5
+      // 
+      label5.AutoSize = true;
+      label5.Location = new Point(12, 70);
+      label5.Name = "label5";
+      label5.Size = new Size(122, 15);
+      label5.TabIndex = 15;
+      label5.Text = "String-Representation";
+      // 
+      // label6
+      // 
+      label6.AutoSize = true;
+      label6.Location = new Point(12, 96);
+      label6.Name = "label6";
+      label6.Size = new Size(118, 15);
+      label6.TabIndex = 15;
+      label6.Text = "GUID-Representation";
+      // 
+      // UidGuid
+      // 
+      UidGuid.Location = new Point(135, 93);
+      UidGuid.Name = "UidGuid";
+      UidGuid.ReadOnly = true;
+      UidGuid.Size = new Size(224, 23);
+      UidGuid.TabIndex = 3;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new SizeF(7F, 15F);
       this.AutoScaleMode = AutoScaleMode.Font;
-      this.ClientSize = new Size(516, 245);
+      this.ClientSize = new Size(516, 302);
+      this.Controls.Add(label6);
+      this.Controls.Add(label5);
       this.Controls.Add(label1);
       this.Controls.Add(CreateUidButton);
       this.Controls.Add(UidTextBox);
+      this.Controls.Add(UidString);
+      this.Controls.Add(UidGuid);
       this.Controls.Add(DecodedDateTimeTextBox);
       this.Controls.Add(CopyToClipboard);
       this.Controls.Add(label2);
@@ -222,5 +264,9 @@ namespace SmartStandards {
     private TextBox Int10SecondsTextBox;
     private TextBox FromIntDateTimeTextBox;
     private CheckBox CopyToClipboard;
+    private TextBox UidString;
+    private Label label5;
+    private Label label6;
+    private TextBox UidGuid;
   }
 }

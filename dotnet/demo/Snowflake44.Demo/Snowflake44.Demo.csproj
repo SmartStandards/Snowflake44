@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Snowflake44.net6.0\Snowflake44.net6.0.csproj" />
+    <ProjectReference Include="..\..\src\Snowflake44.net8.0\Snowflake44.net8.0.csproj" />
   </ItemGroup>
 
 </Project>

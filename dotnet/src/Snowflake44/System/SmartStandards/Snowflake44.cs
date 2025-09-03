@@ -59,7 +59,7 @@ namespace System.SmartStandards {
         // ^ One tick is 100 nano seconds (There are 10,000 ticks in a millisecond)
 
         // 44 bit gives us 557 years date range resolved in a resolution of microseconds
-        if (elapsedMilliseconds >= 17592186044416L){ // We don't want to use the 45th bit
+        if (elapsedMilliseconds >= 17592186044416L) { // We don't want to use the 45th bit
           throw new Exception("Time stamp exceeds 44 bit!");
         }
 
@@ -152,6 +152,68 @@ namespace System.SmartStandards {
      );
 
       return (extendee >= fromUid && extendee < untilUid);
+    }
+
+    /// <summary>
+    /// Converts a Guid to a 'Snowflake44-Uid' (long) by using the last 8 bytes of the 
+    /// Guid as Big Endian representation of a ulong
+    /// </summary>
+    /// <param name="input"></param>
+    /// <param name="throwIfInvalidRange">
+    /// Throw an ArgumentOutOfRangeException if the first 8 bytes of the Guid are not zero,
+    /// otherwise the data in these bytes will be ignorred during conversion.
+    /// </param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static long ConvertFromGuid(Guid input, bool throwIfInvalidRange = false) {
+      byte[] guidBytes = input.ToByteArray();
+
+      if (throwIfInvalidRange) {
+        for (int i = 0; i < 8; i++) {
+          if (guidBytes[i] != 0) {
+            throw new ArgumentOutOfRangeException(
+                nameof(input),
+                "The given Guid contains data in the first 8 bytes, which would be lost during conversion to long."
+            );
+          }
+        }
+      }
+
+      // Assemble the last 8 bytes as Big Endian to a ulong and cast it unchecked to a long
+      ulong u = (
+        ((ulong)guidBytes[8]  << 56) |
+        ((ulong)guidBytes[9]  << 48) |
+        ((ulong)guidBytes[10] << 40) |
+        ((ulong)guidBytes[11] << 32) |
+        ((ulong)guidBytes[12] << 24) |
+        ((ulong)guidBytes[13] << 16) |
+        ((ulong)guidBytes[14] << 8)  |
+        ((ulong)guidBytes[15] << 0)
+      );
+
+      return unchecked((long)u);
+    }
+
+    /// <summary>
+    /// Converts a long (expected to be a 'Snowflake44-Uid') to a Guid by using the long as Big Endian representation of a ulong
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <returns></returns>
+    public static Guid ConvertToGuid(long uid) {
+      byte[] guidBytes = new byte[16];
+
+      // Decompose long into Big Endian byte array
+      ulong u = unchecked((ulong)uid);
+      guidBytes[8] = (byte)(u >> 56);
+      guidBytes[9] = (byte)(u >> 48);
+      guidBytes[10] = (byte)(u >> 40);
+      guidBytes[11] = (byte)(u >> 32);
+      guidBytes[12] = (byte)(u >> 24);
+      guidBytes[13] = (byte)(u >> 16);
+      guidBytes[14] = (byte)(u >> 8);
+      guidBytes[15] = (byte)(u >> 0);
+
+      return new Guid(guidBytes);
     }
 
   }

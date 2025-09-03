@@ -73,6 +73,31 @@ namespace System.SmartStandards {
       return extendee.Where(expr);
     }
 
+    /// <summary>
+    /// Converts a long (expected to be a 'Snowflake44-Uid') to a Guid by using
+    /// the long as Big Endian representation of a ulong.
+    /// </summary>
+    /// <param name="extendee"></param>
+    /// <returns></returns>
+    public static Guid ToGuid(long extendee) {
+      return Snowflake44.ConvertToGuid(extendee);
+    }
+
+    /// <summary>
+    /// Converts a Guid to a 'Snowflake44-Uid' (long) by using the last 8 bytes of the 
+    /// Guid as Big Endian representation of a ulong
+    /// </summary>
+    /// <param name="extendee"></param>
+    /// <param name="throwIfInvalidRange">
+    /// Throw an ArgumentOutOfRangeException if the first 8 bytes of the Guid are not zero,
+    /// otherwise the data in these bytes will be ignorred during conversion.
+    /// </param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static long ToLongUid(Guid extendee, bool throwIfInvalidRange = false) {
+      return Snowflake44.ConvertFromGuid(extendee, throwIfInvalidRange);
+    }
+
   }
 
 }

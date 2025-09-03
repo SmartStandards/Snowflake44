@@ -25,7 +25,10 @@ namespace SmartStandards {
 
     public void CreateActionRequested() {
 
-      UidTextBox.Text = Snowflake44.Generate().ToString();
+      long uid = Snowflake44.Generate();
+      UidTextBox.Text = uid.ToString();
+      UidString.Text = TokenEncoder.Decode(uid);
+      UidGuid.Text = Snowflake44.ConvertToGuid(uid).ToString();
 
       if (CopyToClipboard.Checked) {
         Clipboard.SetText(UidTextBox.Text);
