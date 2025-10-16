@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.SmartStandards;
 using System.Text.SmartStandards;
 using System.Windows.Forms;
@@ -7,40 +9,112 @@ namespace SmartStandards {
 
   public partial class MainForm : Form {
 
+    private static MainForm _Instance;
+
+    public static MainForm Instance { get { return _Instance; } }
+
+    private List<Tuple<string, string>> _RefreshingDependencies = new();
+
+    /// <summary>
+    ///   Constructor.
+    /// </summary>
     public MainForm() {
       InitializeComponent();
+      _Instance = this;
     }
 
     protected override void OnLoad(EventArgs e) {
       base.OnLoad(e);
       EncodingErrorLabel.Text = "";
-      this.CreateActionRequested();
-      this.NowActionRequested();
     }
 
     protected override void OnShown(EventArgs e) {
       base.OnShown(e);
+
+      // Wire up refreshing dependencies
+
+      _RefreshingDependencies.Add(new Tuple<string, string>("DecodedDateTimeTextBox", "UidTextBox"));
+      _RefreshingDependencies.Add(new Tuple<string, string>("TokenTextBox", "EncodedTokenTextBox"));
+      _RefreshingDependencies.Add(new Tuple<string, string>("EncodedTokenTextBox", "TokenTextBox"));
+      _RefreshingDependencies.Add(new Tuple<string, string>("Time32DecodedTextBox", "Time32TextBox"));
+
+      WireUpCommandTriggers(this);
+
+      this.UidCreate_ActionRequested();
+      this.Time32Create_ActionRequested();
+
       TokenTextBox.Focus();
     }
 
-    public void CreateActionRequested() {
+    private static void AnyCommandTrigger_Click(object sender, EventArgs e) {
+      AnyCommand_Requested(((Control)sender).Tag.ToString());
+    }
+
+    public static void AnyCommand_Requested(string commandName) {
+
+      switch (commandName) {
+
+        case "Uid.Create":
+          MainForm.Instance.UidCreate_ActionRequested();
+          break;
+
+
+        case "Uid.CopyToClipboard":
+          Clipboard.SetText(MainForm.Instance.UidTextBox.Text);
+          break;
+
+        case "Time32.Create":
+          MainForm.Instance.Time32Create_ActionRequested();
+          break;
+
+        default:
+
+          break;
+
+      }
+
+    }
+
+    public static void WireUpCommandTriggers(Control startingControl) {
+
+      foreach (Control control in startingControl.Controls) {
+
+        if (control is Button) {
+
+          if (control.Tag != null) control.Click += AnyCommandTrigger_Click;
+
+        }
+
+        if (control.Controls.Count != 0) WireUpCommandTriggers(control); // recusrsion 
+
+      }
+
+    }
+
+    public void UidCreate_ActionRequested() {
 
       long uid = Snowflake44.Generate();
       UidTextBox.Text = uid.ToString();
-      UidString.Text = TokenEncoder.Decode(uid);
-      UidGuid.Text = Snowflake44.ConvertToGuid(uid).ToString();
+      UiAsdStringTextBox.Text = TokenEncoder.Decode(uid);
+      UidAsGuidTextBox.Text = Snowflake44.ConvertToGuid(uid).ToString();
 
-      if (CopyToClipboard.Checked) {
-        Clipboard.SetText(UidTextBox.Text);
+    }
+
+    private void AnyTextBox_TextChanged(object sender, EventArgs e) {
+      Control senderControl = (Control)sender;
+      foreach (Tuple<string, string> dependency in _RefreshingDependencies) {
+        if (dependency.Item2 != senderControl.Name) continue;
+
+        MethodInfo methodInfo = typeof(MainForm).GetMethod(
+          "Refresh" + dependency.Item1,
+          BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+        );
+
+        methodInfo?.Invoke(this, null);
       }
     }
 
-    private void CreateUidButton_Click(object sender, EventArgs e) {
-      this.CreateActionRequested();
-    }
-
-    private void UidTextBox_TextChanged(object sender, EventArgs e) {
-
+    private void RefreshDecodedDateTimeTextBox() {
       long numericValue;
 
       if (long.TryParse(UidTextBox.Text, out numericValue)) {
@@ -48,30 +122,33 @@ namespace SmartStandards {
       } else {
         DecodedDateTimeTextBox.Text = "";
       }
-
     }
 
-    private void TokenTextBox_TextChanged(object sender, EventArgs e) {
+    private void RefreshEncodedTokenTextBox() {
 
       EncodingErrorLabel.Text = "";
 
       try {
 
-        string text = TokenTextBox.Text;
+        string incomingText = TokenTextBox.Text;
 
-        if (text.Length >= 1) {
-          char u = Char.ToUpper(text[0], System.Globalization.CultureInfo.InvariantCulture);
-          if (text[0] != u) {
-            text = u + text.Substring(1);
+        if (incomingText.Length >= 1) {
+          char u = Char.ToUpper(incomingText[0], System.Globalization.CultureInfo.InvariantCulture);
+          if (incomingText[0] != u) {
+            incomingText = u + incomingText.Substring(1);
             int cursor = TokenTextBox.SelectionStart;
-            TokenTextBox.Text = text;
+            TokenTextBox.Text = incomingText;
             TokenTextBox.SelectionStart = cursor;
           }
         }
 
-        string encodedToken = TokenEncoder.Encode(text).ToString();
+        string incomingToken = TokenEncoder.Encode(incomingText).ToString();
 
-        if (EncodedTokenTextBox.Text != encodedToken) EncodedTokenTextBox.Text = encodedToken;
+        if (EncodedTokenTextBox.Text != incomingToken) {
+          if (!(incomingToken == "0" && EncodedTokenTextBox.Text == "")) {
+            EncodedTokenTextBox.Text = incomingToken;
+          }
+        }
 
       } catch (Exception ex) {
         EncodingErrorLabel.Text = ex.Message;
@@ -79,9 +156,8 @@ namespace SmartStandards {
 
     }
 
-    private void EncodedTokenTextBox_TextChanged(object sender, EventArgs e) {
+    private void RefreshTokenTextBox() {
       long numericValue;
-
 
       string token = "";
       string rawToken = "";
@@ -94,27 +170,22 @@ namespace SmartStandards {
       if (TokenTextBox.Text != token) TokenTextBox.Text = token;
 
       TokenRawTextBox.Text = rawToken;
-
     }
 
-    private void NowButton_Click(object sender, EventArgs e) {
-      this.NowActionRequested();
+    public void Time32Create_ActionRequested() {
+
+      Time32TextBox.Text = DateTimeUtility.ToInteger10SecondsResolution(DateTime.UtcNow).ToString();
     }
 
-    public void NowActionRequested() {
-
-      Int10SecondsTextBox.Text = DateTimeUtility.ToInteger10SecondsResolution(DateTime.UtcNow).ToString();
-    }
-
-    private void Int10SecondsTextBox_TextChanged(object sender, EventArgs e) {
+    private void RefreshTime32DecodedTextBox() {
 
       int inputInt;
 
-      if (int.TryParse(Int10SecondsTextBox.Text, out inputInt)) {
+      if (int.TryParse(Time32TextBox.Text, out inputInt)) {
 
         DateTime fromIntDateTime = DateTimeUtility.FromInteger10SecondsResolution(inputInt);
 
-        FromIntDateTimeTextBox.Text = fromIntDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        Time32DecodedTextBox.Text = fromIntDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
       }
     }

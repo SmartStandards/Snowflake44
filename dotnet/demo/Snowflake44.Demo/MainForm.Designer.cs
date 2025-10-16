@@ -26,36 +26,37 @@ namespace SmartStandards {
     ///  the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      label1 = new Label();
+      SnowFlakeLabel = new Label();
       UidTextBox = new TextBox();
       CreateUidButton = new Button();
       DecodedDateTimeTextBox = new TextBox();
-      label2 = new Label();
+      EncodedTokenLabel = new Label();
       TokenTextBox = new TextBox();
-      label3 = new Label();
+      TokenLabel = new Label();
       EncodedTokenTextBox = new TextBox();
       TokenRawTextBox = new TextBox();
       EncodingErrorLabel = new Label();
-      label4 = new Label();
-      NowButton = new Button();
-      Int10SecondsTextBox = new TextBox();
-      FromIntDateTimeTextBox = new TextBox();
-      CopyToClipboard = new CheckBox();
-      UidString = new TextBox();
-      label5 = new Label();
-      label6 = new Label();
-      UidGuid = new TextBox();
+      Time32Label = new Label();
+      Time32Button = new Button();
+      Time32TextBox = new TextBox();
+      Time32DecodedTextBox = new TextBox();
+      UiAsdStringTextBox = new TextBox();
+      UidAsStringLabel = new Label();
+      UidAsGuidLabel = new Label();
+      UidAsGuidTextBox = new TextBox();
+      CopyUidButton = new Button();
+      label1 = new Label();
       this.SuspendLayout();
       // 
-      // label1
+      // SnowFlakeLabel
       // 
-      label1.AutoSize = true;
-      label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-      label1.Location = new Point(12, 8);
-      label1.Name = "label1";
-      label1.Size = new Size(169, 21);
-      label1.TabIndex = 0;
-      label1.Text = "SnowFlake44 (64 Bit)";
+      SnowFlakeLabel.AutoSize = true;
+      SnowFlakeLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      SnowFlakeLabel.Location = new Point(12, 8);
+      SnowFlakeLabel.Name = "SnowFlakeLabel";
+      SnowFlakeLabel.Size = new Size(169, 21);
+      SnowFlakeLabel.TabIndex = 0;
+      SnowFlakeLabel.Text = "SnowFlake44 (64 Bit)";
       // 
       // UidTextBox
       // 
@@ -63,7 +64,7 @@ namespace SmartStandards {
       UidTextBox.Name = "UidTextBox";
       UidTextBox.Size = new Size(130, 23);
       UidTextBox.TabIndex = 2;
-      UidTextBox.TextChanged += this.UidTextBox_TextChanged;
+      UidTextBox.TextChanged += this.AnyTextBox_TextChanged;
       // 
       // CreateUidButton
       // 
@@ -71,9 +72,9 @@ namespace SmartStandards {
       CreateUidButton.Name = "CreateUidButton";
       CreateUidButton.Size = new Size(75, 23);
       CreateUidButton.TabIndex = 1;
+      CreateUidButton.Tag = "Uid.Create";
       CreateUidButton.Text = "Create";
       CreateUidButton.UseVisualStyleBackColor = true;
-      CreateUidButton.Click += this.CreateUidButton_Click;
       // 
       // DecodedDateTimeTextBox
       // 
@@ -83,40 +84,40 @@ namespace SmartStandards {
       DecodedDateTimeTextBox.Size = new Size(130, 23);
       DecodedDateTimeTextBox.TabIndex = 3;
       // 
-      // label2
+      // EncodedTokenLabel
       // 
-      label2.AutoSize = true;
-      label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-      label2.Location = new Point(12, 134);
-      label2.Name = "label2";
-      label2.Size = new Size(181, 21);
-      label2.TabIndex = 4;
-      label2.Text = "EncodedToken (64 Bit)";
+      EncodedTokenLabel.AutoSize = true;
+      EncodedTokenLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      EncodedTokenLabel.Location = new Point(12, 134);
+      EncodedTokenLabel.Name = "EncodedTokenLabel";
+      EncodedTokenLabel.Size = new Size(181, 21);
+      EncodedTokenLabel.TabIndex = 9;
+      EncodedTokenLabel.Text = "EncodedToken (64 Bit)";
       // 
       // TokenTextBox
       // 
       TokenTextBox.Location = new Point(93, 162);
       TokenTextBox.Name = "TokenTextBox";
       TokenTextBox.Size = new Size(130, 23);
-      TokenTextBox.TabIndex = 6;
-      TokenTextBox.TextChanged += this.TokenTextBox_TextChanged;
+      TokenTextBox.TabIndex = 11;
+      TokenTextBox.TextChanged += this.AnyTextBox_TextChanged;
       // 
-      // label3
+      // TokenLabel
       // 
-      label3.AutoSize = true;
-      label3.Location = new Point(12, 165);
-      label3.Name = "label3";
-      label3.Size = new Size(38, 15);
-      label3.TabIndex = 5;
-      label3.Text = "Token";
+      TokenLabel.AutoSize = true;
+      TokenLabel.Location = new Point(12, 165);
+      TokenLabel.Name = "TokenLabel";
+      TokenLabel.Size = new Size(38, 15);
+      TokenLabel.TabIndex = 10;
+      TokenLabel.Text = "Token";
       // 
       // EncodedTokenTextBox
       // 
       EncodedTokenTextBox.Location = new Point(229, 162);
       EncodedTokenTextBox.Name = "EncodedTokenTextBox";
       EncodedTokenTextBox.Size = new Size(130, 23);
-      EncodedTokenTextBox.TabIndex = 7;
-      EncodedTokenTextBox.TextChanged += this.EncodedTokenTextBox_TextChanged;
+      EncodedTokenTextBox.TabIndex = 12;
+      EncodedTokenTextBox.TextChanged += this.AnyTextBox_TextChanged;
       // 
       // TokenRawTextBox
       // 
@@ -124,7 +125,7 @@ namespace SmartStandards {
       TokenRawTextBox.Name = "TokenRawTextBox";
       TokenRawTextBox.ReadOnly = true;
       TokenRawTextBox.Size = new Size(130, 23);
-      TokenRawTextBox.TabIndex = 8;
+      TokenRawTextBox.TabIndex = 13;
       // 
       // EncodingErrorLabel
       // 
@@ -133,114 +134,123 @@ namespace SmartStandards {
       EncodingErrorLabel.Location = new Point(12, 195);
       EncodingErrorLabel.Name = "EncodingErrorLabel";
       EncodingErrorLabel.Size = new Size(118, 15);
-      EncodingErrorLabel.TabIndex = 9;
+      EncodingErrorLabel.TabIndex = 14;
       EncodingErrorLabel.Text = "{EncodingErrorLabel}";
       // 
-      // label4
+      // Time32Label
       // 
-      label4.AutoSize = true;
-      label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-      label4.Location = new Point(12, 226);
-      label4.Name = "label4";
-      label4.Size = new Size(402, 21);
-      label4.TabIndex = 10;
-      label4.Text = "DateTime <=> Integer10SecondsResolution (32 Bit)";
+      Time32Label.AutoSize = true;
+      Time32Label.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+      Time32Label.Location = new Point(12, 226);
+      Time32Label.Name = "Time32Label";
+      Time32Label.Size = new Size(402, 21);
+      Time32Label.TabIndex = 15;
+      Time32Label.Text = "DateTime <=> Integer10SecondsResolution (32 Bit)";
       // 
-      // NowButton
+      // Time32Button
       // 
-      NowButton.Location = new Point(12, 260);
-      NowButton.Name = "NowButton";
-      NowButton.Size = new Size(75, 23);
-      NowButton.TabIndex = 11;
-      NowButton.Text = "Now";
-      NowButton.UseVisualStyleBackColor = true;
-      NowButton.Click += this.NowButton_Click;
+      Time32Button.Location = new Point(12, 260);
+      Time32Button.Name = "Time32Button";
+      Time32Button.Size = new Size(75, 23);
+      Time32Button.TabIndex = 16;
+      Time32Button.Tag = "Time32.Create";
+      Time32Button.Text = "Now";
+      Time32Button.UseVisualStyleBackColor = true;
       // 
-      // Int10SecondsTextBox
+      // Time32TextBox
       // 
-      Int10SecondsTextBox.Location = new Point(93, 260);
-      Int10SecondsTextBox.Name = "Int10SecondsTextBox";
-      Int10SecondsTextBox.Size = new Size(130, 23);
-      Int10SecondsTextBox.TabIndex = 12;
-      Int10SecondsTextBox.TextChanged += this.Int10SecondsTextBox_TextChanged;
+      Time32TextBox.Location = new Point(93, 260);
+      Time32TextBox.Name = "Time32TextBox";
+      Time32TextBox.Size = new Size(130, 23);
+      Time32TextBox.TabIndex = 17;
+      Time32TextBox.TextChanged += this.AnyTextBox_TextChanged;
       // 
-      // FromIntDateTimeTextBox
+      // Time32DecodedTextBox
       // 
-      FromIntDateTimeTextBox.Location = new Point(229, 260);
-      FromIntDateTimeTextBox.Name = "FromIntDateTimeTextBox";
-      FromIntDateTimeTextBox.Size = new Size(130, 23);
-      FromIntDateTimeTextBox.TabIndex = 13;
+      Time32DecodedTextBox.Location = new Point(229, 260);
+      Time32DecodedTextBox.Name = "Time32DecodedTextBox";
+      Time32DecodedTextBox.Size = new Size(130, 23);
+      Time32DecodedTextBox.TabIndex = 18;
       // 
-      // CopyToClipboard
+      // UiAsdStringTextBox
       // 
-      CopyToClipboard.AutoSize = true;
-      CopyToClipboard.Checked = true;
-      CopyToClipboard.CheckState = CheckState.Checked;
-      CopyToClipboard.Location = new Point(365, 37);
-      CopyToClipboard.Name = "CopyToClipboard";
-      CopyToClipboard.Size = new Size(123, 19);
-      CopyToClipboard.TabIndex = 14;
-      CopyToClipboard.Text = "Copy to Clipboard";
-      CopyToClipboard.UseVisualStyleBackColor = true;
+      UiAsdStringTextBox.Location = new Point(135, 67);
+      UiAsdStringTextBox.Name = "UiAsdStringTextBox";
+      UiAsdStringTextBox.ReadOnly = true;
+      UiAsdStringTextBox.Size = new Size(224, 23);
+      UiAsdStringTextBox.TabIndex = 6;
       // 
-      // UidString
+      // UidAsStringLabel
       // 
-      UidString.Location = new Point(135, 64);
-      UidString.Name = "UidString";
-      UidString.ReadOnly = true;
-      UidString.Size = new Size(224, 23);
-      UidString.TabIndex = 3;
+      UidAsStringLabel.AutoSize = true;
+      UidAsStringLabel.Location = new Point(12, 70);
+      UidAsStringLabel.Name = "UidAsStringLabel";
+      UidAsStringLabel.Size = new Size(122, 15);
+      UidAsStringLabel.TabIndex = 5;
+      UidAsStringLabel.Text = "String-Representation";
       // 
-      // label5
+      // UidAsGuidLabel
       // 
-      label5.AutoSize = true;
-      label5.Location = new Point(12, 70);
-      label5.Name = "label5";
-      label5.Size = new Size(122, 15);
-      label5.TabIndex = 15;
-      label5.Text = "String-Representation";
+      UidAsGuidLabel.AutoSize = true;
+      UidAsGuidLabel.Location = new Point(12, 96);
+      UidAsGuidLabel.Name = "UidAsGuidLabel";
+      UidAsGuidLabel.Size = new Size(118, 15);
+      UidAsGuidLabel.TabIndex = 7;
+      UidAsGuidLabel.Text = "GUID-Representation";
       // 
-      // label6
+      // UidAsGuidTextBox
       // 
-      label6.AutoSize = true;
-      label6.Location = new Point(12, 96);
-      label6.Name = "label6";
-      label6.Size = new Size(118, 15);
-      label6.TabIndex = 15;
-      label6.Text = "GUID-Representation";
+      UidAsGuidTextBox.Location = new Point(135, 93);
+      UidAsGuidTextBox.Name = "UidAsGuidTextBox";
+      UidAsGuidTextBox.ReadOnly = true;
+      UidAsGuidTextBox.Size = new Size(224, 23);
+      UidAsGuidTextBox.TabIndex = 8;
       // 
-      // UidGuid
+      // CopyUidButton
       // 
-      UidGuid.Location = new Point(135, 93);
-      UidGuid.Name = "UidGuid";
-      UidGuid.ReadOnly = true;
-      UidGuid.Size = new Size(224, 23);
-      UidGuid.TabIndex = 3;
+      CopyUidButton.Location = new Point(365, 35);
+      CopyUidButton.Name = "CopyUidButton";
+      CopyUidButton.Size = new Size(49, 23);
+      CopyUidButton.TabIndex = 4;
+      CopyUidButton.Tag = "Uid.CopyToClipboard";
+      CopyUidButton.Text = "Copy";
+      CopyUidButton.UseVisualStyleBackColor = true;
+      // 
+      // label1
+      // 
+      label1.AutoSize = true;
+      label1.ForeColor = Color.Red;
+      label1.Location = new Point(356, 70);
+      label1.Name = "label1";
+      label1.Size = new Size(76, 15);
+      label1.TabIndex = 19;
+      label1.Text = "DO NOT USE!";
       // 
       // MainForm
       // 
       this.AutoScaleDimensions = new SizeF(7F, 15F);
       this.AutoScaleMode = AutoScaleMode.Font;
       this.ClientSize = new Size(516, 302);
-      this.Controls.Add(label6);
-      this.Controls.Add(label5);
       this.Controls.Add(label1);
+      this.Controls.Add(SnowFlakeLabel);
       this.Controls.Add(CreateUidButton);
       this.Controls.Add(UidTextBox);
-      this.Controls.Add(UidString);
-      this.Controls.Add(UidGuid);
       this.Controls.Add(DecodedDateTimeTextBox);
-      this.Controls.Add(CopyToClipboard);
-      this.Controls.Add(label2);
-      this.Controls.Add(label3);
+      this.Controls.Add(CopyUidButton);
+      this.Controls.Add(UidAsStringLabel);
+      this.Controls.Add(UiAsdStringTextBox);
+      this.Controls.Add(UidAsGuidLabel);
+      this.Controls.Add(UidAsGuidTextBox);
+      this.Controls.Add(EncodedTokenLabel);
+      this.Controls.Add(TokenLabel);
       this.Controls.Add(TokenTextBox);
       this.Controls.Add(EncodedTokenTextBox);
       this.Controls.Add(TokenRawTextBox);
       this.Controls.Add(EncodingErrorLabel);
-      this.Controls.Add(label4);
-      this.Controls.Add(NowButton);
-      this.Controls.Add(Int10SecondsTextBox);
-      this.Controls.Add(FromIntDateTimeTextBox);
+      this.Controls.Add(Time32Label);
+      this.Controls.Add(Time32Button);
+      this.Controls.Add(Time32TextBox);
+      this.Controls.Add(Time32DecodedTextBox);
       this.Name = "MainForm";
       this.Text = "Snowflake44.Demo";
       this.ResumeLayout(false);
@@ -249,24 +259,25 @@ namespace SmartStandards {
 
     #endregion
 
-    private Label label1;
+    private Label SnowFlakeLabel;
     private TextBox UidTextBox;
     private Button CreateUidButton;
     private TextBox DecodedDateTimeTextBox;
-    private Label label2;
+    private Label EncodedTokenLabel;
     private TextBox TokenTextBox;
-    private Label label3;
+    private Label TokenLabel;
     private TextBox EncodedTokenTextBox;
     private TextBox TokenRawTextBox;
     private Label EncodingErrorLabel;
-    private Label label4;
-    private Button NowButton;
-    private TextBox Int10SecondsTextBox;
-    private TextBox FromIntDateTimeTextBox;
-    private CheckBox CopyToClipboard;
-    private TextBox UidString;
-    private Label label5;
-    private Label label6;
-    private TextBox UidGuid;
+    private Label Time32Label;
+    private Button Time32Button;
+    private TextBox Time32TextBox;
+    private TextBox Time32DecodedTextBox;
+    private TextBox UiAsdStringTextBox;
+    private Label UidAsStringLabel;
+    private Label UidAsGuidLabel;
+    private TextBox UidAsGuidTextBox;
+    private Button CopyUidButton;
+    private Label label1;
   }
 }
