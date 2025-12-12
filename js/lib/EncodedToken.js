@@ -68,9 +68,9 @@ function rawTokenToPascalCase(rawString) {
     }
 
     if (nextOneUp) {
-      c = c.toUpperCase(c);
+      c = c.toUpperCase();
     } else {
-      c = c.toLowerCase(c);
+      c = c.toLowerCase();
     }
     pascalCaseString += c;
     nextOneUp = false;
