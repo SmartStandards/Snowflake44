@@ -6,7 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
+- No changes to the Library. Only some changes in the demo.
 
 
 

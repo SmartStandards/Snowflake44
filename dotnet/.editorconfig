@@ -1,4 +1,5 @@
-﻿[*.cs]
+﻿# Remove the line below if you want to inherit .editorconfig settings from higher directories
+root = true
 
 # IDE0090: Use 'new(...)'
 dotnet_diagnostic.IDE0090.severity = none

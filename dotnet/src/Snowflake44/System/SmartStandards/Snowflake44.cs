@@ -155,16 +155,13 @@ namespace System.SmartStandards {
     }
 
     /// <summary>
-    /// Converts a Guid to a 'Snowflake44-Uid' (long) by using the last 8 bytes of the 
-    /// Guid as Big Endian representation of a ulong
+    ///   Converts a Guid to a 'Snowflake44-Uid' (long) by using the last 8 bytes of the 
+    ///   Guid as Big Endian representation of a ulong
     /// </summary>
-    /// <param name="input"></param>
     /// <param name="throwIfInvalidRange">
-    /// Throw an ArgumentOutOfRangeException if the first 8 bytes of the Guid are not zero,
-    /// otherwise the data in these bytes will be ignorred during conversion.
+    ///   Throw an ArgumentOutOfRangeException if the first 8 bytes of the Guid are not zero,
+    ///   otherwise the data in these bytes will be ignorred during conversion.
     /// </param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static long ConvertFromGuid(Guid input, bool throwIfInvalidRange = false) {
       byte[] guidBytes = input.ToByteArray();
 
@@ -181,13 +178,13 @@ namespace System.SmartStandards {
 
       // Assemble the last 8 bytes as Big Endian to a ulong and cast it unchecked to a long
       ulong u = (
-        ((ulong)guidBytes[8]  << 56) |
-        ((ulong)guidBytes[9]  << 48) |
+        ((ulong)guidBytes[8] << 56) |
+        ((ulong)guidBytes[9] << 48) |
         ((ulong)guidBytes[10] << 40) |
         ((ulong)guidBytes[11] << 32) |
         ((ulong)guidBytes[12] << 24) |
         ((ulong)guidBytes[13] << 16) |
-        ((ulong)guidBytes[14] << 8)  |
+        ((ulong)guidBytes[14] << 8) |
         ((ulong)guidBytes[15] << 0)
       );
 
@@ -195,10 +192,8 @@ namespace System.SmartStandards {
     }
 
     /// <summary>
-    /// Converts a long (expected to be a 'Snowflake44-Uid') to a Guid by using the long as Big Endian representation of a ulong
+    ///   Converts a long (expected to be a 'Snowflake44-Uid') to a Guid by using the long as Big Endian representation of a ulong
     /// </summary>
-    /// <param name="uid"></param>
-    /// <returns></returns>
     public static Guid ConvertToGuid(long uid) {
       byte[] guidBytes = new byte[16];
 

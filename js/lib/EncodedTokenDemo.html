@@ -1,0 +1,41 @@
+<html>
+<head>
+  <script src="EncodedToken.js"></script>
+  <style type="text/css">
+    table { border-collapse: collapse; }
+    td, th {border: 1px solid green; padding: 0.2em; }
+  </style>
+</head>
+
+<body>
+
+  EncodedToken by derVodi. Part of the https://github.com/SmartStandards/Snowflake44 package.
+
+  <table style="border:1px solid gray">
+    <tr>
+      <td>
+        <input type="text" id="tokenInput" name="tokenInput"><br><br>
+      </td>
+      <td>
+        <input type="text" id="int64Input" name="int64Input"><br><br>
+      </td>
+      <td>
+        <pre id="rawTokenLabel"></pre>
+      </td>
+    </tr>
+  </table>
+
+  <script type="text/javascript">
+
+    var rawToken = encodedTokenToRawToken(742634033826132427n);
+    document.getElementById("rawTokenLabel").innerText = '"' + rawToken + '"';
+    //var token = rawTokenToPascalCase(rawToken);
+    var token = decodeToken(742634033826132427n);
+    document.getElementById("tokenInput").value = '[' + token + ']';
+
+  </script>
+
+</body>
+
+
+</html>
