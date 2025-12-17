@@ -46,7 +46,7 @@
             break;
           }
           case 31: {
-            unmappedCode = 46; // .
+            unmappedCode = 35; // #
             break;
           }
           default: {
@@ -103,7 +103,7 @@
           mappedCode = 0;
         } else if (65 <= unmappedCode && unmappedCode <= 90) { // A-Z
           mappedCode = (ulong)(unmappedCode ^ Convert.ToByte(64));
-        } else if (unmappedCode == 46) { // .
+        } else if (unmappedCode == 35) { // #
           mappedCode = 31;
         } else if (unmappedCode == 196) { // Ä,ä
           mappedCode = 27;

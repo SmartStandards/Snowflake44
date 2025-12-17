@@ -8,7 +8,7 @@ public class TokenEncoder {
   */
   public static String decodeToken(long int64Value) {
     String rawToken = TokenEncoder.encodedTokenToRawToken(int64Value);
-    String token = TokenEncoder.rawTokenToPascalCase(rawToken);
+    String token = TokenEncoder.rawTokenToReadableToken(rawToken);
     return token;
   }
 
@@ -40,7 +40,7 @@ public class TokenEncoder {
       } else if (mappedCode == 30) {
         unmappedCode = (byte)223; // ﬂ (Windows-1252 aka ANSI)
       } else if (mappedCode == 31) {
-        unmappedCode = (byte)46; // .
+        unmappedCode = (byte)35; // #
       } else {
         unmappedCode = (byte)32; // Space
       }
@@ -56,26 +56,42 @@ public class TokenEncoder {
    * Transforms a string containing separate words into a PascalCase formatted string.
    * E.g. "HELLO_WORLD" becomes "HelloWorld"
   */
-  public static String rawTokenToPascalCase(String rawString) {
+  public static String rawTokenToReadableToken(String rawToken) {
 
-    if (rawString == null)
-      return null;
-
-    if (rawString == "")
-      return "";
+    if (rawToken == null) return null;
+    
+    if (rawToken == "") return "";
 
     String pascalCaseString = "";
+
     boolean nextOneUp = true; // Der Erste immer Groﬂ
+    boolean withinDigits = false;
 
-    for (int i = 0; i <= (rawString.length() - 1); i++) {
+    for (int i = 0; i <= (rawToken.length() - 1); i++) {
 
-      char c = rawString.charAt(i);
+      char c = rawToken.charAt(i);
 
       boolean isLetter = (Character.toLowerCase(c) != Character.toUpperCase(c));
 
       if (!isLetter) {
         nextOneUp = true;
+        withinDigits = (c == '#');
         continue;
+      }
+
+      if (withinDigits) {
+        if (c == 'I') { pascalCaseString += '1'; continue; }
+        if (c == 'Z') { pascalCaseString += '2'; continue; }
+        if (c == 'E') { pascalCaseString += '3'; continue; }
+        if (c == 'H') { pascalCaseString += '4'; continue; }
+        if (c == 'S') { pascalCaseString += '5'; continue; }
+        if (c == 'G') { pascalCaseString += '6'; continue; }
+        if (c == 'L') { pascalCaseString += '7'; continue; }
+        if (c == 'B') { pascalCaseString += '8'; continue; }
+        if (c == 'P') { pascalCaseString += '9'; continue; }
+        if (c == 'O') { pascalCaseString += '0'; continue; }
+        // This would be an unexpected letter as Digit surrogate. We are robust and just continue => print the original letter.
+        withinDigits = false;
       }
 
       if (nextOneUp) {

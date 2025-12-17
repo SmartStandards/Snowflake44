@@ -97,7 +97,7 @@ This representation is called "raw encoded token", because it doesn't support Pa
 |    28 |      Ö | 
 |    29 |      Ü | 
 |    30 |      ß | 
-|    31 |      . |
+|    31 |      # |
 
 ## String End Convention 
 

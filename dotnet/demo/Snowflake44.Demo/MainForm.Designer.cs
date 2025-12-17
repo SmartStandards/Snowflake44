@@ -45,7 +45,6 @@ namespace SmartStandards {
       UidAsGuidLabel = new Label();
       UidAsGuidTextBox = new TextBox();
       CopyUidButton = new Button();
-      label1 = new Label();
       this.SuspendLayout();
       // 
       // SnowFlakeLabel
@@ -216,22 +215,11 @@ namespace SmartStandards {
       CopyUidButton.Text = "Copy";
       CopyUidButton.UseVisualStyleBackColor = true;
       // 
-      // label1
-      // 
-      label1.AutoSize = true;
-      label1.ForeColor = Color.Red;
-      label1.Location = new Point(356, 70);
-      label1.Name = "label1";
-      label1.Size = new Size(76, 15);
-      label1.TabIndex = 19;
-      label1.Text = "DO NOT USE!";
-      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new SizeF(7F, 15F);
       this.AutoScaleMode = AutoScaleMode.Font;
       this.ClientSize = new Size(516, 302);
-      this.Controls.Add(label1);
       this.Controls.Add(SnowFlakeLabel);
       this.Controls.Add(CreateUidButton);
       this.Controls.Add(UidTextBox);
@@ -278,6 +266,5 @@ namespace SmartStandards {
     private Label UidAsGuidLabel;
     private TextBox UidAsGuidTextBox;
     private Button CopyUidButton;
-    private Label label1;
   }
 }

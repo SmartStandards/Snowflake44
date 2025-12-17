@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace System.Text.SmartStandards {
 
@@ -18,6 +17,10 @@ namespace System.Text.SmartStandards {
 
       actual = PascalCasingUtil.ToPascalCase("_");
       Assert.AreEqual("", actual);
+
+      actual = PascalCasingUtil.ToPascalCase(@"ÄÖÜß1234567890!§$%&/()=?\+-#'`´,.;:^°<>|@²³");
+
+      actual = PascalCasingUtil.ToPascalCase(@"A2B");
 
       actual = PascalCasingUtil.ToPascalCase("A");
       Assert.AreEqual("A", actual);
@@ -39,7 +42,7 @@ namespace System.Text.SmartStandards {
 
       actual = PascalCasingUtil.ToPascalCase("aA");
       Assert.AreEqual("Aa", actual);
-      
+
       actual = PascalCasingUtil.ToPascalCase("A A");
       Assert.AreEqual("AA", actual);
 
@@ -54,7 +57,7 @@ namespace System.Text.SmartStandards {
 
       actual = PascalCasingUtil.ToPascalCase("A_A_");
       Assert.AreEqual("AA", actual);
-      
+
       actual = PascalCasingUtil.ToPascalCase("hello42world_DuPont GmbH  Zwei__Trenner"); // Ja, aus "DuPont" wird "Dupont"!
       Assert.AreEqual("Hello42worldDupontGmbhZweiTrenner", actual);
 
@@ -109,7 +112,7 @@ namespace System.Text.SmartStandards {
 
       actual = PascalCasingUtil.SplitFromPascalCase("HelloGmbhTheAnswerIsValue42");
 
-      
+
 
       actual = PascalCasingUtil.SplitFromPascalCase(null);
       Assert.IsNull(actual);
