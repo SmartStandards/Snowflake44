@@ -1,6 +1,6 @@
 function decodeToken(int64Value) {
   var rawToken = encodedTokenToRawToken(int64Value);
-  var decodedToken = rawTokenToPascalCase(rawToken);
+  var decodedToken = rawTokenToReadableToken(rawToken);
   return decodedToken;
 }
 
@@ -29,7 +29,7 @@ function encodedTokenToRawToken(int64Value) {
     } else if (mappedCode == 30) {
       unmappedCode = 223; // ﬂ (Windows-1252 aka ANSI)
     } else if (mappedCode == 31) {
-      unmappedCode = 46; // .
+      unmappedCode = 35; // #
     } else { 
       unmappedCode = 32; // Space
     }
@@ -47,28 +47,46 @@ function encodedTokenToRawToken(int64Value) {
   return decodedString;
 }
 
-function rawTokenToPascalCase(rawString) {
+function rawTokenToReadableToken(rawToken) {
 
-  if (rawString == null) return null;
+  if (rawToken == null) return null;
 
-  if (rawString == "") return "";
+  if (rawToken == "") return "";
 
   var pascalCaseString = "";
+
   var nextOneUp = true; // Der Erste immer Groﬂ
+  var withinDigits = false;
 
-  for (var i = 0; i <= (rawString.length - 1); i++) {
+  for (var i = 0; i <= (rawToken.length - 1); i++) {
 
-    var c = rawString[i];
+    var c = rawToken[i];
 
     var isLetter = (c.toLowerCase() != c.toUpperCase());
 
     if (!isLetter) {
       nextOneUp = true;
+      withinDigits = (c == '#');
       continue;
     }
 
+    if (withinDigits) {
+      if (c == 'I') { pascalCaseString += '1'; continue; }
+      if (c == 'Z') { pascalCaseString += '2'; continue; }
+      if (c == 'E') { pascalCaseString += '3'; continue; }
+      if (c == 'H') { pascalCaseString += '4'; continue; }
+      if (c == 'S') { pascalCaseString += '5'; continue; }
+      if (c == 'G') { pascalCaseString += '6'; continue; }
+      if (c == 'L') { pascalCaseString += '7'; continue; }
+      if (c == 'B') { pascalCaseString += '8'; continue; }
+      if (c == 'P') { pascalCaseString += '9'; continue; }
+      if (c == 'O') { pascalCaseString += '0'; continue; }
+      // This would be an unexpected letter as Digit surrogate. We are robust and just continue => print the original letter.
+      withinDigits = false;
+    }
+
     if (nextOneUp) {
-      c = c.toUpperCase();
+      if (c != 'ﬂ') c = c.toUpperCase(); // JavaScript thinks that "ﬂ" should be capitalized to "SS" - we don't want this.
     } else {
       c = c.toLowerCase();
     }

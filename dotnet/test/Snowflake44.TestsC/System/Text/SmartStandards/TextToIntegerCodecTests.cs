@@ -2,7 +2,8 @@
 
 namespace System.Text.SmartStandards {
 
-  public  class TextToIntegerCodecTests {
+  [TestClass()]
+  public class TextToIntegerCodecTests {
 
     [TestMethod()]
     public void ToInt_DifferentPatterns_ReturnExpectedResults() {
@@ -21,10 +22,10 @@ namespace System.Text.SmartStandards {
       decoded = TextToIntegerCodec.FromInt32(encodedInteger);
       Assert.AreEqual("A", decoded);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("."); // Der Puknt ist das letzte mögliche Zeichen (alle 5 Bit gesetzt)
+      encodedInteger = TextToIntegerCodec.ToInt32("#"); // Hashtag ist das letzte mögliche Zeichen (alle 5 Bit gesetzt)
       Assert.AreEqual(31, encodedInteger);
       decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual(".", decoded);
+      Assert.AreEqual("#", decoded);
 
       encodedInteger = TextToIntegerCodec.ToInt32("_A"); // Überlauf: Underscore ist 0 und A an zweiter Stelle => 6. Bit gesetzt
       Assert.AreEqual(32, encodedInteger);
@@ -81,20 +82,20 @@ namespace System.Text.SmartStandards {
       decoded = TextToIntegerCodec.FromInt32(encodedInteger);
       Assert.AreEqual("_HELLO", decoded);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("THE.ID");
+      encodedInteger = TextToIntegerCodec.ToInt32("THE#ID");
       Assert.AreEqual(144676116, encodedInteger);
       decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("THE.ID", decoded);
+      Assert.AreEqual("THE#ID", decoded);
 
       encodedInteger = TextToIntegerCodec.ToInt32("Ab_Cde");
       Assert.AreEqual(172064833, encodedInteger);
       decoded = TextToIntegerCodec.FromInt32(encodedInteger);
       Assert.AreEqual("AB_CDE", decoded);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("......");
+      encodedInteger = TextToIntegerCodec.ToInt32("######");
       Assert.AreEqual(1073741823, encodedInteger);
       decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("......", decoded);
+      Assert.AreEqual("######", decoded);
 
       long encodedLong; // Ab hier die Long-Tests
 
@@ -108,10 +109,10 @@ namespace System.Text.SmartStandards {
       decoded = TextToIntegerCodec.FromInt64(encodedLong);
       Assert.AreEqual("___________A", decoded);
 
-      encodedLong = TextToIntegerCodec.ToInt64("............");
+      encodedLong = TextToIntegerCodec.ToInt64("############");
       Assert.AreEqual(1152921504606846975L, encodedLong);
       decoded = TextToIntegerCodec.FromInt64(encodedLong);
-      Assert.AreEqual("............", decoded);
+      Assert.AreEqual("############", decoded);
 
       encodedLong = TextToIntegerCodec.ToInt64("AAAAAAAAAAAA");
       Assert.AreEqual(37191016277640225L, encodedLong);

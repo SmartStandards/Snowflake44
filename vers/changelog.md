@@ -6,9 +6,11 @@
 
 ## Upcoming Changes
 
-*(none)*
+- **new Feature**: EncodedToken may contain numbers
 
+- BugFix: JavaScript decoder converted 'ß' to 'SS'
 
+- Demo: Added URL-Safe Base64 textualization of Snowflake44 ID to the UI
 
 ## v 3.4.1
 released **2025-12-17**, including:

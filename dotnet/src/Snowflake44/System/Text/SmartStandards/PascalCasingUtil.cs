@@ -16,6 +16,9 @@
     ///   ä to ae, ö to oe, ü to ue ß to ss.
     /// </param>
     /// <returns> A pascal case formatted string. </returns>
+    /// <remarks> 
+    ///   Any character that is not a letter or a digit will be interpreted as separator and dropped.
+    /// </remarks>
     public static string ToPascalCase(string originalString, string[] keepCasingFor = null, bool replaceUmlauts = false) {
 
       if (originalString == null) return null;

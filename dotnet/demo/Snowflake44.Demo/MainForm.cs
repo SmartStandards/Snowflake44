@@ -34,6 +34,8 @@ namespace SmartStandards {
       // Wire up refreshing dependencies
 
       _RefreshingDependencies.Add(new Tuple<string, string>("DecodedDateTimeTextBox", "UidTextBox"));
+      _RefreshingDependencies.Add(new Tuple<string, string>("UidAsStringTextBox", "UidTextBox"));
+      _RefreshingDependencies.Add(new Tuple<string, string>("UidAsGuidTextBox", "UidTextBox"));
       _RefreshingDependencies.Add(new Tuple<string, string>("TokenTextBox", "EncodedTokenTextBox"));
       _RefreshingDependencies.Add(new Tuple<string, string>("EncodedTokenTextBox", "TokenTextBox"));
       _RefreshingDependencies.Add(new Tuple<string, string>("Time32DecodedTextBox", "Time32TextBox"));
@@ -94,10 +96,8 @@ namespace SmartStandards {
     public void UidCreate_ActionRequested() {
 
       long uid = Snowflake44.Generate();
-      UidTextBox.Text = uid.ToString();
-      UiAsdStringTextBox.Text = TokenEncoder.Decode(uid);
-      UidAsGuidTextBox.Text = Snowflake44.ConvertToGuid(uid).ToString();
 
+      UidTextBox.Text = uid.ToString();
     }
 
     private void AnyTextBox_TextChanged(object sender, EventArgs e) {
@@ -167,7 +167,11 @@ namespace SmartStandards {
         token = TokenEncoder.Decode(numericValue);
       }
 
-      if (TokenTextBox.Text != token) TokenTextBox.Text = token;
+      if (TokenTextBox.Text != token) {
+        TokenTextBox.Text = token;
+        TokenTextBox.SelectionStart = TokenTextBox.Text.Length;
+        TokenTextBox.SelectionLength = 0;
+      }
 
       TokenRawTextBox.Text = rawToken;
     }
@@ -189,6 +193,41 @@ namespace SmartStandards {
 
       }
     }
-  }
 
+    private void RefreshUidAsStringTextBox() {
+
+      long uid = -1;
+
+      if (long.TryParse(UidTextBox.Text, out uid)) {
+
+        //string str = Convert.ToBase64String(BitConverter.GetBytes(uid)) ; // GetBytes() uses Heap => 25% slower
+
+        Span<byte> bytes = stackalloc byte[8]; // Stack is 25% faster
+        BitConverter.TryWriteBytes(bytes, uid);
+        string str = Convert.ToBase64String(bytes);
+
+        str = str.TrimEnd('=').Replace('+', '-').Replace('/', '_'); // Make the string URL-Safe
+
+        UiAsdStringTextBox.Text = str;
+
+      } else {
+        UiAsdStringTextBox.Text = "";
+      }
+
+    }
+
+    private void RefreshUidAsGuidTextBox() {
+
+      long uid = -1;
+
+      if (long.TryParse(UidTextBox.Text, out uid)) {
+
+        UidAsGuidTextBox.Text = Snowflake44.ConvertToGuid(uid).ToString();
+
+      } else {
+        UiAsdStringTextBox.Text = "";
+      }
+    }
+
+  }
 }

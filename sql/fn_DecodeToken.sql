@@ -32,7 +32,7 @@ CREATE FUNCTION [dbo].[fn_DecodeToken] (@encoded bigint) RETURNS varchar(12) AS 
       SET @decodedByte = @unpackedByte + 64;
     END ELSE BEGIN
       IF (@unpackedByte = 31) BEGIN
-        SET @decodedByte = 46; -- .
+        SET @decodedByte = 35; -- #
       END ELSE BEGIN
         IF (@unpackedByte = 27) BEGIN
           SET @decodedByte = 196; -- Ä
