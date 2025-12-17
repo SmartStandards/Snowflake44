@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.4.1",
-  "currentVersionWithSuffix": "3.4.1",
+  "currentVersion": "3.5.0",
+  "currentVersionWithSuffix": "3.5.0",
   "releaseType": "official",
-  "previousVersion": "3.4.0",
-  "changeGrade": "patch",
+  "previousVersion": "3.4.1",
+  "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 4,
-  "currentPatch": 1,
+  "currentMinor": 5,
+  "currentPatch": 0,
   "versionDateInfo": "2025-12-17",
-  "versionTimeInfo": "09:10:42",
-  "versionNotes": "- No changes to the Library. Only some changes in the demo.\n"
+  "versionTimeInfo": "13:10:57",
+  "versionNotes": "- new Feature: EncodedToken may contain numbers\n- BugFix: JavaScript decoder converted '�' to 'SS'\n- Demo: Added URL-Safe Base64 textualization of Snowflake44 ID to the UI\n"
 }
