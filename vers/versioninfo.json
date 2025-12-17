@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.4.0",
-  "currentVersionWithSuffix": "3.4.0",
+  "currentVersion": "3.4.1",
+  "currentVersionWithSuffix": "3.4.1",
   "releaseType": "official",
-  "previousVersion": "3.3.3",
-  "changeGrade": "minor",
+  "previousVersion": "3.4.0",
+  "changeGrade": "patch",
   "currentMajor": 3,
   "currentMinor": 4,
-  "currentPatch": 0,
-  "versionDateInfo": "2025-09-03",
-  "versionTimeInfo": "06:43:04",
-  "versionNotes": "- new Feature: Added convenience Helper '*ConvertFromGuid*' and '*ConvertToGuid*' (endian aware) and extended Demo.\n- Converted UnitTest-/Demo-Project to .NET 8\n- Fixed not working MS-Test references\n- Fixed UnitTests which were red after DateTimeKind.Utc was explicitely required (*non transparent br.-change in 3.3.2*)\n"
+  "currentPatch": 1,
+  "versionDateInfo": "2025-12-17",
+  "versionTimeInfo": "09:10:42",
+  "versionNotes": "- No changes to the Library. Only some changes in the demo.\n"
 }

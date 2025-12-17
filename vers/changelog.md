@@ -6,7 +6,13 @@
 
 ## Upcoming Changes
 
-- No changes to the Library. Only some changes in the demo.
+*(none)*
+
+
+
+## v 3.4.1
+released **2025-12-17**, including:
+ - No changes to the Library. Only some changes in the demo.
 
 
 
