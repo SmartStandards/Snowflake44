@@ -41,9 +41,9 @@ Then you can write:
     
     // C# for using encoded token:
 
-    long id = TokenEncoder.Encode("ExampleTenant");
+    long id = TokenEncoder.Encode("SomeTenant"); // id will be 23012165934036467
 
-    string token = TokenEncoder.Decode(id);
+    string token = TokenEncoder.Decode(id); // token will be "SomeTenant" again.
     
 For SQL, install the **fn_DecodeToken** from the sources here.
 Then you can write:
@@ -117,34 +117,85 @@ we need to trim from the right, therefore it's not possible to have trailing und
 |` (Leerstring) `|` "____________" `|`           "" `| An empty string and 12 underscores are equally encoded...           | 
 |`         "__" `|` "____________" `|`           "" `| ...therefore an underscore-only string will be decoded as empty.    | 
 
-## PascalCase Convention 
-  
-To represent seperate words in a raw encoded token, you would have to use underscores as delimiter ("HELLO_WORLD") and you loose casing.
-Therefore another convention is put on top of the "raw encoded token" standard:
+# Raw Token Vs. Readable Token
 
-- Original Token:
-  - Must be PascalCase (first char uppercase)
-  - Must not contain underscores or spaces
+The raw token can only carry capital letters and underscores. To have more complex string encoded, there exists a 
+superset of conventions, describing how to transform complex strings to raw tokens and back.
 
-- Before encoding (pre processor): 
-    - Insert an underscore before each uppercase char except the first one
-        - Consequence: Uppercase chars (except the first one) occupy two places and reduce the possible length of a token
+Nonetheless, there exist limitations to readable tokens:
 
-- After decoding (post processor): 
-    - The first decoded char is always uppercase
-    - Everything is lowercase by default, unless it's prefixed with an underscore
-    - Underscores are removed
+- They must not contain underscores or spaces
+
+- They should be PascalCase and contain only letters
+  - (everything else results in internal escaping, reducing the possible length)
+
+## Casing Conventions
+
+- From readable to raw:
+    - Insert an underscore before each uppercase char except the first one        
+
+- From raw to readable:
+  - Underscores are not decoded, but control the casing of the subsequent char
+  - The first decoded char is always uppercase
+    - Exception: If the first raw char is an underscore, the first decoded char will be lowercase
+  - Every decoded char is lowercase, unless the raw char was prefixed by an underscore
 
 ### Illustration
 
-|     Original |   Decoded Raw |   Pascalized | Remarks                                                            |
-|--------------|---------------|--------------|--------------------------------------------------------------------|
-|`      "Hello" `|`       "HELLO" `|`      "Hello" `|                                                                    |
-|`      "hello" `|`       "HELLO" `|`      "Hello" `| Original not PascalCase, 1st char became uppercase afted decoding. |
-|` "HelloWorld" `|` "HELLO_WORLD" `|` "HelloWorld" `|                                                                    |
-|` "helloWorld" `|` "HELLO_WORLD" `|` "HelloWorld" `| Original not PascalCase, 1st char became uppercase afted decoding. |
-|`         "Id" `|`          "ID" `|`         "Id" `|                                                                    |
-|`         "ID" `|`         "I_D" `|`         "ID" `|                                                                    |
-|`       "Gmbh" `|`        "GMBH" `|`       "Gmbh" `|                                                                    |
-|`       "GmbH" `|`         GMB_H `|`       "GmbH" `|                                                                    |
-|`       "GMBH" `|`     "G_M_B_H" `|`       "GMBH" `| Original completely uppercase, halving the maximum length          |
+|     Readable |           Raw |
+|--------------|---------------|
+|`      "Hello" `|`       "HELLO" `|
+|`      "hello" `|`      "_HELLO" `| 
+|` "HelloWorld" `|` "HELLO_WORLD" `|
+|` "helloWorld" `|` "_HELLO_WORLD" `|
+|`         "Id" `|`          "ID" `|
+|`         "ID" `|`         "I_D" `|
+|`       "Gmbh" `|`        "GMBH" `|
+|`       "GmbH" `|`         GMB_H `|
+|`       "GMBH" `|`     "G_M_B_H" `|
+
+## Escaping Digits
+
+- From readable to raw:
+  - Add the escape char '#' once before a sequence of digits
+  - Map the digits to letters (see table below)
+  - if the sequence of digits ends (= next incoming char is a letter), terminate the escaping by adding a '_'
+
+Mapping:
+
+    1234567890
+    IZEHSGLBPO
+
+### Illustration
+
+|     Readable |           Raw |
+|--------------|---------------|
+|`        "1" `|`        "#I" `|
+|`      "123" `|`      "#IZE" `|
+|`   "Mambo5" `|`   "MAMBO#S" `|
+|`  "Mambo5B" `|` "MAMBO#S_B" `|
+|` "Mambo56B" `|`"MAMBO#SG_B" `|
+
+## Escaping Non-Letters
+
+- From readable to raw:
+  - Add the escape char '#' before each non-letter
+    - Exception: Omit the escape char, if you are already escaping (because of preceding digits).
+    - In this situation, you need to terminate the escaping by adding a '_' before the first incoming letter.
+  - Map the non-letters to letters (see table below)
+
+Mapping:
+
+    #+,.?()-&@:'\/=*!][%^
+    #ACDFJKMNQRTUVWXYÄÖÜß
+
+### Illustration
+
+|     Readable |           Raw |
+|--------------|---------------|
+|`     "At&T" `|`     "AT#NT" `|
+|`     "AT&T" `|`    "A_T#NT" `|
+|`    "1+2=3" `|`    "#IAZWE" `|
+|`    "1%Vat" `|`   "#IÜ_VAT" `|
+|`  "Mambo#5" `|` "MAMBO###S" `|
+|`  "Mambo5#" `|`  "MAMBO#S#" `|
