@@ -59,12 +59,11 @@
         offset += 5;
       }
 
-      return new string(decoded).TrimEnd().Replace(' ', '_');
+      return new string(decoded).TrimEnd().Replace(' ', '_'); // 32 => 95
     }
 
     public static string FromInt32(int int32Value) {
-      if ((int32Value < 0))
-        int32Value *= -1;
+      if (int32Value < 0) int32Value *= -1;
       long int64Value = int32Value;
       return FromInt64(int64Value);
     }
@@ -76,49 +75,33 @@
     ///   All forms of casing will be lost except CAPITALS.
     ///   The decoder will create Pascal Casing or CAPITALS.
     /// </remarks>
-    public static long ToInt64(string stringValue) {
+    public static long ToInt64(string rawToken) {
 
-      if (stringValue.Length > 12) {
-        throw new ArgumentException(string.Format("Maximum length of 12 characters was exceeded by \"{0}\"!", stringValue), nameof(stringValue));
+      if (rawToken.Length > 12) {
+        throw new ArgumentException(string.Format("Maximum length of 12 characters was exceeded by \"{0}\"!", rawToken), nameof(rawToken));
       }
 
-      if (stringValue.EndsWith("_")) {
-        throw new ArgumentException(string.Format("String must not end with underscore: \"{0}\"!", stringValue), nameof(stringValue));
+      if (rawToken.EndsWith("_")) {
+        throw new ArgumentException(string.Format("String must not end with underscore: \"{0}\"!", rawToken), nameof(rawToken));
       }
 
-      string toEncode = stringValue.ToUpperInvariant();
+      string toEncode = rawToken.ToUpperInvariant();
 
       if (toEncode.Length < 12) toEncode = toEncode.PadRight(12, '_');
 
       ulong encodedValue = 0;
       int offset = 0;
-      byte unmappedCode;
       ulong mappedCode;
 
       for (var i = 0; i <= 11; i++) {
 
-        unmappedCode = Convert.ToByte(toEncode[i]);
+        mappedCode = GetMappedCode(toEncode[i]);
 
-        if (unmappedCode == 95) {
-          mappedCode = 0;
-        } else if (65 <= unmappedCode && unmappedCode <= 90) { // A-Z
-          mappedCode = (ulong)(unmappedCode ^ Convert.ToByte(64));
-        } else if (unmappedCode == 35) { // #
-          mappedCode = 31;
-        } else if (unmappedCode == 196) { // Ä,ä
-          mappedCode = 27;
-        } else if (unmappedCode == 214) { // Ö,ö
-          mappedCode = 28;
-        } else if (unmappedCode == 220) { // Ü,ü
-          mappedCode = 29;
-        } else if (unmappedCode == 223) { // ß
-          mappedCode = 30;
-        } else {
-          throw new ArgumentException(string.Format("Unsupported Character in \"{0}\"!", stringValue), nameof(stringValue));
+        if (mappedCode > 31) {
+          throw new ArgumentException($"Unsupported Character '{toEncode[i]}' in \"{rawToken}\"!", nameof(rawToken));
         }
         encodedValue |= (mappedCode << offset);
         offset += 5;
-
       }
       return Convert.ToInt64(encodedValue);
     }
@@ -128,6 +111,29 @@
         throw new ArgumentException(string.Format("Maximum length of 6 characters was exceeded by \"{0}\"!", stringValue), nameof(stringValue));
       }
       return Convert.ToInt32(TextToIntegerCodec.ToInt64(stringValue));
+    }
+
+    public static ulong GetMappedCode(char c) {
+
+      byte unmappedCode = Convert.ToByte(c); // Convert.ToByte() default is ISO 8859-1 (aka Windows-1252)
+
+      if (unmappedCode == 95) { // _
+        return 0;
+      } else if (65 <= unmappedCode && unmappedCode <= 90) { // A-Z
+        return (ulong)(unmappedCode - 64);
+      } else if (unmappedCode == 35) { // #
+        return 31;
+      } else if (unmappedCode == 196) { // Ä,ä
+        return 27;
+      } else if (unmappedCode == 214) { // Ö,ö
+        return 28;
+      } else if (unmappedCode == 220) { // Ü,ü
+        return 29;
+      } else if (unmappedCode == 223) { // ß
+        return 30;
+      } else {
+        return 32;
+      }
     }
 
   }

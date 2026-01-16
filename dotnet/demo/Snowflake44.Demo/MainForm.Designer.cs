@@ -45,6 +45,7 @@ namespace SmartStandards {
       UidAsGuidLabel = new Label();
       UidAsGuidTextBox = new TextBox();
       CopyUidButton = new Button();
+      EnableCamelCaseCheckBox = new CheckBox();
       this.SuspendLayout();
       // 
       // SnowFlakeLabel
@@ -130,46 +131,46 @@ namespace SmartStandards {
       // 
       EncodingErrorLabel.AutoSize = true;
       EncodingErrorLabel.ForeColor = Color.Red;
-      EncodingErrorLabel.Location = new Point(12, 195);
+      EncodingErrorLabel.Location = new Point(12, 216);
       EncodingErrorLabel.Name = "EncodingErrorLabel";
       EncodingErrorLabel.Size = new Size(118, 15);
-      EncodingErrorLabel.TabIndex = 14;
+      EncodingErrorLabel.TabIndex = 15;
       EncodingErrorLabel.Text = "{EncodingErrorLabel}";
       // 
       // Time32Label
       // 
       Time32Label.AutoSize = true;
       Time32Label.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-      Time32Label.Location = new Point(12, 226);
+      Time32Label.Location = new Point(12, 247);
       Time32Label.Name = "Time32Label";
       Time32Label.Size = new Size(402, 21);
-      Time32Label.TabIndex = 15;
+      Time32Label.TabIndex = 16;
       Time32Label.Text = "DateTime <=> Integer10SecondsResolution (32 Bit)";
       // 
       // Time32Button
       // 
-      Time32Button.Location = new Point(12, 260);
+      Time32Button.Location = new Point(12, 281);
       Time32Button.Name = "Time32Button";
       Time32Button.Size = new Size(75, 23);
-      Time32Button.TabIndex = 16;
+      Time32Button.TabIndex = 17;
       Time32Button.Tag = "Time32.Create";
       Time32Button.Text = "Now";
       Time32Button.UseVisualStyleBackColor = true;
       // 
       // Time32TextBox
       // 
-      Time32TextBox.Location = new Point(93, 260);
+      Time32TextBox.Location = new Point(93, 281);
       Time32TextBox.Name = "Time32TextBox";
       Time32TextBox.Size = new Size(130, 23);
-      Time32TextBox.TabIndex = 17;
+      Time32TextBox.TabIndex = 18;
       Time32TextBox.TextChanged += this.AnyTextBox_TextChanged;
       // 
       // Time32DecodedTextBox
       // 
-      Time32DecodedTextBox.Location = new Point(229, 260);
+      Time32DecodedTextBox.Location = new Point(229, 281);
       Time32DecodedTextBox.Name = "Time32DecodedTextBox";
       Time32DecodedTextBox.Size = new Size(130, 23);
-      Time32DecodedTextBox.TabIndex = 18;
+      Time32DecodedTextBox.TabIndex = 19;
       // 
       // UiAsdStringTextBox
       // 
@@ -215,11 +216,21 @@ namespace SmartStandards {
       CopyUidButton.Text = "Copy";
       CopyUidButton.UseVisualStyleBackColor = true;
       // 
+      // EnableCamelCaseCheckBox
+      // 
+      EnableCamelCaseCheckBox.AutoSize = true;
+      EnableCamelCaseCheckBox.Location = new Point(93, 191);
+      EnableCamelCaseCheckBox.Name = "EnableCamelCaseCheckBox";
+      EnableCamelCaseCheckBox.Size = new Size(121, 19);
+      EnableCamelCaseCheckBox.TabIndex = 14;
+      EnableCamelCaseCheckBox.Text = "Enable camelCase";
+      EnableCamelCaseCheckBox.UseVisualStyleBackColor = true;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new SizeF(7F, 15F);
       this.AutoScaleMode = AutoScaleMode.Font;
-      this.ClientSize = new Size(516, 302);
+      this.ClientSize = new Size(516, 314);
       this.Controls.Add(SnowFlakeLabel);
       this.Controls.Add(CreateUidButton);
       this.Controls.Add(UidTextBox);
@@ -234,6 +245,7 @@ namespace SmartStandards {
       this.Controls.Add(TokenTextBox);
       this.Controls.Add(EncodedTokenTextBox);
       this.Controls.Add(TokenRawTextBox);
+      this.Controls.Add(EnableCamelCaseCheckBox);
       this.Controls.Add(EncodingErrorLabel);
       this.Controls.Add(Time32Label);
       this.Controls.Add(Time32Button);
@@ -266,5 +278,6 @@ namespace SmartStandards {
     private Label UidAsGuidLabel;
     private TextBox UidAsGuidTextBox;
     private Button CopyUidButton;
+    private CheckBox EnableCamelCaseCheckBox;
   }
 }

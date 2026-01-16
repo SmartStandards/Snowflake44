@@ -6,17 +6,19 @@
 
 ## Upcoming Changes
 
-*(none)*
+  - **new Feature**: Incoming string may contain nearly all ASCII chars (they are internally escaped)
+  
+  - **new Feature**: camleCase support
 
-
-
+  - **new Feature**: JavaScript implementation is now 100% (compared to c#), including tests and a demo
+   
+  - **new Feature**: Java implementation is now 100% (compared to c#), including tests
+  
 ## v 3.5.0
 released **2025-12-17**, including:
  - **new Feature**: EncodedToken may contain numbers
- - BugFix: JavaScript decoder converted '�' to 'SS'
+ - BugFix: JavaScript decoder converted 'ß' to 'SS'
  - Demo: Added URL-Safe Base64 textualization of Snowflake44 ID to the UI
-
-
 
 ## v 3.4.1
 released **2025-12-17**, including:

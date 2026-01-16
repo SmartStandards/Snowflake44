@@ -132,7 +132,10 @@ namespace SmartStandards {
 
         string incomingText = TokenTextBox.Text;
 
-        if (incomingText.Length >= 1) {
+        // Force PascalCase
+
+        if (!EnableCamelCaseCheckBox.Checked && incomingText.Length >= 1) {
+
           char u = Char.ToUpper(incomingText[0], System.Globalization.CultureInfo.InvariantCulture);
           if (incomingText[0] != u) {
             incomingText = u + incomingText.Substring(1);
