@@ -6,14 +6,19 @@
 
 ## Upcoming Changes
 
-  - **new Feature**: Incoming string may contain nearly all ASCII chars (they are internally escaped)
-  
-  - **new Feature**: camleCase support
+*(none)*
 
-  - **new Feature**: JavaScript implementation is now 100% (compared to c#), including tests and a demo
-   
-  - **new Feature**: Java implementation is now 100% (compared to c#), including tests
-  
+
+
+## v 3.6.0
+released **2026-01-28**, including:
+ - **new Feature**: camleCase support
+ - **new Feature**: Incoming string may contain nearly all ASCII chars (they are internally escaped)
+ - **new Feature**: Java implementation is now 100% (compared to c#), including tests
+ - **new Feature**: JavaScript implementation is now 100% (compared to c#), including tests and a demo
+
+
+
 ## v 3.5.0
 released **2025-12-17**, including:
  - **new Feature**: EncodedToken may contain numbers

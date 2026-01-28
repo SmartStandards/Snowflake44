@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.5.0",
-  "currentVersionWithSuffix": "3.5.0",
+  "currentVersion": "3.6.0",
+  "currentVersionWithSuffix": "3.6.0",
   "releaseType": "official",
-  "previousVersion": "3.4.1",
+  "previousVersion": "3.5.0",
   "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 5,
+  "currentMinor": 6,
   "currentPatch": 0,
-  "versionDateInfo": "2025-12-17",
-  "versionTimeInfo": "13:10:57",
-  "versionNotes": "- new Feature: EncodedToken may contain numbers\n- BugFix: JavaScript decoder converted '�' to 'SS'\n- Demo: Added URL-Safe Base64 textualization of Snowflake44 ID to the UI\n"
+  "versionDateInfo": "2026-01-28",
+  "versionTimeInfo": "15:31:30",
+  "versionNotes": "- new Feature: camleCase support\n- new Feature: Incoming string may contain nearly all ASCII chars (they are internally escaped)\n- new Feature: Java implementation is now 100% (compared to c#), including tests\n- new Feature: JavaScript implementation is now 100% (compared to c#), including tests and a demo\n"
 }
