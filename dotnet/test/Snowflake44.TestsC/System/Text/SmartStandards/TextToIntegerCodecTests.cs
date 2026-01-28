@@ -6,123 +6,61 @@ namespace System.Text.SmartStandards {
   public class TextToIntegerCodecTests {
 
     [TestMethod()]
-    public void ToInt_DifferentPatterns_ReturnExpectedResults() {
+    public void ToInt64_DifferentPatterns_ReturnExpectedResults() {
 
-      int encodedInteger;
+      AssertEncodingAndDecodingOfRaw("", 0);
 
-      string decoded;
+      AssertEncodingAndDecodingOfRaw("A", 1);// A ist 1
 
-      encodedInteger = TextToIntegerCodec.ToInt32("");
-      Assert.AreEqual(0, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("", decoded);
+      AssertEncodingAndDecodingOfRaw("#", 31);// Hashtag ist das letzte mögliche Zeichen (alle 5 Bit gesetzt)
 
-      encodedInteger = TextToIntegerCodec.ToInt32("A"); // A ist 1
-      Assert.AreEqual(1, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("A", decoded);
+      AssertEncodingAndDecodingOfRaw("_A", 32); // Überlauf: Underscore ist 0 und A an zweiter Stelle => 6. Bit gesetzt
 
-      encodedInteger = TextToIntegerCodec.ToInt32("#"); // Hashtag ist das letzte mögliche Zeichen (alle 5 Bit gesetzt)
-      Assert.AreEqual(31, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("#", decoded);
+      AssertEncodingAndDecodingOfRaw("aaaaaa", 34636833, "AAAAAA");  // lower case wird zu upper case (robustes Design)
+      AssertEncodingAndDecodingOfRaw("AAAAAA", 34636833);  // upper case liefert den selben Integer-Wert
 
-      encodedInteger = TextToIntegerCodec.ToInt32("_A"); // Überlauf: Underscore ist 0 und A an zweiter Stelle => 6. Bit gesetzt
-      Assert.AreEqual(32, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("_A", decoded);
+      AssertEncodingAndDecodingOfRaw("xÄÖÜß", 32437112, "XÄÖÜß");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("aaaaaa"); // lower case wird zu upper case (by Design)
-      Assert.AreEqual(34636833, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("AAAAAA", decoded);
+      AssertEncodingAndDecodingOfRaw("Xäöüß", 32437112, "XÄÖÜß");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("AAAAAA"); // upper case liefert den selben Integer-Wert
-      Assert.AreEqual(34636833, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("AAAAAA", decoded);
+      AssertEncodingAndDecodingOfRaw("ÄäÄ", 28539, "ÄÄÄ");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("xÄÖÜß");
-      Assert.AreEqual(32437112, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("XÄÖÜß", decoded);
+      AssertEncodingAndDecodingOfRaw("ÖöÖ", 29596, "ÖÖÖ");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("Xäöüß");
-      Assert.AreEqual(32437112, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("XÄÖÜß", decoded);
+      AssertEncodingAndDecodingOfRaw("ÜüÜ", 30653, "ÜÜÜ");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("ÄäÄ");
-      Assert.AreEqual(28539, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("ÄÄÄ", decoded);
+      AssertEncodingAndDecodingOfRaw("Hello", 16134312, "HELLO");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("ÖöÖ");
-      Assert.AreEqual(29596, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("ÖÖÖ", decoded);
+      AssertEncodingAndDecodingOfRaw("EMEAX", 25204133);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("ÜüÜ");
-      Assert.AreEqual(30653, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("ÜÜÜ", decoded);
+      AssertEncodingAndDecodingOfRaw("_Hello", 516297984, "_HELLO");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("Hello");
-      Assert.AreEqual(16134312, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("HELLO", decoded);
+      AssertEncodingAndDecodingOfRaw("THE#ID", 144676116);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("EMEAX");
-      Assert.AreEqual(25204133, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("EMEAX", decoded);
+      AssertEncodingAndDecodingOfRaw("Ab_Cde", 172064833, "AB_CDE");
 
-      encodedInteger = TextToIntegerCodec.ToInt32("_Hello");
-      Assert.AreEqual(516297984, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("_HELLO", decoded);
+      AssertEncodingAndDecodingOfRaw("######", 1073741823);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("THE#ID");
-      Assert.AreEqual(144676116, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("THE#ID", decoded);
+      AssertEncodingAndDecodingOfRaw("______A", 1073741824L);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("Ab_Cde");
-      Assert.AreEqual(172064833, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("AB_CDE", decoded);
+      AssertEncodingAndDecodingOfRaw("___________A", 36028797018963968L);
 
-      encodedInteger = TextToIntegerCodec.ToInt32("######");
-      Assert.AreEqual(1073741823, encodedInteger);
-      decoded = TextToIntegerCodec.FromInt32(encodedInteger);
-      Assert.AreEqual("######", decoded);
+      AssertEncodingAndDecodingOfRaw("############", 1152921504606846975L);
 
-      long encodedLong; // Ab hier die Long-Tests
+      AssertEncodingAndDecodingOfRaw("AAAAAAAAAAAA", 37191016277640225L);
 
-      encodedLong = TextToIntegerCodec.ToInt64("______A");
-      Assert.AreEqual(1073741824L, encodedLong);
-      decoded = TextToIntegerCodec.FromInt64(encodedLong);
-      Assert.AreEqual("______A", decoded);
+      AssertEncodingAndDecodingOfRaw("KNÖDEL_WÜRST", 742634033826132427L);
 
-      encodedLong = TextToIntegerCodec.ToInt64("___________A");
-      Assert.AreEqual(36028797018963968L, encodedLong);
-      decoded = TextToIntegerCodec.FromInt64(encodedLong);
-      Assert.AreEqual("___________A", decoded);
+      AssertEncodingAndDecodingOfRaw("WÜRßTKNÖDÄL", 14466152471153591L);
 
-      encodedLong = TextToIntegerCodec.ToInt64("############");
-      Assert.AreEqual(1152921504606846975L, encodedLong);
-      decoded = TextToIntegerCodec.FromInt64(encodedLong);
-      Assert.AreEqual("############", decoded);
+    }
 
-      encodedLong = TextToIntegerCodec.ToInt64("AAAAAAAAAAAA");
-      Assert.AreEqual(37191016277640225L, encodedLong);
-      decoded = TextToIntegerCodec.FromInt64(encodedLong);
-      Assert.AreEqual("AAAAAAAAAAAA", decoded);
-
-      encodedLong = TextToIntegerCodec.ToInt64("KNÖDEL_WÜRST");
-      Assert.AreEqual(742634033826132427L, encodedLong);
-      decoded = TextToIntegerCodec.FromInt64(encodedLong);
-      Assert.AreEqual("KNÖDEL_WÜRST", decoded);
+    private static void AssertEncodingAndDecodingOfRaw(string rawToken, long expectedEncodedId, string deviantExpectedToken = "") {
+      long actualEncodedId = TextToIntegerCodec.ToInt64(rawToken);
+      Assert.AreEqual(expectedEncodedId, actualEncodedId, rawToken);
+      string decodedRawToken = TextToIntegerCodec.FromInt64(actualEncodedId);
+      String expectedToken = (deviantExpectedToken != "") ? deviantExpectedToken : rawToken;
+      Assert.AreEqual(expectedToken, decodedRawToken, rawToken);
     }
 
   }

@@ -1,0 +1,113 @@
+<html>
+<head>
+  <script src="../lib/TokenEncoder.js"></script>
+  <style type="text/css">
+    table {border-collapse: collapse; border: 1px solid gray}
+    td, th {border: 1px solid green; padding: 0.2em; }
+  </style>
+</head>
+
+<body>
+
+  <h1>EncodedToken by derVodi.</h1>
+  
+  <p>Part of the https://github.com/SmartStandards/Snowflake44 package.</p>
+
+  <h2>EncodedToken</h2>
+
+  <table>
+    <tr>
+      <th>
+        Token
+      </th>
+      <th>
+        Int64
+      </th>
+      <th>
+        Raw Style
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" id="TokenInput" name="TokenInput" onchange="anyTextBox_TextChanged(this);"><br><br>
+      </td>
+      <td>
+        <input type="text" id="Int64Input" name="Int64Input" onchange="anyTextBox_TextChanged(this);"><br><br>
+      </td>
+      <td>
+        <input type="text" id="RawTokenInput" name="RawTokenInput" readonly><br><br>
+      </td>
+    </tr>
+  </table>
+
+  <div id="ErrorLabel">&nbsp;</div>
+
+  <script type="text/javascript">
+
+    // Initialization
+
+    // Wire up refreshing dependencies
+
+    var _refreshingDependencies = [];
+
+    _refreshingDependencies.push(["TokenInput", "Int64Input"]);
+    _refreshingDependencies.push(["RawTokenInput", "TokenInput"]);
+    _refreshingDependencies.push(["RawTokenInput", "Int64Input"]);
+    _refreshingDependencies.push(["Int64Input", "TokenInput"]);
+    
+    function anyTextBox_TextChanged(sender){
+      document.getElementById("ErrorLabel").innerText = '';
+      for (var i = 0; i < _refreshingDependencies.length; i++) {
+        var dependency =_refreshingDependencies[i];
+        if (dependency[1] != sender.id) continue;
+        var functionName = "refresh" + dependency[0];
+        window[functionName](); // dynamically invoke the refresh function;
+      }
+    }
+
+    // Functions
+
+    function refreshInt64Input(){
+      var int64Value = -1;
+      var rawToken = document.getElementById("RawTokenInput").value;
+      if (rawToken != "(Error)"){
+        try {
+          int64Value = TokenEncoder.rawToInt64(rawToken);
+        } catch (error) {
+          document.getElementById("ErrorLabel").innerText = error;
+        }
+      } 
+      document.getElementById("Int64Input").value = int64Value;
+    }
+
+    function refreshTokenInput(){
+      var token = '';
+      try {
+        var int64ValueAsString = document.getElementById("Int64Input").value;      
+        var int64Value = BigInt(int64ValueAsString);      
+        token = TokenEncoder.decode(int64Value);
+              
+      } catch (error) {
+        document.getElementById("ErrorLabel").innerText = error;
+      }
+      var tokenInput = document.getElementById("TokenInput");
+      tokenInput.value = token;      
+    }
+    
+    function refreshRawTokenInput(){
+      var rawToken = '(Error)';
+      try {
+        var token = document.getElementById("TokenInput").value;      
+        rawToken = TokenEncoder.readableToRaw(token);
+      } catch (error) {
+        document.getElementById("ErrorLabel").innerText = error;
+      }
+      document.getElementById("RawTokenInput").value = rawToken;
+    }
+
+  </script>
+
+</body>
+
+
+</html>

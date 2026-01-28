@@ -1,0 +1,38 @@
+<html>
+<head>
+  <script src="../lib/TokenEncoder.js"></script>
+  <script src="./EncodedTokenTests.js"></script>
+  <style type="text/css">
+    table {border-collapse: collapse; border: 1px solid gray}
+    td, th {border: 1px solid green; padding: 0.2em; }
+  </style>
+</head>
+
+<body>
+
+  <h1>EncodedToken Tests</h1>
+
+  <h2>Outcome</h2>
+
+  <table>
+    <tr>
+      <td>
+        <div id="Outcome" name="Outcome"></div> 
+      </td>
+    </tr>
+  </table>
+
+  <script type="text/javascript">
+    
+    function print(text){
+      document.getElementById("Outcome").innerText += text + "\n";
+    }
+
+    EncodedTokenTests.runTests(print);    
+
+  </script>
+
+</body>
+
+
+</html>
