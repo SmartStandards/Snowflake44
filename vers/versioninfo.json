@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.6.0",
-  "currentVersionWithSuffix": "3.6.0",
+  "currentVersion": "3.7.0",
+  "currentVersionWithSuffix": "3.7.0",
   "releaseType": "official",
-  "previousVersion": "3.5.0",
+  "previousVersion": "3.6.0",
   "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 6,
+  "currentMinor": 7,
   "currentPatch": 0,
-  "versionDateInfo": "2026-01-28",
-  "versionTimeInfo": "15:31:30",
-  "versionNotes": "- new Feature: camleCase support\n- new Feature: Incoming string may contain nearly all ASCII chars (they are internally escaped)\n- new Feature: Java implementation is now 100% (compared to c#), including tests\n- new Feature: JavaScript implementation is now 100% (compared to c#), including tests and a demo\n"
+  "versionDateInfo": "2026-02-19",
+  "versionTimeInfo": "13:53:20",
+  "versionNotes": "- new Feature: EncodeSafe (not throwing exceptions)\n"
 }
