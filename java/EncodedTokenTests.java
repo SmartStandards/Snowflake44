@@ -1,5 +1,6 @@
 import java.lang.reflect.Method;
 import java.util.Objects;
+//import java.util.function.Consumer;
 
 public class EncodedTokenTests {
 
@@ -37,6 +38,15 @@ public class EncodedTokenTests {
     }    
 
     System.out.println("Tests run: " + runTestsCount + " failed: " + failedTestsCount);
+  }
+
+  public static void Decode_ErrorCases_BehaveAsDesigned() throws Exception {
+    try {
+      TokenEncoder.decode(-1L);
+    } catch (Exception e){
+      return;
+    }
+    throw new RuntimeException("Expected exception was not thrown");
   }
 
   public static void EncodeAndDecodeRaw_ForthAndBack_ReturnsOriginal() throws Exception {
@@ -154,7 +164,7 @@ public class EncodedTokenTests {
 
   }
 
-  public static void  readableTokenToRawToken_TestPatterns_ReturnExpextedOutput() throws Exception {
+  public static void ReadableTokenToRawToken_TestPatterns_ReturnExpextedOutput() throws Exception {
    
     // All numbers
 
@@ -265,12 +275,23 @@ public class EncodedTokenTests {
   }
 
   private static void assertEncodingAndDecodingOfRaw(String rawToken, long expectedEncodedId, String... deviantExpectedToken) throws Exception {
-      long actualEncodedId = TokenEncoder.rawToInt64(rawToken);
-      EncodedTokenTests.assertAreEqual(expectedEncodedId, actualEncodedId, rawToken);
-      String decodedRawToken = TokenEncoder.int64ToRaw(actualEncodedId);      
-      String expectedToken = (deviantExpectedToken.length > 0) ? deviantExpectedToken[0] : rawToken;
-      EncodedTokenTests.assertAreEqual(expectedToken, decodedRawToken, rawToken);
+    long actualEncodedId = TokenEncoder.rawToInt64(rawToken);
+    EncodedTokenTests.assertAreEqual(expectedEncodedId, actualEncodedId, rawToken);
+    String decodedRawToken = TokenEncoder.int64ToRaw(actualEncodedId);      
+    String expectedToken = (deviantExpectedToken.length > 0) ? deviantExpectedToken[0] : rawToken;
+    EncodedTokenTests.assertAreEqual(expectedToken, decodedRawToken, rawToken);
+  }
+
+  /*
+  private static void assertThrowsException(Consumer<Void> action) throws Exception {
+    try {
+      action.accept(null);
+    } catch (Exception e){
+      return;
     }
+    throw new RuntimeException("Expected exception was not thrown");
+  }
+  */
 
   public static int countMatchesOfChar(String haystack, Character needle){
     int count = 0;

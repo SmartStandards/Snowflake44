@@ -6,66 +6,44 @@ namespace System.Text.SmartStandards {
   public class TokenEncoderTests {
 
     [TestMethod()]
+    public void Decode_ErrorCases_BehaveAsDesigned() {
+      // Incoming negative => Exception
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Decode(-1));
+    }
+
+    [TestMethod()]
+    public void DecodeSafe_ErrorCases_BehaveAsDesigned() {
+      string token;
+      // Incoming negative => null
+      token = TokenEncoder.DecodeSafe(-1);
+      Assert.IsNull(token);
+    }
+
+    [TestMethod()]
     public void Encode_ErrorCases_BehaveAsDesigned() {
 
       long id;
+      Exception caughtException = null;
 
       // Incoming null => Exception
-
-      try {
-        id = TokenEncoder.Encode(null);
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(NullReferenceException));
-      }
+      AssertThrowsException<NullReferenceException>(() => TokenEncoder.Encode(null));
 
       // Incoming containing space => Exception
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode(" "));
 
-      try {
-        id = TokenEncoder.Encode(" ");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode("A "));
 
-      try {
-        id = TokenEncoder.Encode("A ");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode(" B"));
 
-      try {
-        id = TokenEncoder.Encode(" B");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
-
-      try {
-        id = TokenEncoder.Encode("A B");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode("A B"));
 
       // Incoming ending with underscore space => Exception
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode("_"));
 
-      try {
-        id = TokenEncoder.Encode("_");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
-
-      try {
-        id = TokenEncoder.Encode("A_");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode("A_"));
 
       // Longer than 12 => Exception
-
-      try {
-        id = TokenEncoder.Encode("AAAAAAAAAAAAA");
-      } catch (Exception ex) {
-        Assert.IsTrue(ex.GetType() == typeof(ArgumentException));
-      }
-
+      AssertThrowsException<ArgumentException>(() => TokenEncoder.Encode("AAAAAAAAAAAAA"));
     }
 
     [TestMethod()]
@@ -133,6 +111,40 @@ namespace System.Text.SmartStandards {
       AssertEncodingAndDecodingOf("Zimmer12A", 1154830342468922L);
       AssertEncodingAndDecodingOf("Gasse13b", 2251982322125863L);
 
+    }
+
+    [TestMethod()]
+    public void EncodeSafe_ErrorCases_BehaveAsDesigned() {
+
+      long id;
+
+      // Incoming null => -1
+      id = TokenEncoder.EncodeSafe(null);
+      Assert.AreEqual(-1, id);
+
+      // Incoming containing space => -1
+      id = TokenEncoder.EncodeSafe(" ");
+      Assert.AreEqual(-1, id);
+
+      id = TokenEncoder.EncodeSafe("A ");
+      Assert.AreEqual(-1, id);
+
+      id = TokenEncoder.EncodeSafe(" B");
+      Assert.AreEqual(-1, id);
+
+      id = TokenEncoder.EncodeSafe("A B");
+      Assert.AreEqual(-1, id);
+
+      // Incoming ending with underscore space => -1
+      id = TokenEncoder.EncodeSafe("_");
+      Assert.AreEqual(-1, id);
+
+      id = TokenEncoder.EncodeSafe("A_");
+      Assert.AreEqual(-1, id);
+
+      // Longer than 12 => -1
+      id = TokenEncoder.EncodeSafe("AAAAAAAAAAAAA");
+      Assert.AreEqual(-1, id);
     }
 
     [TestMethod()]
@@ -328,6 +340,18 @@ namespace System.Text.SmartStandards {
 
       decodedToken = TokenEncoder.Decode(actualId);
       Assert.AreEqual(originalToken, decodedToken);
+    }
+
+    private static Exception AssertThrowsException<T>(Action action) where T : Exception {
+      Exception caughtException = null;
+      try {
+        action();
+      } catch (Exception ex) {
+        caughtException = ex;
+      }
+      Assert.IsNotNull(caughtException);
+      Assert.IsTrue(caughtException.GetType() == typeof(T));
+      return caughtException;
     }
   }
 }
