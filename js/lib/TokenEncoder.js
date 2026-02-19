@@ -46,7 +46,7 @@ class TokenEncoder {
 
   static int64ToRaw(int64Value) {
 
-    if ((int64Value < 0)) int64Value *= -1n;
+    if ((int64Value < 0)) throw new Error('Negative values like ' + int64Value + ' are not supported!');
 
     var bitmask = 31n; // the n makes it BigInt
     var offset = 0n;

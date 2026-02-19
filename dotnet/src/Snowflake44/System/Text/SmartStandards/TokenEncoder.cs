@@ -12,9 +12,32 @@
     ///   Max. 12 characters (each uppercase character occupies 2 places). 
     /// </param>
     /// <returns> An int64 ID. </returns>
+    /// <exception cref="NullReferenceException"> If the token is null. </exception>
+    /// <exception cref="ArgumentException"> If the token contains unsupported characters or is too long. </exception>
     public static long Encode(string token) {
       string rawRepresentation = ReadableToRaw(token);
       return TextToIntegerCodec.ToInt64(rawRepresentation);
+    }
+
+    /// <summary>
+    ///   Creates an int64 ID from a textual token without throwing exceptions. Returns -1 if the token is invalid.
+    /// </summary>
+    /// <param name="token">
+    ///   A string following these conventions:
+    ///   Allowed characters:  Letters, german umlauts (äöüß), dot. No digits, no spaces, nothing else.
+    ///   True PascalCase (first letter uppercase)
+    ///   Max. 12 characters (each uppercase character occupies 2 places). 
+    /// </param>
+    /// <returns> An int64 ID, or -1 if the token is invalid. </returns>
+    public static long EncodeSafe(string token) {
+      try {
+        if (token == null) return -1;
+        string rawRepresentation = ReadableToRaw(token);
+        if (rawRepresentation == null) return -1;
+        return TextToIntegerCodec.ToInt64(rawRepresentation, false);
+      } catch (Exception) {
+        return -1;
+      }
     }
 
     /// <summary>
@@ -22,9 +45,27 @@
     /// </summary>
     /// <param name="id"> An int64 ID that has been created from a textual token before. </param>
     /// <returns> The textual token. </returns>
+    /// <exception cref="ArgumentException"> If the ID cannot be decoded to a valid token. </exception>
     public static string Decode(long id) {
       string rawRepresentation = TextToIntegerCodec.FromInt64(id);
       return RawToReadable(rawRepresentation);
+    }
+
+    /// <summary>
+    ///   Decodes a textual token back from an encoded int64 ID without throwing exceptions. 
+    ///   Returns null if the ID is invalid or cannot be decoded to a valid token.
+    /// </summary>
+    /// <param name="id"> An int64 ID that has been created from a textual token before. </param>
+    /// <returns> The textual token or null if the ID is invalid or cannot be decoded to a valid token. </returns>
+    public static string DecodeSafe(long id) {
+      try {
+        if (id < 0) return null;
+        string rawRepresentation = TextToIntegerCodec.FromInt64(id);
+        if (rawRepresentation == null) return null;
+        return RawToReadable(rawRepresentation);
+      } catch (Exception) {
+        return null;
+      }
     }
 
     /// <summary>
@@ -124,7 +165,7 @@
       return sb.ToString();
     }
 
-    public static string ReadableToRaw(string token) {
+    public static string ReadableToRaw(string token, bool shouldThrowException = true) {
 
       if ((token) == null) return null;
 
@@ -206,7 +247,11 @@
         ulong mappedCode = TextToIntegerCodec.GetMappedCode(upperC);
 
         if (mappedCode > 31) {
-          throw new ArgumentException($"Unsupported Character '{c}' in \"{token}\"!", nameof(token));
+          if (shouldThrowException) {
+            throw new ArgumentException($"Unsupported Character '{c}' in \"{token}\"!", nameof(token));
+          } else {
+            return null;
+          }
         }
 
         if (char.IsUpper(c) != upperCaseExpected) sb.Append('_');
