@@ -6,9 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
-
-
+ - **new Feature**: EncodeSafe (not throwing exceptions)
 
 ## v 3.6.0
 released **2026-01-28**, including:

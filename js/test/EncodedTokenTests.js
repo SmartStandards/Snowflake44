@@ -33,7 +33,11 @@ class EncodedTokenTests {
     }
     onPrint('Tests run: ' + runTestsCount + ' failed: ' + failedTestsCount);
   }    
-  
+
+  static decodeToken_ErrorCases_BehaveAsDesigned() {
+    EncodedTokenTests.assertThrowsError(() => TokenEncoder.decode(-1), "Negative values like -1 are not supported!");
+  }
+
   static readableTokenToRawToken_TestPatterns_ReturnExpextedOutput() {
 
     // All numbers
@@ -124,4 +128,15 @@ class EncodedTokenTests {
     throw new Error('AreEqual failed for "' + hint + '" Expected: ' + expected + ' Actual: ' + actual);
   }
 
+  static assertThrowsError(action, expectedErrorMessage, hint) {
+    try {
+      action();
+    } catch (error) {
+      if (error.message !== expectedErrorMessage) {
+        throw new Error('AssertThrowsError failed for "' + hint + '" Expected: ' + expectedErrorMessage + ' Actual: ' + error.message);
+      }
+      return;
+    }
+    throw new Error('AssertThrowsError failed for "' + hint + '" Expected error: ' + expectedErrorMessage + ' but no error was thrown.');
+  }
 }

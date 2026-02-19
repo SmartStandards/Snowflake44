@@ -13,9 +13,9 @@
       byte unmappedCode;
       char[] decoded = new char[12];
 
-      if ((int64Value < 0)) int64Value *= -1;
+      if ((int64Value < 0)) throw new ArgumentException($"Negative values like {int64Value} are not supported!", nameof(int64Value));
 
-      for (var i = 0; i <= 11; i++) {
+      for (int i = 0; i <= 11; i++) {
 
         mappedCode = Convert.ToByte((int64Value & bitmask) >> offset);
 
@@ -75,14 +75,22 @@
     ///   All forms of casing will be lost except CAPITALS.
     ///   The decoder will create Pascal Casing or CAPITALS.
     /// </remarks>
-    public static long ToInt64(string rawToken) {
+    public static long ToInt64(string rawToken, bool shouldThrowException = true) {
 
       if (rawToken.Length > 12) {
-        throw new ArgumentException(string.Format("Maximum length of 12 characters was exceeded by \"{0}\"!", rawToken), nameof(rawToken));
+        if (shouldThrowException) {
+          throw new ArgumentException(string.Format("Maximum length of 12 characters was exceeded by \"{0}\"!", rawToken), nameof(rawToken));
+        } else {
+          return -1;
+        }
       }
 
       if (rawToken.EndsWith("_")) {
-        throw new ArgumentException(string.Format("String must not end with underscore: \"{0}\"!", rawToken), nameof(rawToken));
+        if (shouldThrowException) {
+          throw new ArgumentException(string.Format("String must not end with underscore: \"{0}\"!", rawToken), nameof(rawToken));
+        } else {
+          return -1;
+        }
       }
 
       string toEncode = rawToken.ToUpperInvariant();
@@ -93,12 +101,16 @@
       int offset = 0;
       ulong mappedCode;
 
-      for (var i = 0; i <= 11; i++) {
+      for (int i = 0; i <= 11; i++) {
 
         mappedCode = GetMappedCode(toEncode[i]);
 
         if (mappedCode > 31) {
-          throw new ArgumentException($"Unsupported Character '{toEncode[i]}' in \"{rawToken}\"!", nameof(rawToken));
+          if (shouldThrowException) {
+            throw new ArgumentException($"Unsupported Character '{toEncode[i]}' in \"{rawToken}\"!", nameof(rawToken));
+          } else {
+            return -1;
+          }
         }
         encodedValue |= (mappedCode << offset);
         offset += 5;

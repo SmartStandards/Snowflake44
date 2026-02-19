@@ -6,7 +6,7 @@ public class TokenEncoder {
    * Decodes a long to a token string (of maximum 12 characters).
    * The String will be PascalCase (e.g. "HelloWorld")
   */
-  public static String decode(long int64Value) {
+  public static String decode(long int64Value) throws Exception {
     String rawToken = TokenEncoder.int64ToRaw(int64Value);
     String token = TokenEncoder.rawToReadable(rawToken);
     return token;
@@ -21,14 +21,14 @@ public class TokenEncoder {
    * Decodes a long to a raw token string (of maximum 12 characters).
    * The String will be CAPITALS and underscores (e.g. "HELLO_WORLD")
   */
-  public static String int64ToRaw(long int64Value) {
+  public static String int64ToRaw(long int64Value) throws Exception {
     long bitmask = 31;
     int offset = 0;
     byte mappedCode;
     byte unmappedCode;
     char[]decoded = new char[12];
 
-    if (int64Value < 0) int64Value *= -1;
+    if (int64Value < 0) throw new Exception("Negative values like " + int64Value + " are not supported!");
 
     for (int i = 0; i <= 11; i++) {
       mappedCode = (byte)((int64Value & bitmask) >> offset);
