@@ -252,3 +252,4 @@ js/*.tgz
 .vscode/settings.json
 /**/vendor/nuget
 *.class
+/merged_output.txt
