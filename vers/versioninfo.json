@@ -1,13 +1,13 @@
 {
-  "currentVersion": "3.7.0",
-  "currentVersionWithSuffix": "3.7.0",
+  "currentVersion": "3.8.0",
+  "currentVersionWithSuffix": "3.8.0",
   "releaseType": "official",
-  "previousVersion": "3.6.0",
+  "previousVersion": "3.7.0",
   "changeGrade": "minor",
   "currentMajor": 3,
-  "currentMinor": 7,
+  "currentMinor": 8,
   "currentPatch": 0,
-  "versionDateInfo": "2026-02-19",
-  "versionTimeInfo": "13:53:20",
-  "versionNotes": "- new Feature: EncodeSafe (not throwing exceptions)\n"
+  "versionDateInfo": "2026-05-29",
+  "versionTimeInfo": "10:12:20",
+  "versionNotes": "- new Feature: Moved targets from .net 6/8 to 8/10\n"
 }
