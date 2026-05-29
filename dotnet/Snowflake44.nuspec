@@ -17,9 +17,9 @@
     <dependencies>
       <group targetFramework=".NETFramework4.8">
       </group>
-      <group targetFramework="net6.0">
-      </group>
       <group targetFramework="net8.0">
+      </group>
+      <group targetFramework="net10.0">
 			</group>
     </dependencies>
   </metadata>
@@ -30,13 +30,13 @@
     <file src="dist\bin-net48\Snowflake44.dll" target="lib/net48" />
     <file src="dist\bin-net48\Snowflake44.xml" target="lib/net48" />
     <file src="dist\bin-net48\Snowflake44.pdb" target="lib/net48" />
-    <!-- .NET 6.0 -->
-    <file src="dist\bin-net6.0\Snowflake44.dll" target="lib/net6.0" />
-    <file src="dist\bin-net6.0\Snowflake44.xml" target="lib/net6.0" />
-    <file src="dist\bin-net6.0\Snowflake44.pdb" target="lib/net6.0" />
     <!-- .NET 8.0 -->
     <file src="dist\bin-net8.0\Snowflake44.dll" target="lib/net8.0" />
     <file src="dist\bin-net8.0\Snowflake44.xml" target="lib/net8.0" />
     <file src="dist\bin-net8.0\Snowflake44.pdb" target="lib/net8.0" />
+    <!-- .NET 10.0 -->
+    <file src="dist\bin-net10.0\Snowflake44.dll" target="lib/net10.0" />
+    <file src="dist\bin-net10.0\Snowflake44.xml" target="lib/net10.0" />
+    <file src="dist\bin-net10.0\Snowflake44.pdb" target="lib/net10.0" />
   </files>
 </package>
