@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C5272353-5
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Snowflake44", "src\Snowflake44\Snowflake44.shproj", "{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.net6.0", "src\Snowflake44.net6.0\Snowflake44.net6.0.csproj", "{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snowflake44.Tests", "test\Snowflake44.TestsC\Snowflake44.Tests.csproj", "{732D4247-867F-4161-B0CF-C12950A4B996}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{F9D7B4B4-86BA-481D-8F88-EEB7D1C79BE0}"
@@ -36,16 +34,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowflake44.net48", "src\Sn
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowflake44.net10.0", "src\Snowflake44.net10.0\Snowflake44.net10.0.csproj", "{7318AC0B-B664-18CD-3BFD-10348D804457}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970}.Release|Any CPU.Build.0 = Release|Any CPU
 		{732D4247-867F-4161-B0CF-C12950A4B996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{732D4247-867F-4161-B0CF-C12950A4B996}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{732D4247-867F-4161-B0CF-C12950A4B996}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,24 +58,28 @@ Global
 		{C732C483-AEA1-45A5-9202-C6E91EBFE53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C732C483-AEA1-45A5-9202-C6E91EBFE53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C732C483-AEA1-45A5-9202-C6E91EBFE53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7318AC0B-B664-18CD-3BFD-10348D804457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7318AC0B-B664-18CD-3BFD-10348D804457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7318AC0B-B664-18CD-3BFD-10348D804457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7318AC0B-B664-18CD-3BFD-10348D804457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CF0A161A-99BA-4F01-AF5E-16C6FCBC85AE} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
-		{7B5BAEA8-7E79-4A30-B6C1-4DA4831AF970} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{732D4247-867F-4161-B0CF-C12950A4B996} = {C5272353-539E-4138-93FD-9DF437F6DA47}
 		{2A470ADD-1484-40C8-B8BA-4DE044D4348D} = {D3E93E5D-EBF6-42A6-B753-120374454B58}
 		{A7050E5B-8FD2-44D4-A392-4A9C785E74A6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C732C483-AEA1-45A5-9202-C6E91EBFE53A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {EFB5135D-039A-4D92-8FDD-9EA5D070F991}
+		{7318AC0B-B664-18CD-3BFD-10348D804457} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2F37C1D-32F0-4BF2-AAEB-46B9D8C07D23}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Snowflake44\Snowflake44.projitems*{7b5baea8-7e79-4a30-b6c1-4da4831af970}*SharedItemsImports = 5
+		src\Snowflake44\Snowflake44.projitems*{7318ac0b-b664-18cd-3bfd-10348d804457}*SharedItemsImports = 5
 		src\Snowflake44\Snowflake44.projitems*{a7050e5b-8fd2-44d4-a392-4a9c785e74a6}*SharedItemsImports = 5
 		src\Snowflake44\Snowflake44.projitems*{c732c483-aea1-45a5-9202-c6e91ebfe53a}*SharedItemsImports = 4
 		src\Snowflake44\Snowflake44.projitems*{cf0a161a-99ba-4f01-af5e-16c6fcbc85ae}*SharedItemsImports = 13

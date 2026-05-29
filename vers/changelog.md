@@ -6,7 +6,7 @@
 
 ## Upcoming Changes
 
-*(none)*
+* **new Feature**: Moved targets from .net 6/8 to 8/10
 
 
 
