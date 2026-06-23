@@ -6,7 +6,15 @@
 
 ## Upcoming Changes
 
-- SQL: Added fn_Pascalize()
+*(none)*
+
+
+
+## v 3.8.2
+released **2026-06-23**, including:
+ - SQL: Added fn_Pascalize()
+
+
 
 ## v 3.8.1
 released **2026-06-09**, including:
