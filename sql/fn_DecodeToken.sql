@@ -1,5 +1,4 @@
 -- SmartStandards EncodedToken ID decoder
--- Limitation: Only decodes "raw encoded token" style (does not support PascalCase convention).
 -- Taken from: https://github.com/SmartStandards/Snowflake44/tree/master
 
 CREATE FUNCTION [dbo].[fn_DecodeToken] (@encoded bigint) RETURNS varchar(12) AS BEGIN
@@ -62,6 +61,6 @@ CREATE FUNCTION [dbo].[fn_DecodeToken] (@encoded bigint) RETURNS varchar(12) AS 
 
   SET @decoded = LTRIM(RTRIM(@decoded));
   SET @decoded = REPLACE(@decoded,' ','_');
-
-  RETURN @decoded;
+  
+  RETURN dbo.fn_Pascalize(@decoded);
 END
