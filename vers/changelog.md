@@ -10,6 +10,12 @@
 
 
 
+## v 3.8.3
+released **2026-06-24**, including:
+ - new revision without significant changes
+
+
+
 ## v 3.8.2
 released **2026-06-23**, including:
  - SQL: Added fn_Pascalize()
